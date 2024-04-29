@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=Paytone+One&display=swap');
+
+.login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 665px;
+  height: 600px;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+:host {
+  content: "";
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #2145a179;
+  background-size: cover;
+  background-position: center;
+}
+
+.login-header {
+  text-align: center;
+  font-family: paytone one;
+  font-size: 24px;
+}
+
+.login-input {
+  border-radius: 40px;
+  height: 50px;
+}
+
+.login-logo {
+  width: 200px;
+  height: 170px;
+}
+
+.login-title::after {
+  content: "";
+  display: block;
+  width: 10%;
+  height: 3px;
+  background-color: #D13C48;
+}
+
+.background{
+  background-image: url("/assets/background-image.jpg");
+  background-size: cover;
+  background-position: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
