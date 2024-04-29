@@ -1,0 +1,25 @@
+<div class="background"></div>
+<div class="login-container">
+  <div class="login-header">
+    <img src="assets/logo1.png" alt="logo" class="login-logo">
+    <h1 class="login-title">Iniciar Sesión</h1>
+  </div>
+
+  <form class="login-form">
+
+    <p-iconField iconPosition="left">
+      <input icon="pi pi-users" pInputText id="email" class="login-input" aria-describedby="email"
+        placeholder="Ingresar correo electrónico"
+        [style]="{'background-color': 'rgba(0, 0, 0, 0.09)', 'border': '1px solid #000000', 'margin-bottom':'20px'}" />
+    </p-iconField>
+    <br>
+    <p-iconField iconPosition="left">
+      <input pInputText id="password" class="login-input" aria-describedby="password" placeholder="Ingresar contraseña"
+        [style]="{'background-color': 'rgba(0, 0, 0, 0.09)', 'border': '1px solid #000000'}" />
+    </p-iconField>
+
+  </form>
+  <br>
+  <p-button label="Entrar" [rounded]="true" size="large" [raised]="true"
+    [style]="{'background-color': '#D13C48', 'border': '1px solid #CA3541', 'size':'20px'}"></p-button>
+</div>
