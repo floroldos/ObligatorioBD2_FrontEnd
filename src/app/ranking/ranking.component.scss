@@ -1,0 +1,111 @@
+@import url('https://fonts.googleapis.com/css2?family=Paytone+One&display=swap');
+
+.container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  min-height: 100vh;
+  min-width: 100vw;
+  background: rgb(33, 68, 159);
+  background: radial-gradient(circle, rgba(33, 68, 159, 1) 0%, rgba(25, 52, 121, 1) 35%);
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: #152C67;
+  color: #fff;
+}
+
+.logo-bar {
+  width: 50px;
+  height: 50px;
+  display: flex;
+}
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-title {
+  margin-left: 1rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.navbar-menu {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  margin-left: auto;
+}
+
+.navbar-item {
+  margin-left: 4rem;
+}
+
+.navbar-link {
+  font-size: 20px;
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.3s ease-in-out;
+  font-family: 'paytone one';
+}
+
+.navbar-link::after {
+  content: "";
+  display: block;
+  width: 30%;
+  height: 2px;
+  background-color: #F6B40E;
+}
+
+.navbar-link:hover {
+  color: #fff;
+}
+
+.content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    width: 80%; 
+    background-color: #ffffff4c; 
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  }
+.ranking-title {
+    text-align: left; 
+    font-size: 2rem; 
+    font-family: 'Paytone One'; 
+    margin-bottom: 2rem; 
+  }
+  
+  .ranking-container {
+    display: flex; 
+    flex-wrap: wrap; 
+    justify-content: space-between; 
+  }
+  
+  .ranking-row {
+    display: flex;
+    flex-direction: column; 
+    align-items: center; 
+    width: 30%; 
+    margin-bottom: 1rem;
+    padding: 1rem; 
+    border-radius: 5px; 
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); 
+    background-color: #f8f8f8; 
+  }
+  
+  .ranking-position,
+  .ranking-name,
+  .ranking-points {
+    font-family: 'Paytone One'; 
+    margin-bottom: 0.5rem;
+  }

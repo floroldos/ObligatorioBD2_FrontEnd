@@ -1,1 +1,31 @@
-<p>ranking works!</p>
+<div class="container">
+    <nav class="navbar">
+      <div class="navbar-brand">
+        <img class="logo-bar" src="assets/logo2.png" alt="Logo">
+        <span class="navbar-title">Penca UCU - Copa América USA 2024</span>
+      </div>
+      <ul class="navbar-menu">
+        <li class="navbar-item">
+          <a class="navbar-link" routerLink="/ranking">Partidos</a>
+        </li>
+        <li class="navbar-item">
+          <a class="navbar-link" routerLink="/ranking">Ranking</a>
+        </li>
+      </ul>
+      <p-avatar label="U" styleClass="mr-2" [style]="{ 'background-color': '#F6B40E', color: '#ffffff', 'margin-left': '5rem' }"></p-avatar>
+    </nav>
+    <div class="content">
+        <h1 class="ranking-title">Posiciones de Alumnos</h1>
+    
+        <ul *ngIf="rankings">
+          <li class="ranking-row" *ngFor="let ranking of rankings">
+            <span class="ranking-position">{{ ranking.position }}</span>
+            <span class="ranking-name">{{ ranking.name }}</span>
+            <span class="ranking-points">Puntos: {{ ranking.points }}</span>
+          </li>
+        </ul>
+    
+        <p *ngIf="!rankings">No hay ranking disponible.</p>
+      </div>
+  </div>
+  
