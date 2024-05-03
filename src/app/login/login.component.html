@@ -6,20 +6,20 @@
   </div>
 
   <form class="login-form">
-
-    <p-iconField iconPosition="left">
-      <input icon="pi pi-users" pInputText id="email" class="login-input" aria-describedby="email"
-        placeholder="Ingresar correo electrónico"
-        [style]="{'background-color': 'rgba(0, 0, 0, 0.09)', 'border': '1px solid #000000', 'margin-bottom':'20px'}" />
-    </p-iconField>
+    <span class="p-float-label">
+      <input pInputText id="email" aria-describedby="email"/>
+      <label for="email">Ingresar correo electrónico</label>
+    </span>
     <br>
-    <p-iconField iconPosition="left">
-      <input pInputText id="password" class="login-input" aria-describedby="password" placeholder="Ingresar contraseña"
-        [style]="{'background-color': 'rgba(0, 0, 0, 0.09)', 'border': '1px solid #000000'}" />
-    </p-iconField>
-
+    <span class="p-float-label">
+      <p-password id="password" class="login-input" aria-describedby="password" [feedback]="false" />
+      <label for="password">Ingresar contraseña</label>
+    </span>
   </form>
   <br>
   <p-button label="Entrar" [rounded]="true" size="large" [raised]="true"
-    [style]="{'background-color': '#D13C48', 'border': '1px solid #CA3541', 'size':'20px'}"></p-button>
+    [style]="{'background-color': '#D13C48', 'border': '1px solid #CA3541', 'font-size':'18px', 'height': '10px', 'width':'200px', 'margin':'15px'}"
+    [loading]="loading" (onClick)="load()"></p-button>
+  <br>
+  <small id="username-help">¿No estás registrado? <a href="/register"><u>Registrarme</u></a> </small>
 </div>

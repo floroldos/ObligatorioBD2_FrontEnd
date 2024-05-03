@@ -1,15 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Paytone+One&display=swap');
 
-.login-container {
+.register-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 665px;
-  height: 600px;
+  width: 735px;
+  height: 680px;
   background-color: rgba(255, 255, 255, 0.8);
   border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
 }
 
 :host {
@@ -28,25 +28,28 @@
   background-position: center;
 }
 
-.login-header {
+.register-header {
   text-align: center;
   font-family: paytone one;
-  font-size: 24px;
+  font-size: 20px;
 }
 
-.login-input {
-  border-radius: 40px;
-  height: 50px;
-  width: 100%;
-  margin-bottom: 5px;
+.register-form-row {
+  display: flex;
 }
 
-.login-logo {
-  width: 200px;
-  height: 170px;
+.register-form-column {
+  flex: 1;
+  padding: 10px;
+  margin: 5px;
 }
 
-.login-title::after {
+.register-logo {
+  width: 170px;
+  height: 150px;
+}
+
+.register-title::after {
   content: "";
   display: block;
   width: 10%;
@@ -54,7 +57,7 @@
   background-color: #D13C48;
 }
 
-.background{
+.background {
   background-image: url("/assets/background-image.jpg");
   background-size: cover;
   background-position: center;

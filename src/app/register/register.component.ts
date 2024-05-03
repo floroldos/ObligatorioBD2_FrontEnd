@@ -10,9 +10,11 @@ import { IconFieldModule } from 'primeng/iconfield';
 import { InputIconModule } from 'primeng/inputicon';
 import { PasswordModule } from 'primeng/password';
 import { Router } from '@angular/router';
+import { CalendarModule } from 'primeng/calendar';
+import { InputNumberModule } from 'primeng/inputnumber';
 
 @Component({
-  selector: 'app-login',
+  selector: 'app-register',
   standalone: true,
   imports: [
     ButtonModule,
@@ -24,18 +26,20 @@ import { Router } from '@angular/router';
     InputTextModule,
     IconFieldModule,
     InputIconModule,
-    PasswordModule
+    PasswordModule,
+    CalendarModule,
+    InputNumberModule
   ],
-  templateUrl: './login.component.html',
-  styleUrl: './login.component.scss'
+  templateUrl: './register.component.html',
+  styleUrl: './register.component.scss'
 })
-export class LoginComponent {
+export class RegisterComponent {
   constructor(private router: Router) { }
   loading: boolean = false;
 
-  login() {
-    // Validación de inicio de sesión. Si el inicio de sesión es exitoso, navega a la página de inicio
-    this.router.navigate(['/home']);
+  register() {
+    // Validación de registro. Si es exitoso, navega a la página de inicio o al login
+    this.router.navigate(['/login']);
   }
 
   load() {
@@ -43,7 +47,7 @@ export class LoginComponent {
 
     setTimeout(() => {
       this.loading = false
-      this.login();
+      this.register();
     }, 2000);
   }
 

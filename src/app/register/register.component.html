@@ -1,0 +1,55 @@
+<div class="background"></div>
+<div class="register-container">
+  <div class="register-header">
+    <img src="assets/logo1.png" alt="logo" class="register-logo">
+    <h1 class="register-title">Registrarme</h1>
+  </div>
+  <form class="register-form">
+    <div class="register-form-row">
+      <div class="register-form-column">
+        <span class="p-float-label">
+          <input pInputText id="name" aria-describedby="name" />
+          <label for="name">Nombre(s)</label>
+        </span>
+        <br>
+        <span class="p-float-label">
+          <input pInputText id="lastname" aria-describedby="lastname" />
+          <label for="lastname">Apellido</label>
+        </span>
+        <br>
+        <span class="p-float-label">
+          <p-inputNumber inputId="identity-input"> </p-inputNumber>
+          <label for="identity-input">Cédula</label>
+        </span>
+        <br>
+        <span class="p-float-label">
+            <input pInputText id="career" aria-describedby="career" />
+            <label for="career">Carrera</label>
+        </span>
+      </div>
+
+      <div class="register-form-column">
+        <span class="p-float-label">
+            <input pInputText id="email" aria-describedby="email" />
+            <label for="email">Correo electrónico</label>
+          </span>
+        <br>
+        <span class="p-float-label">
+          <p-password id="password" class="register-input" aria-describedby="password" />
+          <label for="password">Contraseña</label>
+        </span>
+        <br>
+        <span class="p-float-label">
+          <p-calendar inputId="birth_date" aria-describedby="birthdate" [iconDisplay]="'input'" [showIcon]="true" size="small"></p-calendar>
+          <label for="birthdate">Fecha de nacimiento</label>
+        </span>
+      </div>
+    </div>
+  </form>
+  <br>
+  <p-button label="Registrarse" [rounded]="true" size="large" [raised]="true"
+            [style]="{'background-color': '#D13C48', 'border': '1px solid #CA3541', 'font-size':'18px', 'height': '15px', 'width':'200px','margin':'5px'}"
+            [loading]="loading" (onClick)="load()"></p-button>
+  <br>
+  <small id="username-help">¿Ya estás registrado? <a href="/login"><u>Iniciar sesión</u></a> </small>
+</div>
