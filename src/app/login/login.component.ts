@@ -10,6 +10,9 @@ import { IconFieldModule } from 'primeng/iconfield';
 import { InputIconModule } from 'primeng/inputicon';
 import { PasswordModule } from 'primeng/password';
 import { Router } from '@angular/router';
+import { FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormControl } from '@angular/forms';
+import { LoginService } from '../services/loginservice/login.service';
 
 @Component({
   selector: 'app-login',
@@ -24,25 +27,43 @@ import { Router } from '@angular/router';
     InputTextModule,
     IconFieldModule,
     InputIconModule,
-    PasswordModule
+    PasswordModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
 export class LoginComponent {
-  constructor(private router: Router) { }
+  constructor(private router: Router, private log: LoginService) { }
   loading: boolean = false;
 
-  login() {
-    // Validación de inicio de sesión. Si el inicio de sesión es exitoso, navega a la página de inicio
-    this.router.navigate(['/home']);
+  loginGroup = new FormGroup({
+    ci: new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(8)]),
+    password: new FormControl('', [Validators.required, Validators.minLength(6)])
+  });
+
+
+  async login() {
+    if (this.loginGroup.invalid) {
+      console.log('Invalid form');
+      return;
+    }
+
+    if (this.loginGroup.value.ci != null && this.loginGroup.value.password != null) {
+      this.log.login(this.loginGroup.value.ci, this.loginGroup.value.password).then((response) => {
+        console.log(response);
+      });
+  
+      //this.router.navigate(['/home']);
+    }
   }
 
   load() {
     this.loading = true;
 
     setTimeout(() => {
-      this.loading = false
+      this.loading = false;
       this.login();
     }, 2000);
   }
