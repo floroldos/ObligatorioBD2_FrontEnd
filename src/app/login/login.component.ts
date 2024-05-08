@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { DividerModule } from 'primeng/divider';
@@ -12,7 +12,9 @@ import { PasswordModule } from 'primeng/password';
 import { Router } from '@angular/router';
 import { FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { FormControl } from '@angular/forms';
-import { LoginService } from '../services/loginservice/login.service';
+import { CookieService } from 'ngx-cookie-service';
+import { HttpClient } from '@angular/common/http';
+import { environment } from '../../environments/environment.development';
 
 @Component({
   selector: 'app-login',
@@ -35,13 +37,34 @@ import { LoginService } from '../services/loginservice/login.service';
   styleUrl: './login.component.scss'
 })
 export class LoginComponent {
-  constructor(private router: Router, private log: LoginService) { }
+  constructor(private router: Router, private http: HttpClient, private cookieService: CookieService) {}
+
   loading: boolean = false;
 
   loginGroup = new FormGroup({
     ci: new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(8)]),
     password: new FormControl('', [Validators.required, Validators.minLength(6)])
   });
+
+
+  loginStatus = {
+    error: false,
+    message: ''
+  }
+
+  async ngOnInit() {
+    if (this.cookieService.check('token')) {
+      this.http.post(environment.serverUrl + "/auth/token", { token: this.cookieService.get('token') }).subscribe((res: any) => {
+        if (res.token == null) {
+          this.loginStatus.error = true;
+          this.loginStatus.message = "Token inválido. Por favor, inicie sesión nuevamente."
+          this.cookieService.delete('token');
+        } else {
+          this.router.navigate(['/home']);
+        }
+      });
+    }
+  }
 
 
   async login() {
@@ -51,21 +74,28 @@ export class LoginComponent {
     }
 
     if (this.loginGroup.value.ci != null && this.loginGroup.value.password != null) {
-      this.log.login(this.loginGroup.value.ci, this.loginGroup.value.password).then((response) => {
-        console.log(response);
+      this.http.post(environment.serverUrl + "/auth/login", this.loginGroup.value).subscribe((res: any) => {
+        console.log(res);
+        if (res.token == null) {
+          this.loginStatus.error = true;
+          this.loginStatus.message = res.message;
+        } else {
+          this.cookieService.set('token', res.token, 365);
+          this.router.navigate(['/home']);
+        }
       });
-  
-      //this.router.navigate(['/home']);
     }
   }
 
   load() {
     this.loading = true;
+    
+    this.login();
 
+    this.loading = false;
     setTimeout(() => {
-      this.loading = false;
-      this.login();
     }, 2000);
+    
   }
 
 }
