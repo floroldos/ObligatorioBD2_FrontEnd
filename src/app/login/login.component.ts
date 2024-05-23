@@ -15,6 +15,7 @@ import { FormControl } from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment.development';
+import { AutoFocusModule } from 'primeng/autofocus';
 
 @Component({
   selector: 'app-login',
@@ -30,6 +31,7 @@ import { environment } from '../../environments/environment.development';
     IconFieldModule,
     InputIconModule,
     PasswordModule,
+    AutoFocusModule,
     FormsModule,
     ReactiveFormsModule
   ],
