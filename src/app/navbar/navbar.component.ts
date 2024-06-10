@@ -9,6 +9,7 @@ import { IconFieldModule } from 'primeng/iconfield';
 import { InputIconModule } from 'primeng/inputicon';
 import { MenuModule } from 'primeng/menu';
 import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-navbar',
@@ -22,16 +23,18 @@ import { Router } from '@angular/router';
     IconFieldModule,
     InputIconModule,
     MenuModule
-  ],
+    ],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss'
 })
 export class NavbarComponent {
   loading: boolean = false;
-  constructor(private router: Router) { }
+  constructor(private router: Router, private cookieService: CookieService) { }
 
   async logout() {
-    this.router.navigate(['/home']);    
+    this.router.navigate(['/login']);   
+    this.cookieService.delete('token');
+
   }
 
   load() {
@@ -44,3 +47,4 @@ export class NavbarComponent {
   }
 
 }
+

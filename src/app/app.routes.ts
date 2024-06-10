@@ -6,6 +6,7 @@ import { RegisterComponent } from './register/register.component';
 import { RankingComponent } from './ranking/ranking.component';
 import { GamesComponent } from './games/games.component';
 import { PredictComponent } from './predict/predict.component';
+import { AdminViewComponent } from './admin-view/admin-view.component';
 
 export const routes: Routes = [
     {
@@ -40,5 +41,9 @@ export const routes: Routes = [
     {
         path: 'predictions',
         component: PredictComponent
+    },
+    {
+        path: 'admin',
+        component: AdminViewComponent
     }
 ];

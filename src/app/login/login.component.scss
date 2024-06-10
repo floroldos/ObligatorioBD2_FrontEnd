@@ -7,7 +7,7 @@
   justify-content: center;
   width: 665px;
   height: 600px;
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: #fff;
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
@@ -31,20 +31,12 @@
 .login-header {
   text-align: center;
   font-family: paytone one;
-  font-size: 24px;
+  font-size: 22px;
 }
 
 .login-logo {
   width: 200px;
   height: auto;
-}
-
-.login-title::after {
-  content: "";
-  display: block;
-  width: 10%;
-  height: 3px;
-  background-color: #D13C48;
 }
 
 .background{

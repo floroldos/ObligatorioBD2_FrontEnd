@@ -2,9 +2,14 @@
 <div class="register-container">
   <div class="register-header">
     <img src="assets/logo1.png" alt="logo" class="register-logo">
-    <h1 class="register-title">Registrarme</h1>
+    <h1 class="register-title">Registro</h1>
   </div>
-  <form class="register-form">
+
+  <p-steps [activeIndex]="" [model]="items" [style]="{'font-size':'13px'}" ></p-steps>
+  
+  <br>
+
+  <form class="register-form" *ngIf="currentStep === 1">
     <div class="register-form-row">
       <div class="register-form-column">
         <span class="p-float-label">
@@ -13,26 +18,31 @@
         </span>
         <br>
         <span class="p-float-label">
-          <input pInputText id="lastname" aria-describedby="lastname" />
-          <label for="lastname">Apellido</label>
-        </span>
-        <br>
-        <span class="p-float-label">
           <p-inputNumber inputId="identity-input"> </p-inputNumber>
           <label for="identity-input">Cédula</label>
         </span>
         <br>
         <span class="p-float-label">
-            <input pInputText id="career" aria-describedby="career" />
-            <label for="career">Carrera</label>
+          <input pInputText id="email" aria-describedby="email" />
+          <label for="email">Correo electrónico</label>
+        </span>
+        <br>
+        <span class="p-float-label">
+          <p-calendar inputId="birth_date" aria-describedby="birthdate" [iconDisplay]="'input'"
+            [showIcon]="true"></p-calendar>
+          <label for="birthdate">Fecha de nacimiento</label>
         </span>
       </div>
-
       <div class="register-form-column">
         <span class="p-float-label">
-            <input pInputText id="email" aria-describedby="email" />
-            <label for="email">Correo electrónico</label>
-          </span>
+          <input pInputText id="surname" aria-describedby="surname" />
+          <label for="surname">Apellido(s)</label>
+        </span>
+        <br>
+        <span class="p-float-label">
+          <input pInputText id="career" aria-describedby="career" />
+          <label for="career">Carrera</label>
+        </span>
         <br>
         <span class="p-float-label">
           <p-password id="password" class="register-input" aria-describedby="password" />
@@ -40,16 +50,38 @@
         </span>
         <br>
         <span class="p-float-label">
-          <p-calendar inputId="birth_date" aria-describedby="birthdate" [iconDisplay]="'input'" [showIcon]="true" size="small"></p-calendar>
-          <label for="birthdate">Fecha de nacimiento</label>
+          <p-password id="confirm-password" class="register-input" aria-describedby="confirm-password" />
+          <label for="confirm-password">Confirmar Contraseña</label>
         </span>
       </div>
     </div>
   </form>
+
+  <form class="register-form" *ngIf="currentStep === 2">
+    <div class="step-2">
+      <div class="register-form-row">
+        <div class="register-form-column">
+          <span class="p-float-label">
+            <br>
+            <p-dropdown [options]="countries" placeholder="Seleccione un país"
+              [(ngModel)]="selectedChampion"></p-dropdown>
+            <label for="champion">País Campeón</label>
+            <br>
+            <p-dropdown [options]="countries" placeholder="Seleccione un país"
+              [(ngModel)]="selectedRunnerUp"></p-dropdown>
+            <label for="runner-up">País Subcampeón</label>
+          </span>
+        </div>
+      </div>
+    </div>
+  </form>
+
   <br>
-  <p-button label="Registrarse" [rounded]="true" size="large" [raised]="true"
-            [style]="{'background-color': '#D13C48', 'border': '1px solid #CA3541', 'font-size':'18px', 'height': '15px', 'width':'200px','margin':'5px'}"
-            [loading]="loading" (onClick)="load()"></p-button>
-  <br>
-  <small id="username-help">¿Ya estás registrado? <a href="/login"><u>Iniciar sesión</u></a> </small>
+  <div class="next">
+    <p-button label="Siguiente" [rounded]="true" size="large" [raised]="true"
+      [style]="{'background-color': '#D13C48', 'border': '2px solid #CA3541', 'font-size':'17px', 'height': '20px', 'width':'200px','margin':'5px'}"
+      (onClick)="nextStep()"></p-button>
+    <br>
+    <small id="username-help">¿Ya estás registrado? <a href="/login"><u>Iniciar sesión</u></a> </small>
+  </div>
 </div>

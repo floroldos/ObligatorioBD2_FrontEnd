@@ -1,15 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Paytone+One&display=swap');
 
+
 .register-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 735px;
-  height: 680px;
-  background-color: rgba(255, 255, 255, 0.8);
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+  padding: 2rem;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  max-width: 600px;
+  margin: auto;
 }
 
 :host {
@@ -22,7 +20,6 @@
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
   background-color: #2145a179;
   background-size: cover;
   background-position: center;
@@ -31,7 +28,7 @@
 .register-header {
   text-align: center;
   font-family: paytone one;
-  font-size: 20px;
+  font-size: 16px;
 }
 
 .register-form-row {
@@ -45,16 +42,8 @@
 }
 
 .register-logo {
-  width: 170px;
-  height: 150px;
-}
-
-.register-title::after {
-  content: "";
-  display: block;
-  width: 10%;
-  height: 3px;
-  background-color: #D13C48;
+  width: 130px;
+  height: 110px;
 }
 
 .background {
@@ -68,3 +57,48 @@
   height: 100%;
   z-index: -1;
 }
+
+.next{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+  p-button {
+    margin-bottom: 10px; 
+  }
+}
+
+.step-2{
+  padding: 100px;
+}
+
+@media (max-width: 600px) {
+  .register-container {
+    padding: 1rem;
+    max-width: 100%;
+    margin: 0 1rem;
+  }
+
+  .register-form-row {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .register-form-column {
+    width: 100%;
+    padding: 5px;
+    margin: 5px 0;
+  }
+
+  .register-logo {
+    width: 100px;
+    height: 90px;
+  }
+
+  .register-header {
+    font-size: 14px;
+  }
+}
+
