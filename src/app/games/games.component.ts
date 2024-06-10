@@ -10,6 +10,8 @@ import { InputIconModule } from 'primeng/inputicon';
 import { MenuModule } from 'primeng/menu';
 import { Router } from '@angular/router';
 import { NavbarComponent } from '../navbar/navbar.component';
+import { ApiService } from '../services/apiservice/api.service';
+import { environment } from '../../environments/environment.development';
 
 @Component({
   selector: 'app-games',
@@ -23,60 +25,28 @@ import { NavbarComponent } from '../navbar/navbar.component';
     IconFieldModule,
     InputIconModule,
     MenuModule,
-    NavbarComponent
+    NavbarComponent,
   ],
   templateUrl: './games.component.html',
   styleUrl: './games.component.scss'
 })
 export class GamesComponent implements OnInit {
-  constructor(private dataService: DataService, private router: Router) { }
+  constructor(private router: Router, private apiService: ApiService) { }
   loading: boolean = false;
-  matchDays: any[] = [];
-  users: any[] = [];
+  games: any[] = [];
+  teams: any[] = [];
+
+  async loadGames() : Promise<void> {
+    try {
+      this.games = await this.apiService.getGames();
+      console.log(this.games)
+    } catch (err) {
+      console.error('Error fetching games:', err);
+    }
+  }
 
   ngOnInit() {
-    this.users = [
-      {
-        name: 'Juan Pérez',
-        points: 0
-      }
-    ]
-    this.matchDays = [
-      {
-        date: 'Viernes 28 de junio',
-        matches: [
-          {
-            team1: { name: 'Uruguay', abreviation: 'URU', score: '-', code: 'uy' },
-            team2: { name: 'Argentina', abreviation: 'ARG', score: '-', code: 'ar' },
-            stage: 'Octavos de Final',
-            time: '2024-06-28T22:00:00',
-            venue: 'Parque Central, Mdeo',
-            predictionEntered: true
-          },
-          {
-            team1: { name: 'Uruguay', abreviation: 'URU', score: '-', code: 'uy' },
-            team2: { name: 'Argentina', abreviation: 'ARG', score: '-', code: 'ar' },
-            stage: 'Cuartos de Final',
-            time: '2024-06-28T00:00:00',
-            venue: '',
-            predictionEntered: false
-          }
-        ]
-      },
-      {
-        date: 'Lunes 1 de julio',
-        matches: [
-          {
-            team1: { name: 'Uruguay', abreviation: 'URU', score: '-', code: 'uy' },
-            team2: { name: 'Argentina', abreviation: 'ARG', score: '-', code: 'ar' },
-            stage: 'Cuartos de Final',
-            time: '2024-07-01T22:00:00',
-            venue: 'Parque Central, Mdeo',
-            predictionEntered: false
-          }
-        ]
-      }
-    ];
+    this.loadGames();
   }
 
   getButtonLabel(match: any): string {

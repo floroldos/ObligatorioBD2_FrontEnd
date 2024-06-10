@@ -12,7 +12,10 @@ import { PasswordModule } from 'primeng/password';
 import { Router } from '@angular/router';
 import { CalendarModule } from 'primeng/calendar';
 import { InputNumberModule } from 'primeng/inputnumber';
-
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { DropdownModule } from 'primeng/dropdown';
+import { StepsModule } from 'primeng/steps';
 @Component({
   selector: 'app-register',
   standalone: true,
@@ -28,7 +31,11 @@ import { InputNumberModule } from 'primeng/inputnumber';
     InputIconModule,
     PasswordModule,
     CalendarModule,
-    InputNumberModule
+    InputNumberModule,
+    CommonModule,
+    FormsModule,
+    DropdownModule,
+    StepsModule
   ],
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss'
@@ -36,6 +43,25 @@ import { InputNumberModule } from 'primeng/inputnumber';
 export class RegisterComponent {
   constructor(private router: Router) { }
   loading: boolean = false;
+  currentStep: number = 1;
+  countries: any[] = [
+    { label: 'Argentina', value: 'AR' },
+    { label: 'Brasil', value: 'BR' },
+  ];
+  selectedChampion: string | null = null;
+  selectedRunnerUp: string | null = null;
+
+  items: any[] = [
+    { label: 'Datos Personales' },
+    { label: 'Selección de Equipos' }
+  ];
+
+  nextStep() {
+    if (this.currentStep < 2) {
+      this.currentStep++;
+    } else {
+    }
+  }
 
   register() {
     // Validación de registro. Si es exitoso, navega a la página de inicio o al login

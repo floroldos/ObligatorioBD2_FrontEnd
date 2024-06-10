@@ -7,33 +7,37 @@
         <i class="pi pi-calendar"></i>
       </p-button>
     </div>
-    <div class="match-day" *ngFor="let day of matchDays">
-      <h2>{{ day.date }}</h2>
+    <div *ngIf="games.length === 0">
+      No hay partidos disponibles.
+    </div>
+    <div *ngIf="games.length > 0">
+    <div class="match-day" *ngFor="let game of games">
+      <h2>{{ game.date }}</h2>
       <div class="match-cards">
-        <div class="match-card" *ngFor="let match of day.matches">
+        <div class="match-card" *ngFor="let match of games">
           <div class="details">
-            <span class="match-phase">{{ match.stage }}</span>
-            <span>{{ match.time | date: 'short' }} - {{ match.venue }}</span>
+            <span>{{match.time}} - {{ match.date }} - {{ match.stadium }}</span>
           </div>
           <div class="teams">
             <div class="team">
-              <img src="../../assets/flag_placeholder.png" [class]="'flag flag-'+ match.team1.code">
-              <span>{{ match.team1.name }}</span>
+              <img src="../../assets/flag_placeholder.png" [class]="'flag flag-'+ match.team1">
+              <span>{{ match.team1 }}</span>
             </div>
             <div class="score">
-              <span>{{ match.team1.score }}</span>
+              <span>{{ match.scoreTeam1 }}</span>
               <span class="vs">VS</span>
-              <span>{{ match.team2.score }}</span>
+              <span>{{ match.scoreTeam2}}</span>
             </div>
             <div class="team">
-              <img src="../../assets/flag_placeholder.png" class="flag flag-ar">
-              <span>{{ match.team2.name }}</span>
+              <img src="../../assets/flag_placeholder.png" [class]="'flag flag-'+ match.team2">
+              <span>{{ match.team2 }}</span>
             </div>
           </div>
-          <p-button [label]="getButtonLabel(match)" routerLink="/predict" size="large" [raised]="true" [style]="{'background-color': '#2145A1', 'border': '1px solid #2145A1', 'font-size':'12px', 
+          <p-button [label]="getButtonLabel(game)" routerLink="/predict" size="large" [raised]="true" [style]="{'background-color': '#2145A1', 'border': '1px solid #2145A1', 'font-size':'12px', 
               'height': '30px', 'width':'200px', 'margin-top':'1.2rem'}"></p-button>
         </div>
       </div>
     </div>
   </div>
+</div>
 </div>
