@@ -5,6 +5,7 @@ import { AvatarModule } from 'primeng/avatar';
 import { AvatarGroupModule } from 'primeng/avatargroup';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { NavbarComponent } from '../navbar/navbar.component';
 
 interface Ranking {
   position: number;
@@ -21,7 +22,8 @@ interface Ranking {
     AvatarModule,
     AvatarGroupModule,
     FormsModule,
-    CommonModule
+    CommonModule,
+    NavbarComponent
   ],
   templateUrl: './ranking.component.html',
   styleUrl: './ranking.component.scss'

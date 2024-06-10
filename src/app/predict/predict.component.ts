@@ -4,12 +4,13 @@ import { ButtonModule } from 'primeng/button';
 import { AvatarModule } from 'primeng/avatar';
 import { AvatarGroupModule } from 'primeng/avatargroup';
 import { CommonModule } from '@angular/common';
-import { DataService } from '../data.service';
 import { IconFieldModule } from 'primeng/iconfield';
 import { InputIconModule } from 'primeng/inputicon';
 import { MenuModule } from 'primeng/menu';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { InputNumberModule } from 'primeng/inputnumber';
+import { NavbarComponent } from '../navbar/navbar.component';
 
 @Component({
   selector: 'app-predict',
@@ -23,7 +24,9 @@ import { FormsModule } from '@angular/forms';
     IconFieldModule,
     InputIconModule,
     MenuModule,
-    FormsModule
+    FormsModule,
+    InputNumberModule, 
+    NavbarComponent
   ],
   templateUrl: './predict.component.html',
   styleUrl: './predict.component.scss'

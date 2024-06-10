@@ -34,16 +34,9 @@
   font-size: 24px;
 }
 
-.login-input {
-  border-radius: 40px;
-  height: 50px;
-  width: 100%;
-  margin-bottom: 5px;
-}
-
 .login-logo {
   width: 200px;
-  height: 170px;
+  height: auto;
 }
 
 .login-title::after {
@@ -73,4 +66,30 @@
   padding: 5px;
   border-radius: 5px;
   margin-bottom: 30px;
+}
+
+@media (max-width: 600px) {
+  .login-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 325px;
+    height: 600px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  }
+
+  .login-title {
+    font-size: 30px;
+  }
+
+  .p-float-label {
+    margin-bottom: 10px;
+  }
+
+  p-button {
+    max-width: 100%;
+  }
 }

@@ -51,7 +51,7 @@ export class LoginComponent {
 
   loginStatus = {
     error: false,
-    message: ''
+    message: 'Usuario o contraseña incorrectos. Por favor, inténtelo nuevamente.'
   }
 
   async ngOnInit() {
@@ -67,7 +67,6 @@ export class LoginComponent {
       });
     }
   }
-
 
   async login() {
     if (this.loginGroup.invalid) {

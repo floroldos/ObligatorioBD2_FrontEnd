@@ -9,6 +9,7 @@ import { IconFieldModule } from 'primeng/iconfield';
 import { InputIconModule } from 'primeng/inputicon';
 import { MenuModule } from 'primeng/menu';
 import { Router } from '@angular/router';
+import { NavbarComponent } from '../navbar/navbar.component';
 
 @Component({
   selector: 'app-games',
@@ -22,7 +23,7 @@ import { Router } from '@angular/router';
     IconFieldModule,
     InputIconModule,
     MenuModule,
-    
+    NavbarComponent
   ],
   templateUrl: './games.component.html',
   styleUrl: './games.component.scss'

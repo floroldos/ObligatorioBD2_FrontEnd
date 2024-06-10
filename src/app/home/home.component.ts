@@ -3,6 +3,7 @@ import { MenubarModule } from 'primeng/menubar';
 import { ButtonModule } from 'primeng/button';
 import { AvatarModule } from 'primeng/avatar';
 import { AvatarGroupModule } from 'primeng/avatargroup';
+import { NavbarComponent } from '../navbar/navbar.component';
 
 @Component({
   selector: 'app-home',
@@ -11,7 +12,8 @@ import { AvatarGroupModule } from 'primeng/avatargroup';
     MenubarModule,
     ButtonModule,
     AvatarModule,
-    AvatarGroupModule
+    AvatarGroupModule,
+    NavbarComponent
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'

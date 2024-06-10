@@ -12,19 +12,22 @@
   }
 
   <form class="login-form" [formGroup]="loginGroup">
-    <span class="p-float-label">
-      <input pInputText id="ci"  aria-describedby="ci" formControlName="ci" [autofocus]="true" />
-      <label for="ci">Ingresar cedula</label>
+    <span class="p-float-label" [style]="{'margin-top':'20px'}">
+      <input pInputText id="ci" aria-describedby="ci" formControlName="ci"
+      [style]="{'width':'275px'}">
+      <label for="ci">Ingresar cédula</label>
     </span>
     <br>
     <span class="p-float-label">
-      <p-password id="password" class="login-input" aria-describedby="password" [feedback]="false" formControlName="password"/>
+      <p-password id="password" class="login-input" aria-describedby="password" [toggleMask]="true" [feedback]="false" formControlName="password"
+      [style]="{'width':'270px'}"/>
       <label for="password">Ingresar contraseña</label>
     </span>
   </form>
   <br>
   <p-button label="Entrar" [rounded]="true" size="large" [raised]="true"
-    [style]="{'background-color': '#D13C48', 'border': '1px solid #CA3541', 'font-size':'18px', 'height': '10px', 'width':'200px', 'margin':'15px'}"
+    [style]="{'background-color': '#D13C48', 'border': '1px solid #CA3541', 
+    'font-size':'15px', 'height': '10px', 'width':'200px', 'margin':'15px'}"
     [loading]="loading" (onClick)="load()"></p-button>
   <br>
   <small id="username-help">¿No estás registrado? <a href="/register"><u>Registrarme</u></a> </small>
