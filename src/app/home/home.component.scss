@@ -99,12 +99,12 @@ h2 {
 }
 
 .content {
-  flex: 1; /* El contenido ocupará el 50% del espacio disponible */
+  flex: 1; 
   padding: 20px;
 }
 
 .image-container {
-  flex: 1; /* La imagen ocupará el otro 50% del espacio disponible */
+  flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
