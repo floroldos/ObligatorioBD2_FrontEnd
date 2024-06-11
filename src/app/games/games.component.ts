@@ -4,14 +4,13 @@ import { ButtonModule } from 'primeng/button';
 import { AvatarModule } from 'primeng/avatar';
 import { AvatarGroupModule } from 'primeng/avatargroup';
 import { CommonModule } from '@angular/common';
-import { DataService } from '../data.service';
 import { IconFieldModule } from 'primeng/iconfield';
 import { InputIconModule } from 'primeng/inputicon';
 import { MenuModule } from 'primeng/menu';
 import { Router } from '@angular/router';
 import { NavbarComponent } from '../navbar/navbar.component';
-import { ApiService } from '../services/apiservice/api.service';
-import { environment } from '../../environments/environment.development';
+import { GameService } from '../services/gameservice/game.service';
+import { TeamService } from '../services/teamservice/team.service';
 
 @Component({
   selector: 'app-games',
@@ -25,28 +24,39 @@ import { environment } from '../../environments/environment.development';
     IconFieldModule,
     InputIconModule,
     MenuModule,
-    NavbarComponent,
+    NavbarComponent
   ],
   templateUrl: './games.component.html',
   styleUrl: './games.component.scss'
 })
 export class GamesComponent implements OnInit {
-  constructor(private router: Router, private apiService: ApiService) { }
   loading: boolean = false;
   games: any[] = [];
   teams: any[] = [];
 
+  constructor(private router: Router, private gameService: GameService, private teamService: TeamService) { }
+
+  ngOnInit() : void {
+    this.loadGames();
+    this.loadTeams();
+  }
+
   async loadGames() : Promise<void> {
     try {
-      this.games = await this.apiService.getGames();
+      this.games = await this.gameService.getGames();
       console.log(this.games)
     } catch (err) {
       console.error('Error fetching games:', err);
     }
   }
 
-  ngOnInit() {
-    this.loadGames();
+  async loadTeams() : Promise<void> {
+    try {
+      this.teams = await this.teamService.getTeams();
+      console.log(this.games)
+    } catch (err) {
+      console.error('Error fetching games:', err);
+    }
   }
 
   getButtonLabel(match: any): string {
@@ -59,19 +69,6 @@ export class GamesComponent implements OnInit {
     } else {
       return 'Ingresar predicción';
     }
-  }
-
-  async logout() {
-    this.router.navigate(['/home']);    
-  }
-
-  load() {
-    this.loading = true;
-    this.logout();
-    this.loading = false;
-    setTimeout(() => {
-    }, 2000);
-    
   }
 
   editPrediction(match: any): void {

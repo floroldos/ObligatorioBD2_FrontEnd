@@ -76,3 +76,20 @@
     text-align: center;
     color: #fff;
 }
+
+.admin-container {
+    display: flex;
+    height: 88.5vh;
+  
+    .menu {
+      width: 20%;
+      background-color: #1e3266;
+      padding: 2rem;
+    }  
+    .content {
+      width: 60%;
+      padding: 2rem;
+      overflow-y: auto;
+    }
+  }
+  

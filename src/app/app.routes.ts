@@ -7,6 +7,9 @@ import { RankingComponent } from './ranking/ranking.component';
 import { GamesComponent } from './games/games.component';
 import { PredictComponent } from './predict/predict.component';
 import { AdminViewComponent } from './admin-view/admin-view.component';
+import { ManageUsersComponent } from './admin/manage-users/manage-users.component';
+import { ManageTeamsComponent } from './admin/manage-teams/manage-teams.component';
+import { ManageGamesComponent } from './admin/manage-games/manage-games.component';
 
 export const routes: Routes = [
     {
@@ -44,6 +47,9 @@ export const routes: Routes = [
     },
     {
         path: 'admin',
-        component: AdminViewComponent
-    }
+        component: AdminViewComponent, children: [
+        { path: 'manage-users', component: ManageUsersComponent },
+        { path: 'manage-teams', component: ManageTeamsComponent },
+        { path: 'manage-games', component: ManageGamesComponent },
+      ]}
 ];

@@ -1,3 +1,20 @@
 <div class="container">
-    <app-navbar> </app-navbar>
-</div>
+    <app-navbar />
+<div class="admin-container">
+    <div class="menu">
+      <p-panelMenu [model]="items" styleClass="w-full">
+        <ng-template pTemplate="item" let-item>
+          <a pRipple class="flex align-items-center px-3 py-2 cursor-pointer">
+            <i [class]="item.icon + ' text-primary'"></i>
+            <span class="ml-2">{{ item.label }}</span>
+          </a>
+        </ng-template>
+      </p-panelMenu>
+    </div>
+    <div class="content">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+  
+  </div>
+  
