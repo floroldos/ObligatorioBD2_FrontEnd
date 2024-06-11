@@ -18,4 +18,17 @@ export class GameService {
       throw error;
     }
   }
+
+  //admin solamente
+  async updateGame(game: any): Promise<any> {
+    const path = '/admin/game/update';
+    try {
+      return await this.apiService.post<any>(path, game);
+    } catch (error) {
+      console.error('Error updating game scores:', error);
+      throw error;
+    }
+  }
+  
+
 }

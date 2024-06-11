@@ -10,6 +10,7 @@ import { InputIconModule } from 'primeng/inputicon';
 import { MenuModule } from 'primeng/menu';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
+import { UserService } from '../services/userservice/user.service';
 
 @Component({
   selector: 'app-navbar',
@@ -29,22 +30,24 @@ import { CookieService } from 'ngx-cookie-service';
 })
 export class NavbarComponent {
   loading: boolean = false;
-  constructor(private router: Router, private cookieService: CookieService) { }
+  userName: string = '';
 
-  async logout() {
+  constructor(private router: Router, private cookieService: CookieService, private userService:UserService) { }
+
+  ngOnInit() {
+    this.getUserName();
+  }
+
+  async getUserName() {
+    try {
+      this.userName = this.userService.GetName();
+    } catch (error) {
+      console.error('Failed to fetch user name:', error);
+    }
+  }
+
+  logout() {
     this.router.navigate(['/login']);   
     this.cookieService.delete('token');
-
   }
-
-  load() {
-    this.loading = true;
-    this.logout();
-    this.loading = false;
-    setTimeout(() => {
-    }, 2000);
-    
-  }
-
 }
-

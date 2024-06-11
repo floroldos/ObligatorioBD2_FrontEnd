@@ -1,1 +1,54 @@
-<p>manage-games works!</p>
+<div class="container">
+    <h2> Partidos - Cargar resultados </h2>
+
+    <div class="game-container">
+      <div class="header">
+      </div>
+      <div *ngIf="games.length === 0">
+        No hay partidos disponibles.
+      </div>
+      <div *ngIf="games.length > 0">
+        <div class="match-day" *ngFor="let game of games">
+          <h2>{{ game.date }}</h2>
+          <div class="match-cards">
+            <div class="match-card" (click)="onSelectGame(game)">
+              <div class="details">
+                <span>{{game.time}} - {{ game.stadium }}</span>
+              </div>
+              <div class="teams">
+                <div class="team">
+                  <img src="../../assets/flag_placeholder.png" [class]="'flag flag-'+ game.team1">
+                  <span>{{ game.team1 }}</span>
+                </div>
+                <div class="score">
+                  <span>{{ game.scoreTeam1 }}</span>
+                  <span class="vs">VS</span>
+                  <span>{{ game.scoreTeam2}}</span>
+                </div>
+                <div class="team">
+                  <img src="../../assets/flag_placeholder.png" [class]="'flag flag-'+ game.team2">
+                  <span>{{ game.team2 }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <div *ngIf="selectedGame" class="edit-game">
+      <h2>Editar Resultado del Partido</h2>
+      <form [formGroup]="gameForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="scoreTeam1">{{selectedGame.team1}}</label>
+          <input id="scoreTeam1" formControlName="scoreTeam1" type="number">
+        </div>
+        <div class="form-group">
+          <label for="scoreTeam2">{{selectedGame.team2}}</label>
+          <input id="scoreTeam2" formControlName="scoreTeam2" type="number">
+        </div>
+        <button type="submit" pButton label="Actualizar Resultado" [disabled]="!gameForm.valid"></button>
+      </form>
+    </div>
+  </div>
+  

@@ -90,9 +90,7 @@ export class LoginComponent {
 
   load() {
     this.loading = true;
-    
     this.login();
-
     this.loading = false;
     setTimeout(() => {
     }, 2000);

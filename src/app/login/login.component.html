@@ -12,7 +12,7 @@
   }
 
   <form class="login-form" [formGroup]="loginGroup">
-    <span class="p-float-label" [style]="{'margin-top':'20px'}">
+    <span class="p-float-label" [style]="{'margin-top':'10px'}">
       <input pInputText id="ci" aria-describedby="ci" formControlName="ci"
       [style]="{'width':'275px'}">
       <label for="ci">Ingresar cédula</label>
@@ -27,7 +27,7 @@
   <br>
   <p-button label="Entrar" [rounded]="true" size="large" [raised]="true"
     [style]="{'background-color': '#D13C48', 'border': '1px solid #CA3541', 
-    'font-size':'16px', 'height': '30px', 'width':'200px', 'margin':'15px'}"
+    'font-size':'16px', 'height': '30px', 'width':'200px', 'margin-top':'10px'}"
     [loading]="loading" (onClick)="load()"></p-button>
   <br>
   <small id="username-help">¿No estás registrado? <a href="/register"><u>Registrarme</u></a> </small>
