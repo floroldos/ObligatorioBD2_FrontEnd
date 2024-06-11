@@ -1,33 +1,35 @@
 <nav class="navbar">
-    <div class="navbar-brand">
-      <img class="logo-bar" src="assets/logo2.png" alt="Logo" routerLink="/home">
-      <span class="navbar-title">Penca UCU</span>
-    </div>
-    <ul class="navbar-menu">
-      <li class="navbar-item">
-        <a class="navbar-link" routerLink="/games">Partidos</a>
-      </li>
-      <li class="navbar-item">
-        <a class="navbar-link" routerLink="/ranking">Ranking</a>
-      </li>
-    </ul>
-    <p-avatar label="U" styleClass="mr-2"
-      [style]="{ 'background-color': '#F6B40E', color: '#ffffff', 'margin-left': '5rem' }"
-      (click)="menu.toggle($event)"></p-avatar>
-    <br>
-    <p-menu #menu popup="true" [style]="{'padding': '1rem', 'margin-right': '2rem'}">
-      <ng-template pTemplate="end">
-        <button class="relative overflow-hidden w-full p-link flex align-items-center p-2 pl-3 text-color hover:surface-200 border-noround">
+  <div class="navbar-brand">
+    <img class="logo-bar" src="assets/logo2.png" alt="Logo" routerLink="/home">
+    <span class="navbar-title">Penca UCU</span>
+  </div>
+  <ul class="navbar-menu">
+    <li class="navbar-item">
+      <a class="navbar-link" routerLink="/games">Partidos</a>
+    </li>
+    <li class="navbar-item">
+      <a class="navbar-link" routerLink="/ranking">Ranking</a>
+    </li>
+  </ul>
+  <p-avatar label="U" styleClass="mr-2"
+    [style]="{ 'background-color': '#F6B40E', color: '#ffffff', 'margin-left': '5rem' }"
+    (click)="menu.toggle($event)"></p-avatar>
+  <br>
+  <p-menu #menu popup="true" [style]="{'padding': '1rem', 'margin-right': '2rem'}">
+    <ng-template pTemplate="end">
+      <button
+        class="relative overflow-hidden w-full p-link flex align-items-center p-2 pl-3 text-color hover:surface-200 border-noround">
         <p-avatar label="U" styleClass="mr-2" [style]="{ 'background-color': '#F6B40E', color: '#ffffff'}" />
         <span class="inline-flex flex-column">
           <span class="font-bold"> {{userName}}</span>
         </span>
-          </button>
-          <hr>
-          <h4 [style]="{'margin-right':'2rem', 'cursor': 'pointer'}"> Mi perfil</h4>
-        <h4 [style]="{'margin-right':'2rem', 'cursor': 'pointer'}"> Mis predicciones</h4>
-        <span [style]="{'margin-right':'2rem', 'cursor': 'pointer'}" (click)="logout()"> Log out <i class="pi pi-sign-out"></i>
-        </span>
-      </ng-template>
-    </p-menu>
-  </nav>
+      </button>
+      <hr>
+      <h4 [style]="{'margin-right':'2rem', 'cursor': 'pointer'}"> Mi perfil</h4>
+      <h4 [style]="{'margin-right':'2rem', 'cursor': 'pointer'}"> Mis predicciones</h4>
+      <span [style]="{'margin-right':'2rem', 'cursor': 'pointer'}" (click)="logout()"> Log out <i
+          class="pi pi-sign-out"></i>
+      </span>
+    </ng-template>
+  </p-menu>
+</nav>

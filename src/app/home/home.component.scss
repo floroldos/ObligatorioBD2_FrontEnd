@@ -92,3 +92,26 @@ h2 {
   margin-left: 12rem;
 
 }
+
+.container-2 {
+  display: flex;
+  height: 100vh;
+}
+
+.content {
+  flex: 1; /* El contenido ocupará el 50% del espacio disponible */
+  padding: 20px;
+}
+
+.image-container {
+  flex: 1; /* La imagen ocupará el otro 50% del espacio disponible */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.image-container img {
+  max-width: 100%;
+  max-height: 100%;
+}
+

@@ -1,10 +1,15 @@
 <div class="container">
-    <app-navbar />
+  <app-navbar></app-navbar>
+  <div class="container-2">
     <div class="content">
       <h1>Jugá <br>tu propia <br> Copa</h1>
       <h2>Pronosticá los partidos de la Copa América y ganate tremendos premios.</h2>
-      <p-button label="Ver más" [rounded]="true" size="large" [raised]="true"
-      [style]="{'background-color': '#D13C48', 'border': '1px solid #CA3541', 
-      'font-size':'23px', 'height': '40px', 'width':'200px', 'float':'left', 'margin-left':'22rem', 'margin-top':'1.2rem'}"></p-button>        
+      <p-button label="Ver Equipos" [rounded]="true" size="large" [raised]="true"
+        [style]="{'background-color': '#D13C48', 'border': '1px solid #CA3541', 
+      'font-size':'18px', 'height': '40px', 'width':'200px', 'float':'left', 'margin-left':'22rem', 'margin-top':'1.2rem'}" (onClick)="loadTeams()"></p-button>
+    </div>
+    <div class="image-container">
+      <img src="assets/mockup.png" alt="Mockup Image">
     </div>
   </div>
+</div>

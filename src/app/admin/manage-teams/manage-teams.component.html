@@ -1,1 +1,23 @@
-<p>manage-teams works!</p>
+<div class="container">
+    <h2>Equipos - Administración</h2>
+    <div class="edit-game">
+        <h2>Agregar Nuevo Equipo</h2>
+        <form [formGroup]="addTeamForm" (ngSubmit)="onSubmitAddTeam()">
+            <div class="form-group">
+                <label for="teamName">Nombre del Equipo</label>
+                <input id="teamName" formControlName="teamName" type="text">
+            </div>
+            <button type="submit" pButton label="Agregar Equipo" [disabled]="!addTeamForm.valid">Agregar</button>
+        </form>
+    </div>
+    <div class="edit-game">
+        <h2>Eliminar Equipo</h2>
+        <form [formGroup]="deleteTeamForm" (ngSubmit)="onSubmitDeleteTeam()">
+            <div class="form-group">
+                <input pInputText id="deleteTeamName" aria-describedby="deleteTeamName" formControlName="deleteTeamName">
+                <label for="deleteTeamName">Nombre del Equipo a Eliminar</label>
+            </div>
+            <button type="submit" pButton [disabled]="!deleteTeamForm.valid">Eliminar</button>
+        </form>
+    </div>
+</div>

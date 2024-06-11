@@ -18,4 +18,25 @@ export class TeamService {
       throw error;
     }
   }
+
+  //admin solamente
+  async addTeam(team: any): Promise<any> {
+    const path = '/admin/team';
+    try {
+      return await this.apiService.post<any>(path, team);
+    } catch (error) {
+      console.error('Error updating team:', error);
+      throw error;
+    }
+  }
+
+  async deleteTeam(team: string): Promise<any> {
+    const path = `/admin/team/${team}`;
+    try {
+      return await this.apiService.delete<any>(path);
+    } catch (error) {
+      console.error('Error deleting team:', error);
+      throw error;
+    }
+  }
 }

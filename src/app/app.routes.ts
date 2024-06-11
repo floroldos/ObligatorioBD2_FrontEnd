@@ -10,6 +10,7 @@ import { AdminViewComponent } from './admin-view/admin-view.component';
 import { ManageUsersComponent } from './admin/manage-users/manage-users.component';
 import { ManageTeamsComponent } from './admin/manage-teams/manage-teams.component';
 import { ManageGamesComponent } from './admin/manage-games/manage-games.component';
+import { TeamsComponent } from './teams/teams.component';
 
 export const routes: Routes = [
     {
@@ -51,5 +52,10 @@ export const routes: Routes = [
         { path: 'manage-users', component: ManageUsersComponent },
         { path: 'manage-teams', component: ManageTeamsComponent },
         { path: 'manage-games', component: ManageGamesComponent },
-      ]}
+      ]
+    },
+    {
+        path: 'teams',
+        component: TeamsComponent
+    }
 ];
