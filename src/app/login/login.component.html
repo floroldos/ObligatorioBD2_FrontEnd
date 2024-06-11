@@ -25,10 +25,8 @@
     </span>
   </form>
   <br>
-  <p-button label="Entrar" [rounded]="true" size="large" [raised]="true"
-    [style]="{'background-color': '#D13C48', 'border': '1px solid #CA3541', 
-    'font-size':'16px', 'height': '30px', 'width':'200px', 'margin-top':'10px'}"
-    [loading]="loading" (onClick)="load()"></p-button>
+  <button pButton type="button" label="Entrar" class="p-button-danger" [style]="{'width':'280px'}" [raised]="true" [rounded]="true" [loading]="loading" (click)="load()"></button>
+  <br>
   <br>
   <small id="username-help">¿No estás registrado? <a href="/register"><u>Registrarme</u></a> </small>
 </div>

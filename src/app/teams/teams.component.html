@@ -1,1 +1,12 @@
-<p>teams works!</p>
+<div class="container">
+    <app-navbar></app-navbar>
+      <div class="content">
+        <h1>Equipos</h1>
+        <div class="teams-container">
+          <div class="team-card" *ngFor="let team of teams">
+            <img src="../../assets/flag_placeholder.png" [class]="'flag flag-'+ team.name">
+            <span>{{ team.name }}</span>
+          </div>
+        </div>
+      </div>
+  </div>
