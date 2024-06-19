@@ -6,12 +6,8 @@ import { AvatarGroupModule } from 'primeng/avatargroup';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { NavbarComponent } from '../navbar/navbar.component';
-
-interface Ranking {
-  position: number;
-  name: string;
-  points: number;
-}
+import { RankingService } from '../services/rankingservice/ranking.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-ranking',
@@ -30,14 +26,21 @@ interface Ranking {
 })
 export class RankingComponent {
 
-  rankings: Ranking[] =
-  [
-    { position: 1, name: 'John', points: 100 },
-    { position: 2, name: 'Jane', points: 90 },
-    { position: 3, name: 'Bob', points: 80 },
-    { position: 4, name: 'Alice', points: 70 },
-    { position: 5, name: 'Mike', points: 60 }
-  ]
-  showRanking = true;
+  scores: any[] = [];
+
+  constructor(private router: Router, private rankingService: RankingService) { }
+
+  ngOnInit() : void {
+    this.loadRanking();
+  }
+
+  async loadRanking() : Promise<void> {
+    try {
+      this.scores = await this.rankingService.getRanking();
+      console.log(this.scores)
+    } catch (err) {
+      console.error('Error fetching ranking:', err);
+    }
+  }
 
 }

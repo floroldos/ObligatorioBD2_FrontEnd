@@ -2,7 +2,8 @@ import { Component, Inject } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { DividerModule } from 'primeng/divider';
-import { ToastModule } from 'primeng/toast';
+import {MessagesModule} from 'primeng/messages';
+import {MessageModule} from 'primeng/message';
 import { InputGroupModule } from 'primeng/inputgroup';
 import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
 import { InputTextModule } from 'primeng/inputtext';
@@ -17,6 +18,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment.development';
 import { AutoFocusModule } from 'primeng/autofocus';
 
+
 @Component({
   selector: 'app-login',
   standalone: true,
@@ -24,7 +26,6 @@ import { AutoFocusModule } from 'primeng/autofocus';
     ButtonModule,
     CardModule,
     DividerModule,
-    ToastModule,
     InputGroupModule,
     InputGroupAddonModule,
     InputTextModule,
@@ -33,8 +34,10 @@ import { AutoFocusModule } from 'primeng/autofocus';
     PasswordModule,
     AutoFocusModule,
     FormsModule,
-    ReactiveFormsModule
-  ],
+    ReactiveFormsModule,
+    MessagesModule,
+    MessageModule
+    ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
@@ -42,12 +45,11 @@ export class LoginComponent {
   constructor(private router: Router, private http: HttpClient, private cookieService: CookieService) {}
 
   loading: boolean = false;
-
+  
   loginGroup = new FormGroup({
     ci: new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(8)]),
     password: new FormControl('', [Validators.required, Validators.minLength(6)])
   });
-
 
   loginStatus = {
     error: false,
@@ -91,7 +93,6 @@ export class LoginComponent {
   load() {
     this.loading = true;
     this.login();
-    this.loading = false;
     setTimeout(() => {
     }, 2000);
     

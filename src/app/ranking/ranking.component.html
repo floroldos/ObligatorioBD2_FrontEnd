@@ -2,16 +2,16 @@
     <app-navbar />
     <div class="content">
         <h1 class="ranking-title">Posiciones de Alumnos</h1>
-    
-        <ul *ngIf="rankings">
-          <li class="ranking-row" *ngFor="let ranking of rankings">
-            <span class="ranking-position">{{ ranking.position }}</span>
-            <span class="ranking-name">{{ ranking.name }}</span>
-            <span class="ranking-points">Puntos: {{ ranking.points }}</span>
+        <div *ngIf="scores.length === 0">
+          No hay ranking disponible.
+        </div>
+        <ul *ngIf="scores.length > 0 ">
+          <li class="ranking-row" *ngFor="let score of scores">
+            <span class="ranking-position">{{ score }}</span>
+            <span class="ranking-name">{{ score }}</span>
+            <span class="ranking-points">Puntos: {{ score.points }}</span>
           </li>
         </ul>
-    
-        <p *ngIf="!rankings">No hay ranking disponible.</p>
       </div>
   </div>
   
