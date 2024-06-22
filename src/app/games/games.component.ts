@@ -41,7 +41,7 @@ export class GamesComponent implements OnInit {
     this.loadTeams();
   }
 
-  async loadGames() : Promise<void> {
+  async loadGames() : Promise<any> {
     try {
       this.games = await this.gameService.getGames();
       console.log(this.games)

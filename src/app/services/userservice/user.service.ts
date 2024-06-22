@@ -1,24 +1,21 @@
 import { Injectable } from '@angular/core';
 import * as jose from 'jose';
+import { CookieService } from 'ngx-cookie-service';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class UserService {
-    constructor() {}
-
-    SetToken(token: string): void {
-        localStorage.setItem('userToken', token);
-    }
+    constructor(private cookieService: CookieService) {}
 
     token: string = '';
 
     GetToken(): string {
         if (this.token == '') {
-            this.token = localStorage.getItem('userToken') ?? '';
+            this.token = this.cookieService.get('token');
         }
-
+    
         return this.token;
     }
 
