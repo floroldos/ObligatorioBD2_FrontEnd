@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { PredictionService } from '../services/predictionservice/prediction.service';
 import { PredictionDto } from '../services/predictionservice/prediction.dto';
@@ -23,19 +23,20 @@ import { InputIconModule } from 'primeng/inputicon';
 })
 export class PredictComponent {
 
-  predictionDto: PredictionDto = {
-    gameId: 0,
-    points: 0,
+  @Input() id!: number;
+
+  prediction: PredictionDto = {
+    gameId: this.id,
     team1score: 0,
-    team2score: 0,
-    studentId: 0
+    team2score: 0 
   };
 
   constructor(private router: Router, private predictionService: PredictionService) { }
 
   async savePrediction(): Promise<void> {
+    console.log(this.id)
     try {
-      const createdPrediction = await this.predictionService.createPrediction(this.predictionDto);
+      const createdPrediction = await this.predictionService.createPrediction(this.prediction);
       console.log('Prediction created successfully:', createdPrediction);
     } catch (error) {
       console.error('Error creating prediction:', error);

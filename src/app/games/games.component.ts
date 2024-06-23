@@ -58,10 +58,7 @@ export class GamesComponent implements OnInit {
     }
   }
 
-  editPrediction(){
-    console.log("Loading predictions");
-    this.router.navigate(['/predictions']);   
-
+  editPrediction(id: number){
+    this.router.navigate(['/predictions', {'id': id}]);   
   }
-
 }
