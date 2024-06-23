@@ -1,34 +1,33 @@
 <div class="container">
-  <app-navbar />
-    <div class="content">
-      <div class="edit-prediction-container">
-        <div class="header">
-          <h1>Editar Predicción</h1>
-        </div>
+  <div class="app-navbar">
+    <app-navbar></app-navbar> <!-- Asegúrate de cerrar correctamente la etiqueta del componente -->
+  </div>
+  <div class="content">
+    <div class="edit-prediction-container">
+      <div class="header">
+        <h1>Editar Predicción</h1>
+      </div>
+      <div class="game-card">
         <div class="game-details">
           <div class="teams">
             <div class="team">
-              <img src="assets/flag_placeholder.png" [class]="'flag flag-'+ match.team1.code">
+              <img src="assets/flag_placeholder.png" alt="Flag">
               <span>Uruguay</span>
             </div>
             <div class="score">
-              <input type="number" id="score1" name="score1" min="0" value="2">
+              <input class="number" type="number" id="score1" name="score1" min="0" [(ngModel)]="predictionDto.team1score">
               <span class="vs">VS</span>
-              <input type="number" id="score2" name="score2" min="0" value="1">
-            </div>
+              <input class="number" type="number" id="score2" name="score2" min="0" [(ngModel)]="predictionDto.team2score">
             <div class="team">
-              <img src="assets/flag_placeholder.png" [class]="'flag flag-'+ match.team2.code">
+              <img src="assets/flag_placeholder.png" alt="Flag">
               <span>Argentina</span>
             </div>
           </div>
-          <div class="details">
-            <span>Cuartos de Final</span>
-            <span>28 June, 22:00h - Parque Central, Montevideo</span>
-          </div>
         </div>
         <div class="buttons">
-          <p-button label="Danger" severity="danger" />
+          <button class="p-button p-button-success" (click)="savePrediction()">Guardar</button>
         </div>
       </div>
     </div>
   </div>
+</div>

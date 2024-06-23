@@ -43,10 +43,6 @@ export const routes: Routes = [
         canActivate: [AuthGuard]
     },
     {
-        path: 'predictions',
-        component: PredictComponent
-    },
-    {
         path: 'admin',
         component: AdminViewComponent, children: [
         { path: 'manage-users', component: ManageUsersComponent },
@@ -56,6 +52,12 @@ export const routes: Routes = [
     },
     {
         path: 'teams',
-        component: TeamsComponent
+        component: TeamsComponent,
+        canActivate: [AuthGuard]
+    },
+    {
+        path: 'predictions',
+        component: PredictComponent,
+        canActivate: [AuthGuard]
     }
 ];

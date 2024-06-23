@@ -38,10 +38,15 @@ export class ApiService {
     }
   }
 
-  async post<T> (path: string, body: any): Promise<any> {
-    const headers = await this.getHttpHeaders();
-      return this.http.post<T>(this.getURL(path), body, { headers }).toPromise();
-  }
+  async post<T>(path: string, body: any): Promise<any> {
+    try {
+      const headers = await this.getHttpHeaders();
+      return this.http.post<any>(this.getURL(path), body, { headers }).toPromise();
+    } catch (error) {
+      console.error('Error en la solicitud POST:', error);
+      throw error;
+    }
+  }  
 
   async put<T> (path: string, body: any): Promise<any> {
     const headers = await this.getHttpHeaders();
@@ -51,10 +56,5 @@ export class ApiService {
   async delete<T> (path: string): Promise<any> {
     const headers = await this.getHttpHeaders();
       return this.http.delete<T>(this.getURL(path), { headers }).toPromise();
-  }
-
-  async patch<T> (path: string, body: any): Promise<any> {
-    const headers = await this.getHttpHeaders();
-      return this.http.patch<T>(this.getURL(path), body, { headers }).toPromise();
   }
 }

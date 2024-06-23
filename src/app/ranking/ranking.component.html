@@ -1,17 +1,18 @@
 <div class="container">
-    <app-navbar />
-    <div class="content">
-        <h1 class="ranking-title">Posiciones de Alumnos</h1>
-        <div *ngIf="scores.length === 0">
-          No hay ranking disponible.
-        </div>
-        <ul *ngIf="scores.length > 0 ">
-          <li class="ranking-row" *ngFor="let score of scores">
-            <span class="ranking-position">{{ score }}</span>
-            <span class="ranking-name">{{ score }}</span>
-            <span class="ranking-points">Puntos: {{ score.points }}</span>
-          </li>
-        </ul>
-      </div>
+  <app-navbar></app-navbar>
+  <div class="content">
+    <h1 class="ranking-title">Posiciones de Alumnos</h1>
+    <div *ngIf="scores.length === 0">
+      No hay ranking disponible.
+    </div>
+    <div *ngIf="scores.length > 0">
+      <ul class="ranking-list">
+        <li class="ranking-row" *ngFor="let score of scores; let i = index">
+          <span class="ranking-position">{{ i + 1 }}</span>
+          <span class="ranking-name">{{ score.name }}</span>
+          <span class="ranking-points">Puntos: {{ score.score }}</span>
+        </li>
+      </ul>
+    </div>
   </div>
-  
+</div>

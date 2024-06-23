@@ -31,6 +31,7 @@ import { UserService } from '../services/userservice/user.service';
 export class NavbarComponent {
   loading: boolean = false;
   userName: string = '';
+  points: number = 0;
 
   constructor(private router: Router, private cookieService: CookieService, private userService:UserService) { }
 
@@ -41,8 +42,17 @@ export class NavbarComponent {
   async getUserName() {
     try {
       this.userName = this.userService.GetName();
+      console.log('User name:', this.userName);
     } catch (error) {
       console.error('Failed to fetch user name:', error);
+    }
+  }
+
+  async getPoints() {
+    try {
+      this.points = await this.userService.GetScore();
+    } catch (error) {
+      console.error('Failed to fetch points:', error);
     }
   }
 

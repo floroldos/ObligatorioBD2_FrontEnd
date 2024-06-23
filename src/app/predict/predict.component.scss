@@ -11,70 +11,34 @@
   background: radial-gradient(circle, rgba(33, 68, 159, 1) 0%, rgba(25, 52, 121, 1) 35%);
 }
 
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem 2rem;
-  background-color: #152C67;
-  color: #fff;
-}
-
-.logo-bar {
-  width: 50px;
-  height: 50px;
-  display: flex;
-}
-
-.navbar-brand {
-  display: flex;
-  align-items: center;
-}
-
-.navbar-title {
-  margin-left: 1rem;
-  font-size: 1.2rem;
+h1 {
+  font-size: 2rem;
   font-weight: bold;
-}
-
-.navbar-menu {
-  display: flex;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  margin-left: auto;
-}
-
-.navbar-item {
-  margin-left: 4rem;
-}
-
-.navbar-link {
-  font-size: 20px;
-  text-decoration: none;
-  color: inherit;
-  transition: all 0.3s ease-in-out;
-  font-family: 'paytone one';
-}
-
-.navbar-link::after {
-  content: "";
-  display: block;
-  width: 30%;
-  height: 2px;
-  background-color: #F6B40E;
-}
-
-.navbar-link:hover {
   color: #fff;
+  text-align: center;
 }
 
+.game-card {
+  background-color: #fff;
+  color: #333;
+  border-radius: 10px;
+  padding: 2rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 600px;
+}
 
+.number {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #333;
+  border-radius: 10px;
+  
+}
 
 .score {
   display: flex;
   align-items: center;
-  font-size: 1.5em;
 }
 
 .score input {
@@ -84,24 +48,90 @@
   margin: 0 10px;
 }
 
-.score .vs {
-  margin: 0 20px;
+.vs {
   font-weight: bold;
   font-size: 1.5rem;
-  padding: 10px;
+  padding: 1rem;
+  margin: 1rem;
   color: #fff;
-  border-radius: 50%;
   background-color: #d9534f;
+  border-radius: 50%;
 }
 
-.details {
+.buttons {
+  margin-top: 2rem;
+  font-family: paytone one;
+  display: flex;
+  justify-content: space-around;
+}
+
+.p-button {
+  padding: 0.5rem 1rem;
   font-size: 1rem;
-  color: #333;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
 }
 
-.details span {
-  display: block;
-  margin-top: 5px;
+.p-button-success {
+  background-color: #28a745;
+  color: #fff;
+}
+
+.p-button-success:hover {
+  background-color: #218838;
+}
+
+// Responsive adjustments if needed
+@media (max-width: 768px) {
+  .game-card {
+    padding: 1rem;
+  }
+}
+
+.content {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+
+.header {
+  margin-bottom: 2rem;
+}
+
+h1 {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.game-card {
+  background-color: #fff;
+  color: #333;
+  border-radius: 10px;
+  padding: 2rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 600px;
+}
+
+.teams {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.team {
+  display: flex;
+  align-items: center;
+}
+
+.team img {
+  width: 30px; 
+  height: auto;
+
 }
 
 // banderas

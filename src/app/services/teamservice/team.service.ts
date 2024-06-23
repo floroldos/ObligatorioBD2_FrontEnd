@@ -12,6 +12,7 @@ export class TeamService {
     const path = '/team';
     try {
       const teams = await this.apiService.get<any>(path);
+      console.log(teams);
       return teams;
     } catch (error) {
       console.error('Error fetching teams:', error);

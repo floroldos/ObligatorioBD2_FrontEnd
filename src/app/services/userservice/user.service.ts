@@ -49,4 +49,9 @@ export class UserService {
         return decoded['career'] as string;
     }
 
+    GetScore(): number {
+        let decoded = jose.decodeJwt(this.GetToken());
+        return decoded['score'] as number;
+    }
+
 }

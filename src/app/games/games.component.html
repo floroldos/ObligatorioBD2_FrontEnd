@@ -20,7 +20,7 @@
           </div>
           <div class="teams">
             <div class="team">
-              <img src="../../assets/flag_placeholder.png" [class]="'flag flag-'+ match.team1">
+              <img src="../../assets/flag_placeholder.png" [class]="'flag flag-'+ match.team1 ">
               <span>{{ match.team1 }}</span>
             </div>
             <div class="score">
@@ -33,8 +33,10 @@
               <span>{{ match.team2 }}</span>
             </div>
           </div>
-          <p-button [label]="getButtonLabel(game)" routerLink="/predict" size="large" [raised]="true" [style]="{'background-color': '#2145A1', 'border': '1px solid #2145A1', 'font-size':'12px', 
-              'height': '30px', 'width':'200px', 'margin-top':'1.2rem'}"></p-button>
+          <p-button label="Ingresar predicción" size="large" [raised]="true"
+          (onClick)="editPrediction()"
+          [style]="{'background-color': '#2145A1', 'border': '1px solid #2145A1', 'font-size':'12px', 
+              'height': '30px', 'width':'25vh', 'margin-top':'1.2rem'}"></p-button>
         </div>
       </div>
     </div>

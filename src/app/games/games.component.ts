@@ -44,7 +44,7 @@ export class GamesComponent implements OnInit {
   async loadGames() : Promise<any> {
     try {
       this.games = await this.gameService.getGames();
-      console.log(this.games)
+      console.log('Games:', this.games);
     } catch (err) {
       console.error('Error fetching games:', err);
     }
@@ -53,25 +53,15 @@ export class GamesComponent implements OnInit {
   async loadTeams() : Promise<void> {
     try {
       this.teams = await this.teamService.getTeams();
-      console.log(this.games)
     } catch (err) {
       console.error('Error fetching games:', err);
     }
   }
 
-  getButtonLabel(match: any): string {
-    const matchTime = new Date(match.time).getTime();
-    const currentTime = new Date().getTime();
-    const twoHoursInMillis = 2 * 60 * 60 * 1000;
+  editPrediction(){
+    console.log("Loading predictions");
+    this.router.navigate(['/predictions']);   
 
-    if (match.predictionEntered) {
-      return (matchTime - currentTime > twoHoursInMillis) ? 'Editar predicción' : 'Predicción cerrada';
-    } else {
-      return 'Ingresar predicción';
-    }
   }
 
-  editPrediction(match: any): void {
-    this.router.navigate(['/predictions'], { state: { match } });
-  }
 }
