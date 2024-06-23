@@ -1,6 +1,6 @@
 <div class="container">
   <div class="app-navbar">
-    <app-navbar></app-navbar> <!-- Asegúrate de cerrar correctamente la etiqueta del componente -->
+    <app-navbar></app-navbar>
   </div>
   <div class="content">
     <div class="edit-prediction-container">
@@ -14,18 +14,42 @@
               <img src="assets/flag_placeholder.png" alt="Flag">
               <span>Uruguay</span>
             </div>
-            <div class="score">
-              <input class="number" type="number" id="score1" name="score1" min="0" [(ngModel)]="predictionDto.team1score">
+            <div class="score-container">
+              <div class="score-input">
+                <p-inputNumber 
+                    [(ngModel)]="predictionDto.team1score"
+                    [style]="{'width': '3rem'}" 
+                    [showButtons]="true" 
+                    buttonLayout="vertical"
+                    spinnerMode="vertical" 
+                    inputId="vertical" 
+                    decrementButtonClass="p-button-secondary"
+                    incrementButtonClass="p-button-secondary" 
+                    incrementButtonIcon="pi pi-plus" 
+                    decrementButtonIcon="pi pi-minus" />
+              </div>
               <span class="vs">VS</span>
-              <input class="number" type="number" id="score2" name="score2" min="0" [(ngModel)]="predictionDto.team2score">
+              <div class="score-input">
+                <p-inputNumber 
+                    [(ngModel)]="predictionDto.team2score"
+                    [style]="{'width': '3rem'}" 
+                    [showButtons]="true" 
+                    buttonLayout="vertical"
+                    spinnerMode="vertical" 
+                    inputId="vertical" 
+                    decrementButtonClass="p-button-secondary"
+                    incrementButtonClass="p-button-secondary" 
+                    incrementButtonIcon="pi pi-plus" 
+                    decrementButtonIcon="pi pi-minus" />
+              </div>
+            </div>
             <div class="team">
-              <img src="assets/flag_placeholder.png" alt="Flag">
               <span>Argentina</span>
             </div>
           </div>
-        </div>
-        <div class="buttons">
-          <button class="p-button p-button-success" (click)="savePrediction()">Guardar</button>
+          <div class="buttons">
+            <button class="p-button p-button-success" (click)="savePrediction()">Guardar</button>
+          </div>
         </div>
       </div>
     </div>

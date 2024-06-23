@@ -5,6 +5,8 @@ import { PredictionDto } from '../services/predictionservice/prediction.dto';
 import { CommonModule } from '@angular/common';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { FormsModule } from '@angular/forms';
+import { InputNumberModule } from 'primeng/inputnumber';
+import { InputIconModule } from 'primeng/inputicon';
 
 @Component({
   selector: 'app-predict',
@@ -14,8 +16,9 @@ import { FormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     NavbarComponent,
-    FormsModule
-    
+    FormsModule,
+    InputNumberModule,
+    InputIconModule
   ]
 })
 export class PredictComponent {

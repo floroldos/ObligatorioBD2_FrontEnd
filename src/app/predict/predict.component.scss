@@ -19,70 +19,74 @@ h1 {
 }
 
 .game-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
   background-color: #fff;
-  color: #333;
   border-radius: 10px;
-  padding: 2rem;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   width: 100%;
   max-width: 600px;
+  margin: 20px auto;
 }
 
-.number {
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: #333;
-  border-radius: 10px;
-  
+.game-card > * {
+  width: 100%;
 }
 
-.score {
+.score-container {
   display: flex;
   align-items: center;
+  justify-content: space-between;
 }
 
-.score input {
-  width: 50px;
-  text-align: center;
-  font-size: 1.5rem;
+.score-input {
+  width: 30%;
   margin: 0 10px;
 }
 
+
+.game-details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.teams {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.team {
+  display: flex;
+  align-items: center;
+  margin: 0 20px;
+}
+
+.team img {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+}
+
+.team span {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+
 .vs {
   font-weight: bold;
-  font-size: 1.5rem;
-  padding: 1rem;
-  margin: 1rem;
+  font-size: 18px;
+  padding: 10px;
+  margin: 10px;
   color: #fff;
   background-color: #d9534f;
   border-radius: 50%;
 }
 
-.buttons {
-  margin-top: 2rem;
-  font-family: paytone one;
-  display: flex;
-  justify-content: space-around;
-}
-
-.p-button {
-  padding: 0.5rem 1rem;
-  font-size: 1rem;
-  cursor: pointer;
-  border: none;
-  border-radius: 5px;
-}
-
-.p-button-success {
-  background-color: #28a745;
-  color: #fff;
-}
-
-.p-button-success:hover {
-  background-color: #218838;
-}
-
-// Responsive adjustments if needed
 @media (max-width: 768px) {
   .game-card {
     padding: 1rem;
@@ -95,43 +99,6 @@ h1 {
   justify-content: center;
   align-items: center;
   padding: 2rem;
-}
-
-.header {
-  margin-bottom: 2rem;
-}
-
-h1 {
-  font-size: 2rem;
-  font-weight: bold;
-}
-
-.game-card {
-  background-color: #fff;
-  color: #333;
-  border-radius: 10px;
-  padding: 2rem;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  width: 100%;
-  max-width: 600px;
-}
-
-.teams {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  margin-bottom: 1rem;
-}
-
-.team {
-  display: flex;
-  align-items: center;
-}
-
-.team img {
-  width: 30px; 
-  height: auto;
-
 }
 
 // banderas
@@ -147,64 +114,8 @@ span.flag {
   background-size: 100%
 }
 
-.flag-ad {
-  background-position: 0 .413223%
-}
-
-.flag-ae {
-  background-position: 0 .826446%
-}
-
-.flag-af {
-  background-position: 0 1.239669%
-}
-
-.flag-ag {
-  background-position: 0 1.652893%
-}
-
-.flag-ai {
-  background-position: 0 2.066116%
-}
-
-.flag-al {
-  background-position: 0 2.479339%
-}
-
-.flag-am {
-  background-position: 0 2.892562%
-}
-
-.flag-an {
-  background-position: 0 3.305785%
-}
-
-.flag-ao {
-  background-position: 0 3.719008%
-}
-
-.flag-aq {
-  background-position: 0 4.132231%
-}
-
-.flag-ar {
+.flag-AFA {
   background-position: 0 4.545455%
-}
-
-.flag-as {
-  background-position: 0 4.958678%
-}
-
-.flag-at {
-  background-position: 0 5.371901%
-}
-
-.flag-au {
-  background-position: 0 5.785124%
-}
-
-.flag-aw {
-  background-position: 0 6.198347%
 }
 
 .flag-az {
