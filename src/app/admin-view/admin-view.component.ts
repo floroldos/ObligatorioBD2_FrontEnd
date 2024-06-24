@@ -4,6 +4,8 @@ import { PanelMenuModule } from 'primeng/panelmenu';
 import { MenuItem } from 'primeng/api';
 import { BadgeModule } from 'primeng/badge';
 import { Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { ManageGamesComponent } from '../admin/manage-games/manage-games.component';
 
 @Component({
   selector: 'app-admin-view',
@@ -11,7 +13,9 @@ import { Router } from '@angular/router';
   imports: [
     NavbarComponent,
     PanelMenuModule,
-    BadgeModule
+    BadgeModule,
+    CommonModule,
+    ManageGamesComponent
   ],
   templateUrl: './admin-view.component.html',
   styleUrl: './admin-view.component.scss'
@@ -28,20 +32,26 @@ export class AdminViewComponent {
       this.items = [
         {
           label: 'Administrar Usuarios',
-          icon: 'pi pi-user-plus',
+          icon: 'pi pi-fw pi-cog',
           command: () => { this.navigateTo('manage-users'); }
         },
         {
           label: 'Administrar Equipos',
-          icon: 'pi pi-users',
+          icon: 'pi pi-fw pi-cog',
           command: () => { this.navigateTo('manage-teams'); }
         },
         {
           label: 'Administrar Partidos',
-          icon: 'pi pi-calendar-plus',
+          icon: 'pi pi-fw pi-cog',
           command: () => { this.navigateTo('manage-games'); }
+        },
+        {
+          label: 'Administrar Carreras',
+          icon: 'pi pi-fw pi-cog',
+          command: () => { this.navigateTo('manage-careers'); }
         }
       ];
+      this.router.navigate(['/admin/manage-users']);
     } else {
       this.router.navigate(['/login']);}
   }

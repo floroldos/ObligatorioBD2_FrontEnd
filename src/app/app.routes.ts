@@ -11,6 +11,7 @@ import { ManageUsersComponent } from './admin/manage-users/manage-users.componen
 import { ManageTeamsComponent } from './admin/manage-teams/manage-teams.component';
 import { ManageGamesComponent } from './admin/manage-games/manage-games.component';
 import { TeamsComponent } from './teams/teams.component';
+import { ManageCareersComponent } from './admin/manage-careers/manage-careers.component';
 
 export const routes: Routes = [
     {
@@ -48,6 +49,7 @@ export const routes: Routes = [
         { path: 'manage-users', component: ManageUsersComponent, canActivate: [AuthGuard]},
         { path: 'manage-teams', component: ManageTeamsComponent, canActivate: [AuthGuard]},
         { path: 'manage-games', component: ManageGamesComponent, canActivate: [AuthGuard]},
+        { path: 'manage-careers', component: ManageCareersComponent, canActivate: [AuthGuard]}
         ],
         canActivate: [AuthGuard],
     },

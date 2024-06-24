@@ -1,0 +1,188 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #f4f4f930;
+    padding: 20px;
+    min-height: 100vh;
+
+    h1{
+        color: #333;
+    }
+  
+    .game-container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 20px;
+      background-color: #fff;
+      padding: 20px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+  
+      .header {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 20px;
+        color: #333;
+      }
+  
+      .match-day {
+        margin-bottom: 20px;
+  
+        h2 {
+          color: #333;
+          margin-bottom: 10px;
+        }
+  
+        .match-cards {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 15px;
+  
+          .match-card {
+            flex: 1 1 calc(50% - 15px);
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+  
+            &:hover {
+              background-color: #e0e6ff;
+              transform: scale(1.02);
+            }
+  
+            .details {
+              font-size: 20px;
+              color: #4b4b4b;
+              margin-bottom: 5px;
+            }
+  
+            .teams {
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              color: #555;
+  
+              .team {
+                display: flex;
+                align-items: center;
+  
+                img {
+                  width: 30px;
+                  height: 20px;
+                  margin-right: 10px;
+                }
+  
+                span {
+                  font-size: 16px;
+                  font-weight: 600;
+                }
+              }
+  
+              .score {
+                display: flex;
+                align-items: center;
+  
+                span {
+                  font-size: 16px;
+                  font-weight: 600;
+  
+                  &.vs {
+                    margin: 0 10px;
+                  }
+                }
+              }
+            }
+  
+            p-button {
+              margin-top: 1.2rem;
+              background-color: #2145a1;
+              font-size: 12px;
+              height: 30px;
+              width: 200px;
+            }
+          }
+        }
+      }
+    }
+  
+    .edit-game {
+      width: 60%;
+      max-width: 1200px;
+      margin-top: 20px;
+      background-color: #ffffffee;
+      padding: 20px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+  
+      h2 {
+        margin-bottom: 20px;
+        color: #333;
+      }
+  
+      form {
+        display: flex;
+        flex-direction: column;
+  
+        .form-group {
+          margin-bottom: 15px;
+  
+          label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            color: #555;
+          }
+  
+          input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+          }
+        }
+  
+        button {
+          align-self: flex-start;
+          padding: 10px 20px;
+          background-color: #2145a1;
+          border: none;
+          color: #fff;
+          font-size: 14px;
+          border-radius: 4px;
+          cursor: pointer;
+          transition: background-color 0.3s;
+  
+          &:hover {
+            background-color: #193982;
+          }
+  
+          &:disabled {
+            background-color: #b3b3b3;
+            cursor: not-allowed;
+          }
+        }
+      }
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .container {
+      padding: 10px;
+  
+      .game-container, .edit-game {
+        width: 100%;
+        margin: 10px;
+        padding: 15px;
+  
+        .match-cards {
+          .match-card {
+            flex: 1 1 100%;
+          }
+        }
+      }
+    }
+  }
+  

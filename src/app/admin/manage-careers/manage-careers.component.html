@@ -1,0 +1,14 @@
+<div class="container">
+    <h2>Administrar Carreras</h2>
+
+    <div class="edit-game">
+        <h2>Agregar Nueva Carrera</h2>
+        <form [formGroup]="adminForm">
+            <div class="form-group">
+                <label for="adminUsername">Nombre de la Carrera</label>
+                <input id="adminUsername" formControlName="adminUsername" type="text">
+            </div>
+            <button type="submit" pButton [disabled]="!adminForm.valid"> Agregar </button>
+        </form>
+    </div>
+</div>

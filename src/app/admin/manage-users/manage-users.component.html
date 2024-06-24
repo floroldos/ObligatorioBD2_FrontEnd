@@ -1,15 +1,5 @@
 <div class="container">
     <h2>Usuarios - Administración</h2>
-    <div class="edit-game">
-        <h2>Crear Nuevo Usuario</h2>
-        <form [formGroup]="userForm" >
-            <div class="form-group">
-                <label for="username">Nombre de Usuario</label>
-                <input id="username" formControlName="username" type="text">
-            </div>
-            <button type="submit" [disabled]="!userForm.valid">Crear</button>
-        </form>
-    </div>
 
     <div class="edit-game">
         <h2>Agregar Nuevo Administrador</h2>
@@ -23,13 +13,13 @@
     </div>
 
     <div class="edit-game">
-        <h2>Deshabilitar Usuario</h2>
+        <h2>Eliminar Usuario</h2>
         <form [formGroup]="disableUserForm" >
             <div class="form-group">
                 <label for="disableUsername">Nombre de Usuario</label>
                 <input id="disableUsername" formControlName="disableUsername" type="text">
             </div>
-            <button type="submit" pButton [disabled]="!disableUserForm.valid">Deshabilitar</button>
+            <button type="submit" pButton [disabled]="!disableUserForm.valid">Eliminar</button>
         </form>
     </div>
 </div>
