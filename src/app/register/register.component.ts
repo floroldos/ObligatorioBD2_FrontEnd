@@ -16,6 +16,10 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { DropdownModule } from 'primeng/dropdown';
 import { StepsModule } from 'primeng/steps';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { OnInit } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms'; 
+
 @Component({
   selector: 'app-register',
   standalone: true,
@@ -35,37 +39,62 @@ import { StepsModule } from 'primeng/steps';
     CommonModule,
     FormsModule,
     DropdownModule,
-    StepsModule
+    StepsModule,
+    ReactiveFormsModule
   ],
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss'
 })
-export class RegisterComponent {
-  constructor(private router: Router) { }
-  loading: boolean = false;
-  currentStep: number = 1;
-  countries: any[] = [
-    { label: 'Argentina', value: 'AR' },
-    { label: 'Brasil', value: 'BR' },
-  ];
-  selectedChampion: string | null = null;
-  selectedRunnerUp: string | null = null;
+export class RegisterComponent{
+  constructor(private router: Router, private fb: FormBuilder) { 
 
-  items: any[] = [
+    this.formGroup = this.fb.group({
+      name: ['', Validators.required],
+      cedula: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      birthdate: ['', Validators.required],
+      surname: ['', Validators.required],
+      career: ['', Validators.required],
+      password: ['', [Validators.required, Validators.minLength(6)]],
+      champion: ['', Validators.required],
+      runnerup: ['', Validators.required]
+    });
+
+  }
+
+  loading: boolean = false;
+  formGroup!: FormGroup;
+  currentStep: number = 0;
+
+  items = [
     { label: 'Datos Personales' },
     { label: 'Selección de Equipos' }
   ];
 
   nextStep() {
-    if (this.currentStep < 2) {
-      this.currentStep++;
-    } else {
+    if (this.currentStep === 0) {
+      if (this.formGroup.get('name')?.valid &&
+          this.formGroup.get('cedula')?.valid &&
+          this.formGroup.get('email')?.valid &&
+          this.formGroup.get('birthdate')?.valid &&
+          this.formGroup.get('surname')?.valid &&
+          this.formGroup.get('career')?.valid &&
+          this.formGroup.get('password')?.valid) {
+        this.currentStep = 1;
+      } else {
+        this.formGroup.markAllAsTouched();
+      }
     }
   }
 
   register() {
-    // Validación de registro. Si es exitoso, navega a la página de inicio o al login
-    this.router.navigate(['/login']);
+    if (this.formGroup.valid) {
+      // Lógica para registrar el usuario
+      this.router.navigate(['/login']);
+      console.log('Formulario enviado', this.formGroup.value);
+    } else {
+      this.formGroup.markAllAsTouched();
+    }
   }
 
   load() {
@@ -75,6 +104,12 @@ export class RegisterComponent {
       this.loading = false
       this.register();
     }, 2000);
+  }
+
+  markAllFieldsAsTouched() {
+    Object.values(this.formGroup.controls).forEach(control => {
+      control.markAsTouched();
+    });
   }
 
 }

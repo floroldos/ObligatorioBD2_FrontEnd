@@ -2,8 +2,8 @@ import { Component, Inject } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { DividerModule } from 'primeng/divider';
-import {MessagesModule} from 'primeng/messages';
-import {MessageModule} from 'primeng/message';
+import { MessagesModule } from 'primeng/messages';
+import { MessageModule } from 'primeng/message';
 import { InputGroupModule } from 'primeng/inputgroup';
 import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
 import { InputTextModule } from 'primeng/inputtext';
@@ -37,65 +37,75 @@ import { AutoFocusModule } from 'primeng/autofocus';
     ReactiveFormsModule,
     MessagesModule,
     MessageModule
-    ],
+  ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
 export class LoginComponent {
-  constructor(private router: Router, private http: HttpClient, private cookieService: CookieService) {}
-
   loading: boolean = false;
-  
   loginGroup = new FormGroup({
     ci: new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(8)]),
     password: new FormControl('', [Validators.required, Validators.minLength(6)])
   });
-
   loginStatus = {
     error: false,
     message: 'Usuario o contraseña incorrectos. Por favor, inténtelo nuevamente.'
-  }
+  };
 
-  async ngOnInit() {
+  constructor(
+    private router: Router,
+    private http: HttpClient,
+    private cookieService: CookieService
+  ) {}
+
+  ngOnInit() {
     if (this.cookieService.check('token')) {
       this.http.post(environment.serverUrl + "/auth/token", { token: this.cookieService.get('token') }).subscribe((res: any) => {
         if (res.token == null) {
           this.loginStatus.error = true;
-          this.loginStatus.message = "Token inválido. Por favor, inicie sesión nuevamente."
+          this.loginStatus.message = "Token inválido. Por favor, inicie sesión nuevamente.";
           this.cookieService.delete('token');
         } else {
-          this.router.navigate(['/home']);
+          const userRole = localStorage.getItem('userRole');
+          if (userRole === 'ADMIN') {
+            this.router.navigate(['/admin']);
+          } else {
+            this.router.navigate(['/home']);
+          }
         }
       });
     }
   }
 
-  async login() {
+  login() {
     if (this.loginGroup.invalid) {
       console.log('Invalid form');
       return;
     }
 
-    if (this.loginGroup.value.ci != null && this.loginGroup.value.password != null) {
-      this.http.post(environment.serverUrl + "/auth/login", this.loginGroup.value).subscribe((res: any) => {
-        console.log(res);
-        if (res.token == null) {
-          this.loginStatus.error = true;
-          this.loginStatus.message = res.message;
+    this.loading = true;
+
+    this.http.post(environment.serverUrl + "/auth/login", this.loginGroup.value).subscribe((res: any) => {
+      this.loading = false;
+
+      if (res.token == null) {
+        this.loginStatus.error = true;
+        this.loginStatus.message = res.message;
+      } else {
+        this.cookieService.set('token', res.token, 365);
+        localStorage.setItem('userRole', res.role);
+
+        if (res.role === 'ADMIN') {
+          this.router.navigate(['/admin']);
         } else {
-          this.cookieService.set('token', res.token, 365);
           this.router.navigate(['/home']);
         }
-      });
-    }
+      }
+    }, (error) => {
+      this.loading = false;
+      console.error('Error during login:', error);
+      this.loginStatus.error = true;
+      this.loginStatus.message = "Ocurrió un error durante el inicio de sesión.";
+    });
   }
-
-  load() {
-    this.loading = true;
-    this.login();
-    setTimeout(() => {
-    }, 2000);
-    
-  }
-
 }

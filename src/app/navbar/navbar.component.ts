@@ -36,23 +36,16 @@ export class NavbarComponent {
   constructor(private router: Router, private cookieService: CookieService, private userService:UserService) { }
 
   ngOnInit() {
-    this.getUserName();
+    this.getUserData();
   }
 
-  async getUserName() {
+  getUserData() {
     try {
       this.userName = this.userService.GetName();
-      console.log('User name:', this.userName);
+      this.points = this.userService.GetScore();
+      console.log('Points:', this.points);
     } catch (error) {
       console.error('Failed to fetch user name:', error);
-    }
-  }
-
-  async getPoints() {
-    try {
-      this.points = await this.userService.GetScore();
-    } catch (error) {
-      console.error('Failed to fetch points:', error);
     }
   }
 

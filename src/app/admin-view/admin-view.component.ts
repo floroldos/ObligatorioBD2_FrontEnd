@@ -20,26 +20,30 @@ export class AdminViewComponent {
 
   items: MenuItem[] = [];
 
-  constructor(private router: Router) {}
+  constructor(private router: Router) { }
 
   ngOnInit() {
-    this.items = [
-      {
-        label: 'Administrar Usuarios',
-        icon: 'pi pi-user-plus',
-        command: () => { this.navigateTo('manage-users'); }
-      },
-      {
-        label: 'Administrar Equipos',
-        icon: 'pi pi-users',
-        command: () => { this.navigateTo('manage-teams'); }
-      },
-      {
-        label: 'Administrar Partidos',
-        icon: 'pi pi-calendar-plus',
-        command: () => { this.navigateTo('manage-games'); }
-      }
-    ];
+    const userRole = localStorage.getItem('userRole');
+    if (userRole === 'ADMIN') {
+      this.items = [
+        {
+          label: 'Administrar Usuarios',
+          icon: 'pi pi-user-plus',
+          command: () => { this.navigateTo('manage-users'); }
+        },
+        {
+          label: 'Administrar Equipos',
+          icon: 'pi pi-users',
+          command: () => { this.navigateTo('manage-teams'); }
+        },
+        {
+          label: 'Administrar Partidos',
+          icon: 'pi pi-calendar-plus',
+          command: () => { this.navigateTo('manage-games'); }
+        }
+      ];
+    } else {
+      this.router.navigate(['/login']);}
   }
 
   navigateTo(route: string) {

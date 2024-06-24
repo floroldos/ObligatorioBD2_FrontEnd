@@ -45,10 +45,11 @@ export const routes: Routes = [
     {
         path: 'admin',
         component: AdminViewComponent, children: [
-        { path: 'manage-users', component: ManageUsersComponent },
-        { path: 'manage-teams', component: ManageTeamsComponent },
-        { path: 'manage-games', component: ManageGamesComponent },
-      ]
+        { path: 'manage-users', component: ManageUsersComponent, canActivate: [AuthGuard]},
+        { path: 'manage-teams', component: ManageTeamsComponent, canActivate: [AuthGuard]},
+        { path: 'manage-games', component: ManageGamesComponent, canActivate: [AuthGuard]},
+        ],
+        canActivate: [AuthGuard],
     },
     {
         path: 'teams',

@@ -4,7 +4,7 @@
     <h1>Equipos</h1>
     <div class="teams-container">
       <div class="team-card" *ngFor="let team of teams">
-        <div [innerHTML]="team.flag"></div> <!-- Mostrar la bandera como SVG -->
+        <div [innerHTML]="team.flag"></div>
         <span>{{ team.country }} - {{ team.name }}</span>
       </div>
     </div>

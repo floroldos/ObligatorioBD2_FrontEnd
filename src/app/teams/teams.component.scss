@@ -1,12 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Paytone+One&display=swap');
 
+body, html {
+  font-family: 'Paytone One', sans-serif;
+}
+
 .container {
-  position: absolute;
-  top: 0;
-  left: 0;
+  position: relative;
   min-height: 100vh;
-  min-width: 100vw;
-  background: rgb(33, 68, 159);
+  width: 100%;
   background: radial-gradient(circle, rgba(33, 68, 159, 1) 0%, rgba(25, 52, 121, 1) 35%);
 }
 
@@ -17,64 +18,135 @@
   padding: 1rem 2rem;
   background-color: #152C67;
   color: #fff;
-}
 
-.logo-bar {
-  width: 50px;
-  height: 50px;
-  display: flex;
-}
+  .logo-bar {
+    width: 50px;
+    height: 50px;
+    display: flex;
+  }
 
-.navbar-brand {
-  display: flex;
-  align-items: center;
-}
+  .navbar-brand {
+    display: flex;
+    align-items: center;
+  }
 
-.navbar-title {
-  margin-left: 1rem;
-  font-size: 1.2rem;
-  font-weight: bold;
-}
+  .navbar-title {
+    margin-left: 1rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
 
-.navbar-menu {
-  display: flex;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  margin-left: auto;
-}
+  .navbar-menu {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    margin-left: auto;
 
-.navbar-item {
-  margin-left: 4rem;
-}
+    .navbar-item {
+      margin-left: 4rem;
 
-.navbar-link {
-  font-size: 20px;
-  text-decoration: none;
-  color: inherit;
-  transition: all 0.3s ease-in-out;
-  font-family: 'paytone one';
-}
+      .navbar-link {
+        font-size: 20px;
+        text-decoration: none;
+        color: inherit;
+        transition: all 0.3s ease-in-out;
+        font-family: 'Paytone One', sans-serif;
 
-.navbar-link::after {
-  content: "";
-  display: block;
-  width: 30%;
-  height: 2px;
-  background-color: #F6B40E;
-}
+        &::after {
+          content: "";
+          display: block;
+          width: 30%;
+          height: 2px;
+          background-color: #F6B40E;
+          margin: 0 auto;
+        }
 
-.navbar-link:hover {
-  color: #fff;
+        &:hover {
+          color: #fff;
+        }
+      }
+    }
+  }
 }
 
 .content {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    padding: 2rem;
-    width: 80%; 
-    background-color: #ffffff4c; 
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  background-color: #e9eaef;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  padding: 2rem;
+  text-align: center;
+
+  h1 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
   }
+
+  .teams-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+
+    .team-card {
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      padding: 1rem;
+      text-align: center;
+      width: calc(33.333% - 2rem); /* 3 cards per row with gap */
+
+      div {
+        margin-bottom: 1rem;
+
+        svg {
+          width: 50px;
+          height: auto;
+        }
+      }
+
+      span {
+        font-size: 1.2rem;
+        color: #333;
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .content {
+    width: 90%;
+    padding: 1rem;
+
+    h1 {
+      font-size: 2rem;
+    }
+
+    .teams-container {
+      .team-card {
+        width: calc(50% - 1rem); /* 2 cards per row with gap */
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .content {
+    width: 95%;
+
+    h1 {
+      font-size: 1.5rem;
+    }
+
+    .teams-container {
+      .team-card {
+        width: 100%;
+      }
+    }
+  }
+}
