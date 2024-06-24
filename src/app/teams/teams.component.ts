@@ -3,7 +3,7 @@ import { MenubarModule } from 'primeng/menubar';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { TeamService } from '../services/teamservice/team.service';
 import { CommonModule } from '@angular/common';
-import CountryList from 'country-list-with-dial-code-and-flag';
+
 @Component({
   selector: 'app-teams',
   standalone: true,

@@ -12,39 +12,39 @@
           <div class="teams">
             <div class="team">
               <img src="assets/flag_placeholder.png" alt="Flag">
-              <span>Uruguay</span>
+              <span>{{teamA}}</span>
             </div>
             <div class="score-container">
               <div class="score-input">
-                <p-inputNumber 
+                <p-inputNumber
                     [(ngModel)]="prediction.team1score"
-                    [style]="{'width': '3rem'}" 
-                    [showButtons]="true" 
+                    [style]="{'width': '3rem'}"
+                    [showButtons]="true"
                     buttonLayout="vertical"
-                    spinnerMode="vertical" 
-                    inputId="vertical" 
+                    spinnerMode="vertical"
+                    inputId="vertical"
                     decrementButtonClass="p-button-secondary"
-                    incrementButtonClass="p-button-secondary" 
-                    incrementButtonIcon="pi pi-plus" 
+                    incrementButtonClass="p-button-secondary"
+                    incrementButtonIcon="pi pi-plus"
                     decrementButtonIcon="pi pi-minus" />
               </div>
               <span class="vs">VS</span>
               <div class="score-input">
-                <p-inputNumber 
+                <p-inputNumber
                     [(ngModel)]="prediction.team2score"
-                    [style]="{'width': '3rem'}" 
-                    [showButtons]="true" 
+                    [style]="{'width': '3rem'}"
+                    [showButtons]="true"
                     buttonLayout="vertical"
-                    spinnerMode="vertical" 
-                    inputId="vertical" 
+                    spinnerMode="vertical"
+                    inputId="vertical"
                     decrementButtonClass="p-button-secondary"
-                    incrementButtonClass="p-button-secondary" 
-                    incrementButtonIcon="pi pi-plus" 
+                    incrementButtonClass="p-button-secondary"
+                    incrementButtonIcon="pi pi-plus"
                     decrementButtonIcon="pi pi-minus" />
               </div>
             </div>
             <div class="team">
-              <span>Argentina</span>
+              <span>{{ teamB }}</span>
             </div>
           </div>
           <div class="buttons">

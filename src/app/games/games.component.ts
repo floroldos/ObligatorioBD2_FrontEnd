@@ -58,7 +58,7 @@ export class GamesComponent implements OnInit {
     }
   }
 
-  editPrediction(id: number){
-    this.router.navigate(['/predictions', {'id': id}]);   
+  editPrediction(match: any){
+    this.router.navigate(['/predictions', match]);
   }
 }

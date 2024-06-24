@@ -1,12 +1,12 @@
-import { Component, Input } from '@angular/core';
-import { Router } from '@angular/router';
-import { PredictionService } from '../services/predictionservice/prediction.service';
-import { PredictionDto } from '../services/predictionservice/prediction.dto';
-import { CommonModule } from '@angular/common';
-import { NavbarComponent } from '../navbar/navbar.component';
-import { FormsModule } from '@angular/forms';
-import { InputNumberModule } from 'primeng/inputnumber';
-import { InputIconModule } from 'primeng/inputicon';
+import {Component, inject, Input} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
+import {PredictionService} from '../services/predictionservice/prediction.service';
+import {PredictionDto} from '../services/predictionservice/prediction.dto';
+import {CommonModule} from '@angular/common';
+import {NavbarComponent} from '../navbar/navbar.component';
+import {FormsModule} from '@angular/forms';
+import {InputNumberModule} from 'primeng/inputnumber';
+import {InputIconModule} from 'primeng/inputicon';
 
 @Component({
   selector: 'app-predict',
@@ -23,15 +23,28 @@ import { InputIconModule } from 'primeng/inputicon';
 })
 export class PredictComponent {
 
-  @Input() id!: number;
+  id!: number;
+
+  private route = inject(ActivatedRoute);
+
+  teamA!: string;
+  teamB!: string
 
   prediction: PredictionDto = {
     gameId: this.id,
     team1score: 0,
-    team2score: 0 
+    team2score: 0
   };
 
-  constructor(private router: Router, private predictionService: PredictionService) { }
+  constructor(private router: Router, private predictionService: PredictionService) {
+  }
+
+  ngOnInit(): void {
+    this.id = parseInt(<string>this.route.snapshot.paramMap.get("gameid"));
+    this.teamA = <string>this.route.snapshot.paramMap.get("team1");
+    this.teamB = <string>this.route.snapshot.paramMap.get("team2")
+  }
+
 
   async savePrediction(): Promise<void> {
     console.log(this.id)
@@ -44,7 +57,7 @@ export class PredictComponent {
   }
 
   cancel(): void {
-    this.router.navigate(['/games']); 
+    this.router.navigate(['/games']);
   }
 
 }

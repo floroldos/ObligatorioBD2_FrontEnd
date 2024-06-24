@@ -87,7 +87,7 @@ h1 {
 
 h2 {
   font-size: 1rem;
-  color: #f4f4f4; 
+  color: #f4f4f4;
   text-align: left;
   margin-left: 12rem;
 
@@ -95,11 +95,11 @@ h2 {
 
 .container-2 {
   display: flex;
-  height: 100vh;
+  height: calc(100vh - 100px);
 }
 
 .content {
-  flex: 1; 
+  flex: 1;
   padding: 20px;
 }
 
