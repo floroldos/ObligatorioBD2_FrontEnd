@@ -8,6 +8,12 @@
   <p-steps [activeIndex]="currentStep" [model]="items" [style]="{'font-size':'13px'}" ></p-steps>
   
   <br>
+  <br>
+
+  <p-dialog header="Registro Exitoso" [(visible)]="displayModal" modal="true" [closable]="false" [dismissableMask]="true">
+    <p>El registro se ha completado exitosamente.</p>
+    <p-button label="Aceptar" severity="info" (onClick)="onAccept()" [style]="{'float':'right', 'margin-top':'10px'}"></p-button>
+  </p-dialog>
 
   <form class="register-form" *ngIf="currentStep === 0" [formGroup]="formGroup">
     <div class="register-form-row">
@@ -19,7 +25,7 @@
         </span>
         <br>
         <span class="p-float-label">
-          <p-inputNumber inputId="identity-input" formControlName="ci" [useGrouping]="false"></p-inputNumber>
+          <p-inputNumber inputId="identity-input" formControlName="ci" min="10000000" max="99999999" [useGrouping]="false"></p-inputNumber>
           <label for="identity-input">Cédula</label>
           <div class="validate" *ngIf="formGroup.get('ci')?.invalid && formGroup.get('ci')?.touched">Cédula es requerida</div>
         </span>

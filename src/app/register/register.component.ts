@@ -18,6 +18,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { TeamService } from '../services/teamservice/team.service';
 import { DropdownModule } from 'primeng/dropdown';
 import { CareerService } from '../services/career.service/career.service';
+import { DialogModule } from 'primeng/dialog';
 
 @Component({
   selector: 'app-register',
@@ -38,7 +39,8 @@ import { CareerService } from '../services/career.service/career.service';
     InputNumberModule,
     CalendarModule,
     ReactiveFormsModule,
-    DropdownModule
+    DropdownModule,
+    DialogModule
   ]
 })
 export class RegisterComponent implements OnInit {
@@ -48,6 +50,7 @@ export class RegisterComponent implements OnInit {
   teams: any[] = [];
   countries: any[] = [];
   careers: any[] = [];
+  displayModal: boolean = false;
 
   items = [
     { label: 'Datos Personales' },
@@ -139,29 +142,22 @@ export class RegisterComponent implements OnInit {
   register() {
     if (this.formGroup.valid) {
       this.loading = true;
-      var championValue = this.formGroup.value.champion.value;
-      var secondPlaceValue = this.formGroup.value.secondPlace.value;
-      var careerValue = this.formGroup.value.career.value;
-      var formattedDate = this.formatDate();
+      const championValue = this.formGroup.value.champion.value;
+      const secondPlaceValue = this.formGroup.value.secondPlace.value;
+      const careerValue = this.formGroup.value.career.value;
+      const formattedDate = this.formatDate();
 
       this.formGroup.patchValue({
-        birthdate: formattedDate
-      });
-
-      this.formGroup.patchValue({
-        career: careerValue
-      });
-
-      this.formGroup.patchValue({
+        birthdate: formattedDate,
+        career: careerValue,
         champion: championValue,
         secondPlace: secondPlaceValue
       });
 
-      console.log(this.formGroup.value);
       this.registerService.register(this.formGroup.value).subscribe(
         (response) => {
           console.log('Registration successful', response);
-          this.router.navigate(['/login']);
+          this.displayModal = true;
         },
         (error) => {
           this.loading = false;
@@ -173,8 +169,14 @@ export class RegisterComponent implements OnInit {
     }
   }
 
+  onAccept() {
+    this.displayModal = false;
+    this.router.navigate(['/login']);
+  }
+
   load() {
     this.loading = true;
+    
 
     setTimeout(() => {
       this.loading = false;
