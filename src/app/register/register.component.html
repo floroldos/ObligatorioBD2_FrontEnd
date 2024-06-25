@@ -19,9 +19,9 @@
         </span>
         <br>
         <span class="p-float-label">
-          <p-inputNumber inputId="identity-input" formControlName="cedula" [useGrouping]="false"></p-inputNumber>
+          <p-inputNumber inputId="identity-input" formControlName="ci" [useGrouping]="false"></p-inputNumber>
           <label for="identity-input">Cédula</label>
-          <div class="validate" *ngIf="formGroup.get('cedula')?.invalid && formGroup.get('cedula')?.touched">Cédula es requerida</div>
+          <div class="validate" *ngIf="formGroup.get('ci')?.invalid && formGroup.get('ci')?.touched">Cédula es requerida</div>
         </span>
         <br>
         <span class="p-float-label">
@@ -38,9 +38,9 @@
       </div>
       <div class="register-form-column">
         <span class="p-float-label">
-          <input pInputText id="surname" formControlName="surname" />
-          <label for="surname">Apellido(s)</label>
-          <div  class="validate" *ngIf="formGroup.get('surname')?.invalid && formGroup.get('surname')?.touched">Apellido es requerido</div>
+          <input pInputText id="lastName" formControlName="lastName" />
+          <label for="lastName">Apellido(s)</label>
+          <div  class="validate" *ngIf="formGroup.get('lastName')?.invalid && formGroup.get('lastName')?.touched">Apellido es requerido</div>
         </span>
         <br>
         <span class="p-float-label">
@@ -93,12 +93,12 @@
           <span class="p-float-label">
             <p-dropdown 
               [options]="countries" 
-              formControlName="runnerup" 
+              formControlName="secondPlace" 
               optionLabel="label" 
               placeholder="Subcampeón"
               [style]="{'width':'18rem'}">
             </p-dropdown>
-            <div class="validate" *ngIf="formGroup.get('runnerup')?.invalid && formGroup.get('runnerup')?.touched">Subcampeón es requerido</div>
+            <div class="validate" *ngIf="formGroup.get('secondPlace')?.invalid && formGroup.get('secondPlace')?.touched">Subcampeón es requerido</div>
           </span>
         </div>
       </div>

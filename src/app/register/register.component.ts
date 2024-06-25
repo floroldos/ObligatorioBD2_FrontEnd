@@ -66,15 +66,15 @@ export class RegisterComponent implements OnInit {
   ) {
     this.cd = changeDetectorRef;
     this.formGroup = this.fb.group({
-      cedula: ['', Validators.required],
+      ci: ['', Validators.required],
       password: ['', [Validators.required, Validators.minLength(6)]],
       name: ['', Validators.required],
-      surname: ['', Validators.required],
+      lastName: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       birthdate: ['', Validators.required],
-      career: ['', Validators.required],
       champion: ['', Validators.required],
-      runnerup: ['', Validators.required]
+      secondPlace: ['', Validators.required],
+      career: ['', Validators.required]
     });
   }
 
@@ -87,7 +87,7 @@ export class RegisterComponent implements OnInit {
 
   async loadTeams(): Promise<void> {
     try {
-      const teams = await this.teamService.getTeams();
+      var teams = await this.teamService.getTeams();
       this.countries = teams.map((team: { country: any; id: any; }) => ({ label: team.country, value: team.id }));
       this.cd.detectChanges();
     } catch (err) {
@@ -97,7 +97,7 @@ export class RegisterComponent implements OnInit {
 
   async loadCareers(): Promise<void> {
     try {
-      const careers = await this.careerService.getCareers();
+      var careers = await this.careerService.getCareers();
       this.careers = careers.map((team: { name: any; id: any; }) => ({ label: team.name, value: team.id }));
       this.cd.detectChanges();
     } catch (err) {
@@ -108,10 +108,10 @@ export class RegisterComponent implements OnInit {
   // Formateo de fecha para cargar
 
   formatDate(): string {
-    const date = this.formGroup.value.birthdate;
-    const day = ('0' + date.getDate()).slice(-2);
-    const month = ('0' + (date.getMonth() + 1)).slice(-2);
-    const year = date.getFullYear();
+    var date = this.formGroup.value.birthdate;
+    var day = ('0' + date.getDate()).slice(-2);
+    var month = ('0' + (date.getMonth() + 1)).slice(-2);
+    var year = date.getFullYear();
     return `${year}-${month}-${day}`;
   }
 
@@ -121,10 +121,10 @@ export class RegisterComponent implements OnInit {
   nextStep() {
     if (this.currentStep === 0) {
       if (this.formGroup.get('name')?.valid &&
-        this.formGroup.get('cedula')?.valid &&
+        this.formGroup.get('ci')?.valid &&
         this.formGroup.get('email')?.valid &&
         this.formGroup.get('birthdate')?.valid &&
-        this.formGroup.get('surname')?.valid &&
+        this.formGroup.get('lastName')?.valid &&
         this.formGroup.get('career')?.valid &&
         this.formGroup.get('password')?.valid) {
         this.currentStep = 1;
@@ -137,10 +137,10 @@ export class RegisterComponent implements OnInit {
   register() {
     if (this.formGroup.valid) {
       this.loading = true;
-      const championValue = this.formGroup.value.champion.value;
-      const runnerupValue = this.formGroup.value.runnerup.value;
-      const careerValue = this.formGroup.value.career.value;
-      const formattedDate = this.formatDate();
+      var championValue = this.formGroup.value.champion.value;
+      var secondPlaceValue = this.formGroup.value.secondPlace.value;
+      var careerValue = this.formGroup.value.career.value;
+      var formattedDate = this.formatDate();
 
       this.formGroup.patchValue({
         birthdate: formattedDate
@@ -152,7 +152,7 @@ export class RegisterComponent implements OnInit {
 
       this.formGroup.patchValue({
         champion: championValue,
-        runnerup: runnerupValue
+        secondPlace: secondPlaceValue
       });
 
       console.log(this.formGroup.value);
