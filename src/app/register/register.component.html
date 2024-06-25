@@ -19,7 +19,7 @@
         </span>
         <br>
         <span class="p-float-label">
-          <p-inputNumber inputId="identity-input" formControlName="cedula"></p-inputNumber>
+          <p-inputNumber inputId="identity-input" formControlName="cedula" [useGrouping]="false"></p-inputNumber>
           <label for="identity-input">Cédula</label>
           <div class="validate" *ngIf="formGroup.get('cedula')?.invalid && formGroup.get('cedula')?.touched">Cédula es requerida</div>
         </span>
@@ -44,7 +44,12 @@
         </span>
         <br>
         <span class="p-float-label">
-          <input pInputText id="career" formControlName="career" />
+          <p-dropdown 
+              [options]="careers" 
+              formControlName="career" 
+              optionLabel="label" 
+              placeholder="Carrera"
+              [style]="{'width':'15.3rem'}" />
           <label for="career">Carrera</label>
           <div  class="validate" *ngIf="formGroup.get('career')?.invalid && formGroup.get('career')?.touched">Carrera es requerida</div>
         </span>
@@ -75,14 +80,24 @@
           <hr>
           <br>
           <span class="p-float-label">
-            <input pInputText id="champion" formControlName="champion" />
-            <label for="champion">Campeón</label>
+            <p-dropdown 
+              [options]="countries" 
+              formControlName="champion" 
+              optionLabel="label" 
+              placeholder="Campeón"
+              [style]="{'width':'18rem'}">
+            </p-dropdown>
             <div class="validate" *ngIf="formGroup.get('champion')?.invalid && formGroup.get('champion')?.touched">Campeón es requerido</div>
           </span>
           <br>
           <span class="p-float-label">
-            <input pInputText id="runnerup" formControlName="runnerup" />
-            <label for="runnerup">Subcampeón</label>
+            <p-dropdown 
+              [options]="countries" 
+              formControlName="runnerup" 
+              optionLabel="label" 
+              placeholder="Subcampeón"
+              [style]="{'width':'18rem'}">
+            </p-dropdown>
             <div class="validate" *ngIf="formGroup.get('runnerup')?.invalid && formGroup.get('runnerup')?.touched">Subcampeón es requerido</div>
           </span>
         </div>
