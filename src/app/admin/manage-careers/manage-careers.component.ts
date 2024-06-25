@@ -6,6 +6,8 @@ import { UserService } from './../../services/userservice/user.service';
 import { CareerService } from './../../services/career.service/career.service';
 import { DropdownModule } from 'primeng/dropdown';
 import { CommonModule } from '@angular/common';
+import { DialogModule } from 'primeng/dialog';
+import { ButtonModule } from 'primeng/button';
 
 @Component({
   selector: 'app-manage-careers',
@@ -14,7 +16,9 @@ import { CommonModule } from '@angular/common';
     FormsModule,
     ReactiveFormsModule,
     DropdownModule,
-    CommonModule
+    CommonModule,
+    DialogModule,
+    ButtonModule
 
   ],
   templateUrl: './manage-careers.component.html',
@@ -24,6 +28,8 @@ export class ManageCareersComponent implements OnInit {
   formGroup!: FormGroup;
   deleteFormGroup!: FormGroup;
   careers: any[] = [];
+  displayModalAdd: boolean = false;
+  displayModalDelete: boolean = false;
 
   constructor(
     private fb: FormBuilder,
@@ -58,9 +64,9 @@ export class ManageCareersComponent implements OnInit {
       return;
     }
     const career = this.formGroup.value.career;
-    console.log('Creating career:', career);
     try {
       await this.careerService.createCareer(career);
+      this.displayModalAdd = true;
       console.log('Career created successfully');
       this.formGroup.reset();
     } catch (error) {
@@ -72,16 +78,21 @@ export class ManageCareersComponent implements OnInit {
     if (this.deleteFormGroup.invalid) {
       return;
     }
-
     const careerIdDelete = this.deleteFormGroup.value.careerIdDelete.id;
     console.log('Deleting career:', careerIdDelete);
     try {
       await this.careerService.deleteCareer(careerIdDelete);
+      this.displayModalDelete = true;
       console.log('Career deleted successfully');
       this.deleteFormGroup.reset();
       this.loadCareers();
     } catch (error) {
       console.error('Error deleting career:', error);
     }
+  }
+
+  onAccept() {
+    this.displayModalAdd = false;
+    this.displayModalDelete = false;
   }
 }

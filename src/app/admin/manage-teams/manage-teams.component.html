@@ -1,5 +1,16 @@
 <div class="container">
     <h2>Equipos - Administración</h2>
+
+    <p-dialog header="Registro exitoso" [(visible)]="displayModalAdd" modal="true" [closable]="false" [dismissableMask]="true">
+      <p>El equipo se ha agregado exitosamente.</p>
+      <p-button label="Aceptar" severity="info" (onClick)="onAccept()" [style]="{'float':'right', 'margin-top':'10px'}"></p-button>
+    </p-dialog>
+
+    <p-dialog header="Eliminación exitosa" [(visible)]="displayModalDelete" modal="true" [closable]="false" [dismissableMask]="true">
+      <p>El equipo se ha eliminado exitosamente.</p>
+      <p-button label="Aceptar" severity="info" (onClick)="onAccept()" [style]="{'float':'right', 'margin-top':'10px'}"></p-button>
+    </p-dialog>
+
     <div class="edit-team">
         <h2>Agregar Nuevo Equipo</h2>
         <form [formGroup]="formGroup" (ngSubmit)="addTeam()">

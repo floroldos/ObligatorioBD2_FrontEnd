@@ -1,5 +1,16 @@
 <div class="container">
     <h2>Usuarios - Administración</h2>
+
+    <p-dialog header="Registro exitoso" [(visible)]="displayModalAdd" modal="true" [closable]="false" [dismissableMask]="true">
+        <p>El Admin se ha registrado exitosamente.</p>
+        <p-button label="Aceptar" severity="info" (onClick)="onAccept()" [style]="{'float':'right', 'margin-top':'10px'}"></p-button>
+      </p-dialog>
+  
+      <p-dialog header="Eliminación exitosa" [(visible)]="displayModalDelete" modal="true" [closable]="false" [dismissableMask]="true">
+        <p>El usuario se ha eliminado exitosamente.</p>
+        <p-button label="Aceptar" severity="info" (onClick)="onAccept()" [style]="{'float':'right', 'margin-top':'10px'}"></p-button>
+      </p-dialog>
+
     <div class="edit-user">
         <h2>Agregar Nuevo Administrador</h2>
         <form [formGroup]="formGroup" (ngSubmit)="addAdmin()">
@@ -36,6 +47,19 @@
                 <div class="validate" *ngIf="formGroup.get('email')?.invalid && formGroup.get('email')?.touched">Email es requerido</div>
             </div>
             <button type="submit"> Agregar </button>
+        </form>
+    </div>
+
+    <div class="edit-user">
+        <h2>Eliminar Usuario</h2>
+        <form [formGroup]="deleteFormGroup" (ngSubmit)="deleteUser()">
+            <div class="form-group">
+                <label for="deleteId">Cédula</label>
+                <input id="deleteId" formControlName="deleteId" type="number">
+                <div class="validate" *ngIf="deleteFormGroup.get('deleteId')?.invalid && deleteFormGroup.get('deleteId')?.touched">Cédula es
+                    requerida</div>
+            </div>
+            <button type="submit"> Eliminar </button>
         </form>
     </div>
 </div>

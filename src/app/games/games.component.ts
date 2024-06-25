@@ -41,6 +41,12 @@ export class GamesComponent implements OnInit {
     this.loadTeams();
   }
 
+  isPlayed(matchDate: string): boolean {
+    const today = new Date();
+    const date = new Date(matchDate);
+    return date < today;
+  }
+
   async loadGames() : Promise<any> {
     try {
       this.games = await this.gameService.getGames();
@@ -59,6 +65,10 @@ export class GamesComponent implements OnInit {
   }
 
   editPrediction(match: any){
+    this.router.navigate(['/predictions', match]);
+  }
+
+  enterPrediction(match: any) {
     this.router.navigate(['/predictions', match]);
   }
 }

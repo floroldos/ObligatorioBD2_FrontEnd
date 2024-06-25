@@ -23,10 +23,8 @@ export class HomeComponent {
 
   constructor(private router: Router) { }
 
-  loadTeams(){
-    console.log("Loading teams");
-    this.router.navigate(['/teams']);   
-
+  loadGames(){
+    this.router.navigate(['/games']);   
   }
 
 
