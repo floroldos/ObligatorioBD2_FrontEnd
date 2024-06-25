@@ -14,7 +14,7 @@
       <div class="match-cards">
         <div class="match-card" *ngFor="let match of games">
           <div class="details">
-            <span>{{match.time}} - {{ match.stadium }}</span>
+            <span>{{match.date}} - {{match.time}} - {{ match.stadium }}</span>
           </div>
           <div class="teams">
             <div class="team">
@@ -24,19 +24,19 @@
             <div class="score">
               <span>{{ match.scoreTeam1 }}</span>
               <span class="vs">VS</span>
-              <span>{{ match.scoreTeam2}}</span>
+              <span>{{ match.scoreTeam2 }}</span>
             </div>
             <div class="team">
               <img src="../../assets/flag_placeholder.png" [class]="'flag flag-'+ match.team2">
               <span>{{ match.team2 }}</span>
             </div>
           </div>
-          <p-button label="Ingresar predicción" size="large" [raised]="true"
-          (onClick)="editPrediction(match)"
-          [style]="{'background-color': '#2145A1', 'border': '1px solid #2145A1', 'font-size':'12px',
+          <p-button label="Editar predicción" *ngIf="!isPlayed(match.date)" size="large" [raised]="true" (onClick)="editPrediction(match)" [style]="{'background-color': '#2145A1', 'border': '1px solid #2145A1', 'font-size':'12px',
               'height': '30px', 'width':'25vh', 'margin-top':'1.2rem'}"></p-button>
+
+          <p-button label="Ingresar predicción" *ngIf="isPlayed(match.date)" size="large" [raised]="true" (onClick)="enterPrediction(match)" [style]="{'background-color': '#2145A1', 'border': '1px solid #2145A1', 'font-size':'12px',
+          'height': '30px', 'width':'25vh', 'margin-top':'1.2rem'}"></p-button>
         </div>
       </div>
     </div>
   </div>
-</div>
