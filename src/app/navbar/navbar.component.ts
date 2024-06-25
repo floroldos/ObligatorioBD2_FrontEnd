@@ -53,5 +53,6 @@ export class NavbarComponent {
     localStorage.clear();
     this.cookieService.deleteAll();
     this.router.navigate(['/login']); 
+    window.location.reload();
   }
 }

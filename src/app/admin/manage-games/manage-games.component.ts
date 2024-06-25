@@ -5,6 +5,7 @@ import { GameService } from '../../services/gameservice/game.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
+import { DialogModule } from 'primeng/dialog';
 
 @Component({
   selector: 'app-manage-games',
@@ -13,7 +14,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     ButtonModule,
     CommonModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    DialogModule
   ],
   templateUrl: './manage-games.component.html',
   styleUrl: './manage-games.component.scss'
@@ -22,6 +24,7 @@ export class ManageGamesComponent {
   games: any[] = [];
   gameForm: FormGroup;
   selectedGame: any;
+  displayModalSuccess: boolean = false;
 
   constructor(private gameService: GameService, private fb: FormBuilder) {
     this.gameForm = this.fb.group({
@@ -75,9 +78,14 @@ export class ManageGamesComponent {
         scoreTeam2: this.gameForm.value.scoreTeam2
       };
       await this.gameService.updateGame(updatedGame);
+      this.displayModalSuccess = true;
       this.selectedGame = null;
       await this.loadGames();
     }
+  }
+
+  onAccept() {
+    this.displayModalSuccess = false;
   }
 
 }

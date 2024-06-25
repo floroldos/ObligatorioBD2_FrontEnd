@@ -1,6 +1,11 @@
 <div class="container">
     <h2> Partidos - Cargar resultados </h2>
 
+    <p-dialog header="Carga exitosa" [(visible)]="displayModalSuccess" modal="true" [closable]="false" [dismissableMask]="true">
+      <p>El resultado se ha modificado exitosamente.</p>
+      <p-button label="Aceptar" severity="info" (onClick)="onAccept()" [style]="{'float':'right', 'margin-top':'10px'}"></p-button>
+    </p-dialog>
+
     <div class="game-container">
       <div class="header">
       </div>
