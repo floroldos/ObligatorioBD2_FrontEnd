@@ -35,20 +35,25 @@
         </div>
       </div>
     </div>
-  
+
     <div *ngIf="selectedGame" class="edit-game">
       <h2>Editar Resultado del Partido</h2>
+      @if (isLess){
+        <div class="error-box">
+          <h3>Ten en cuenta que poner valores mas bajos de los que habian antes, puede afectar a las predicciones de los usuarios</h3>
+          <h4>Solo haz esto si los valores previamante ingresados son incorrectos</h4>
+        </div>
+      }
       <form [formGroup]="gameForm" (ngSubmit)="onSubmit()">
         <div class="form-group">
           <img src="../../../assets/flag_placeholder.png" [class]="'flag flag-'+ selectedGame.team1">
-          <input id="scoreTeam1" formControlName="scoreTeam1" type="number" placeholder="{{selectedGame.team2}}">
+          <input (change)="onChangeValue()" id="scoreTeam1" formControlName="scoreTeam1" type="number" placeholder="{{selectedGame.team2}}">
         </div>
         <div class="form-group">
           <img src="../../../assets/flag_placeholder.png" [class]="'flag flag-'+ selectedGame.team2">
-          <input id="scoreTeam2" formControlName="scoreTeam2" type="number" placeholder="{{selectedGame.team2}}">
+          <input (change)="onChangeValue()" id="scoreTeam2" formControlName="scoreTeam2" type="number" placeholder="{{selectedGame.team2}}">
         </div>
         <button type="submit" pButton label="Actualizar Resultado" [disabled]="!gameForm.valid"></button>
       </form>
     </div>
   </div>
-  

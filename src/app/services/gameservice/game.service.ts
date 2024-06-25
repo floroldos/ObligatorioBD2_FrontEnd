@@ -25,10 +25,9 @@ export class GameService {
     try {
       return await this.apiService.post<any>(path, game);
     } catch (error) {
-      console.error('Error updating game scores:', error);
       throw error;
     }
   }
-  
+
 
 }
