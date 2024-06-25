@@ -7,6 +7,8 @@ import {NavbarComponent} from '../navbar/navbar.component';
 import {FormsModule} from '@angular/forms';
 import {InputNumberModule} from 'primeng/inputnumber';
 import {InputIconModule} from 'primeng/inputicon';
+import {ButtonModule} from 'primeng/button';
+
 
 @Component({
   selector: 'app-predict',
@@ -18,7 +20,8 @@ import {InputIconModule} from 'primeng/inputicon';
     NavbarComponent,
     FormsModule,
     InputNumberModule,
-    InputIconModule
+    InputIconModule,
+    ButtonModule
   ]
 })
 export class PredictComponent {
@@ -31,23 +34,27 @@ export class PredictComponent {
   teamB!: string
 
   prediction: PredictionDto = {
-    gameId: this.id,
+    matchid: 0,
     team1score: 0,
     team2score: 0
   };
 
   constructor(private router: Router, private predictionService: PredictionService) {
+    this.id = 0;
+    this.teamA = '';
+    this.teamB = '';
   }
 
   ngOnInit(): void {
-    this.id = parseInt(<string>this.route.snapshot.paramMap.get("gameid"));
-    this.teamA = <string>this.route.snapshot.paramMap.get("team1");
-    this.teamB = <string>this.route.snapshot.paramMap.get("team2")
+    this.id = parseInt(this.route.snapshot.paramMap.get('gameid') || '0', 10);
+    this.teamA = this.route.snapshot.paramMap.get('team1') || '';
+    this.teamB = this.route.snapshot.paramMap.get('team2') || '';
+
+    this.prediction.matchid = this.id;
   }
 
 
   async savePrediction(): Promise<void> {
-    console.log(this.id)
     try {
       const createdPrediction = await this.predictionService.createPrediction(this.prediction);
       console.log('Prediction created successfully:', createdPrediction);

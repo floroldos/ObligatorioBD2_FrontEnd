@@ -7,51 +7,33 @@
       <div class="header">
         <h1>Ingresar Predicción</h1>
       </div>
-      <div class="game-card">
-        <div class="game-details">
-          <div class="teams">
-            <div class="team">
-              <img src="assets/flag_placeholder.png" alt="Flag">
-              <span>{{teamA}}</span>
-            </div>
-            <div class="score-container">
-              <div class="score-input">
-                <p-inputNumber
-                    [(ngModel)]="prediction.team1score"
-                    [style]="{'width': '3rem'}"
-                    [showButtons]="true"
-                    buttonLayout="vertical"
-                    spinnerMode="vertical"
-                    inputId="vertical"
-                    decrementButtonClass="p-button-secondary"
-                    incrementButtonClass="p-button-secondary"
-                    incrementButtonIcon="pi pi-plus"
-                    decrementButtonIcon="pi pi-minus" />
-              </div>
-              <span class="vs">VS</span>
-              <div class="score-input">
-                <p-inputNumber
-                    [(ngModel)]="prediction.team2score"
-                    [style]="{'width': '3rem'}"
-                    [showButtons]="true"
-                    buttonLayout="vertical"
-                    spinnerMode="vertical"
-                    inputId="vertical"
-                    decrementButtonClass="p-button-secondary"
-                    incrementButtonClass="p-button-secondary"
-                    incrementButtonIcon="pi pi-plus"
-                    decrementButtonIcon="pi pi-minus" />
-              </div>
-            </div>
-            <div class="team">
-              <span>{{ teamB }}</span>
-            </div>
-          </div>
-          <div class="buttons">
-            <button class="p-button p-button-success" (click)="savePrediction()">Guardar</button>
-          </div>
+      <div class="gamecard">
+        <div class="team-name">
+          <span>{{teamA}}</span>
+        </div>
+        <div class="score">
+          <p-inputNumber [(ngModel)]="prediction.team1score"
+            [style]="{'width': '3rem','background':'#fff', 'color':'#000'}" [showButtons]="true"
+            decrementButtonClass="p-button-secondary" incrementButtonClass="p-button-secondary" buttonLayout="horizontal"
+            spinnerMode="horizontal" inputId="horizontal">
+          </p-inputNumber>
+        </div>
+        <div class="team-name">
+          <span>{{teamB}}</span>
+        </div>
+        <div class="score">
+          <p-inputNumber [(ngModel)]="prediction.team2score"
+            [style]="{'width': '3rem','background':'#fff', 'color':'#000'}" [showButtons]="true"
+            decrementButtonClass="p-button-secondary" incrementButtonClass="p-button-secondary" buttonLayout="horizontal"
+            spinnerMode="horizontal" inputId="horizontal" />
         </div>
       </div>
+      <div class="buttons">
+        <button class="p-button p-button-success" (click)="savePrediction()">Guardar</button>
+      </div>
+      <br>
+        <hr>
+      <button class="p-button p-button-danger" (click)="cancel()">Cancelar</button>
     </div>
   </div>
 </div>

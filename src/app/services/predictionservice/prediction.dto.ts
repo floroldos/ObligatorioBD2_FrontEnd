@@ -1,5 +1,5 @@
 export interface PredictionDto {
-    gameId: number;
+    matchid: number;
     team1score: number;
     team2score: number;
 }
