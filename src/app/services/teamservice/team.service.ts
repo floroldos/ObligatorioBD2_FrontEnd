@@ -31,8 +31,9 @@ export class TeamService {
     }
   }
 
-  async deleteTeam(team: string): Promise<any> {
-    const path = `/admin/team/${team}`;
+  async deleteTeam(teamId: any): Promise<any> {
+    const path = '/admin/team/' + teamId;
+    console.log('Deleting team:', path);
     try {
       return await this.apiService.delete<any>(path);
     } catch (error) {

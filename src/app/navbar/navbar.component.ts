@@ -43,7 +43,6 @@ export class NavbarComponent {
     try {
       this.userName = this.userService.GetName();
       this.points = this.userService.GetScore();
-      console.log('Points:', this.points);
     } catch (error) {
       console.error('Failed to fetch user name:', error);
     }
@@ -51,7 +50,7 @@ export class NavbarComponent {
 
   logout() {
     this.cookieService.delete('token');
+    localStorage.clear();
     this.router.navigate(['/login']); 
-    window.location.reload();  
   }
 }

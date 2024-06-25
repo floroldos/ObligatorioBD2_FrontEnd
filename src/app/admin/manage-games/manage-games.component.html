@@ -17,7 +17,7 @@
               </div>
               <div class="teams">
                 <div class="team">
-                  <img src="../../assets/flag_placeholder.png" [class]="'flag flag-'+ game.team1">
+                  <img src="../../../assets/flag_placeholder.png" [class]="'flag flag-'+ game.team1">
                   <span>{{ game.team1 }}</span>
                 </div>
                 <div class="score">
@@ -26,7 +26,7 @@
                   <span>{{ game.scoreTeam2}}</span>
                 </div>
                 <div class="team">
-                  <img src="../../assets/flag_placeholder.png" [class]="'flag flag-'+ game.team2">
+                  <img src="../../../assets/flag_placeholder.png" [class]="'flag flag-'+ game.team2">
                   <span>{{ game.team2 }}</span>
                 </div>
               </div>
@@ -40,12 +40,12 @@
       <h2>Editar Resultado del Partido</h2>
       <form [formGroup]="gameForm" (ngSubmit)="onSubmit()">
         <div class="form-group">
-          <label for="scoreTeam1">{{selectedGame.team1}}</label>
-          <input id="scoreTeam1" formControlName="scoreTeam1" type="number">
+          <img src="../../../assets/flag_placeholder.png" [class]="'flag flag-'+ selectedGame.team1">
+          <input id="scoreTeam1" formControlName="scoreTeam1" type="number" placeholder="{{selectedGame.team2}}">
         </div>
         <div class="form-group">
-          <label for="scoreTeam2">{{selectedGame.team2}}</label>
-          <input id="scoreTeam2" formControlName="scoreTeam2" type="number">
+          <img src="../../../assets/flag_placeholder.png" [class]="'flag flag-'+ selectedGame.team2">
+          <input id="scoreTeam2" formControlName="scoreTeam2" type="number" placeholder="{{selectedGame.team2}}">
         </div>
         <button type="submit" pButton label="Actualizar Resultado" [disabled]="!gameForm.valid"></button>
       </form>

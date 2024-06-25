@@ -1,23 +1,41 @@
 <div class="container">
     <h2>Equipos - Administración</h2>
-    <div class="edit-game">
+    <div class="edit-team">
         <h2>Agregar Nuevo Equipo</h2>
-        <form [formGroup]="addTeamForm" (ngSubmit)="onSubmitAddTeam()">
+        <form [formGroup]="formGroup" (ngSubmit)="addTeam()">
             <div class="form-group">
-                <label for="teamName">Nombre del Equipo</label>
-                <input id="teamName" formControlName="teamName" type="text">
-            </div>
-            <button type="submit" pButton label="Agregar Equipo" [disabled]="!addTeamForm.valid">Agregar</button>
-        </form>
-    </div>
-    <div class="edit-game">
-        <h2>Eliminar Equipo</h2>
-        <form [formGroup]="deleteTeamForm" (ngSubmit)="onSubmitDeleteTeam()">
+                <label for="countryid">Id del país (código telefónico)</label>
+                <input id="countryid" formControlName="countryid" type="text" />
+              </div>
+              <br>
             <div class="form-group">
-                <input pInputText id="deleteTeamName" aria-describedby="deleteTeamName" formControlName="deleteTeamName">
-                <label for="deleteTeamName">Nombre del Equipo a Eliminar</label>
+              <label for="name">Nombre del Equipo</label>
+              <input id="name" formControlName="name" type="text" />
             </div>
-            <button type="submit" pButton [disabled]="!deleteTeamForm.valid">Eliminar</button>
-        </form>
-    </div>
+            <br>
+            <div class="form-group">
+                <label for="country">País</label>
+                <input id="country" formControlName="country" type="text" />
+            </div>
+            <button type="submit">Agregar</button>
+          </form>
+        </div>
+      
+        <div class="edit-team">
+          <h2>Eliminar Equipo</h2>
+          <form [formGroup]="deleteFormGroup" (ngSubmit)="deleteTeam()">
+            <div class="form-group">
+              <label for="teamIdDelete">Nombre del Equipo</label>
+              <span class="p-float-label">
+                <p-dropdown 
+                    [options]="teams" 
+                    formControlName="teamIdDelete" 
+                    optionLabel="label" 
+                    placeholder="Nombre del equipo"
+                    [style]="{'width':'15.3rem'}" />
+              </span>
+            </div>
+            <button type="submit">Eliminar</button>
+          </form>
+        </div>
 </div>

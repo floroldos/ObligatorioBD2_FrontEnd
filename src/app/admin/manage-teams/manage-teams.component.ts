@@ -4,6 +4,7 @@ import { TeamService } from './../../services/teamservice/team.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { InputGroupModule } from 'primeng/inputgroup';
 import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
+import { DropdownModule } from 'primeng/dropdown';
 
 @Component({
   selector: 'app-manage-teams',
@@ -11,54 +12,70 @@ import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
   imports: [
     ReactiveFormsModule,
     InputGroupModule,
-    InputGroupAddonModule
+    InputGroupAddonModule,
+    DropdownModule
   ],
   templateUrl: './manage-teams.component.html',
   styleUrl: './manage-teams.component.scss'
 })
 export class ManageTeamsComponent {
-  addTeamForm!: FormGroup;
-  deleteTeamForm!: FormGroup;
+  formGroup!: FormGroup;
+  deleteFormGroup!: FormGroup;
+  teams: any[] = [];
 
-  constructor(private formBuilder: FormBuilder, private teamService: TeamService) { }
+  constructor(private teamService: TeamService,private fb: FormBuilder) { }
 
   ngOnInit(): void {
-    this.addTeamForm = this.formBuilder.group({
-      teamName: ['', Validators.required],
+    this.formGroup = this.fb.group({
+      countryid: ['', Validators.required],
+      name: ['', Validators.required],
+      country: ['', Validators.required]
     });
 
-    this.deleteTeamForm = this.formBuilder.group({
-      deleteTeamName: ['', Validators.required],
+    this.deleteFormGroup = this.fb.group({
+      teamIdDelete: [null, Validators.required]
     });
+
+    this.loadTeams();
   }
 
-  onSubmitAddTeam(): void {
-    if (this.addTeamForm.valid) {
-      const teamData = this.addTeamForm.value;
-      this.teamService.addTeam(teamData).then(
-        response => {
-          console.log('Equipo agregado exitosamente:', response);
-          this.addTeamForm.reset();
-        },
-        error => {
-          console.error('Error al agregar equipo:', error);
-        }
-      );
+  async loadTeams(): Promise<void> {
+    try {
+      var teams = await this.teamService.getTeams();
+      this.teams = teams.map((team: { name: any; id: any; }) => ({ label: team.name, id: team.id }));
+    } catch (err) {
+      console.error('Error fetching careers:', err);
     }
   }
 
-  onSubmitDeleteTeam(): void {
-    if (this.deleteTeamForm.valid) {
-      const deleteTeamData = this.deleteTeamForm.value;
-      this.teamService.deleteTeam(deleteTeamData).then(
-        response => {
-          console.log('Equipo eliminado exitosamente:', response);
-          this.deleteTeamForm.reset();
-        },
-        error => {
-          console.error('Error al eliminar equipo:', error);
-        }
-      );
+  async addTeam(): Promise<void> {
+    if (this.formGroup.invalid) {
+      return;
+    }
+    const team = this.formGroup.value;
+    console.log('Creating team:', team);
+    try {
+      await this.teamService.addTeam(team);
+      console.log('Team created successfully');
+      this.formGroup.reset();
+    } catch (error) {
+      console.error('Error creating team:', error);
+    }
+  }
+
+  async deleteTeam(): Promise<void> {
+    if (this.deleteFormGroup.invalid) {
+      return;
+    }
+    var teamIdDelete = this.deleteFormGroup.value.teamIdDelete.id;
+    console.log('Deleting team:', teamIdDelete);
+    try {
+      await this.teamService.deleteTeam(teamIdDelete);
+      console.log('team deleted successfully');
+      this.deleteFormGroup.reset();
+      this.loadTeams();
+    } catch (error) {
+      console.error('Error deleting team:', error);
     }
   }
 

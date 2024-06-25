@@ -6,6 +6,7 @@ import { BadgeModule } from 'primeng/badge';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ManageGamesComponent } from '../admin/manage-games/manage-games.component';
+import { ManageTeamsComponent } from '../admin/manage-teams/manage-teams.component';
 
 @Component({
   selector: 'app-admin-view',
@@ -15,7 +16,8 @@ import { ManageGamesComponent } from '../admin/manage-games/manage-games.compone
     PanelMenuModule,
     BadgeModule,
     CommonModule,
-    ManageGamesComponent
+    ManageGamesComponent,
+    ManageTeamsComponent
   ],
   templateUrl: './admin-view.component.html',
   styleUrl: './admin-view.component.scss'
@@ -31,11 +33,6 @@ export class AdminViewComponent {
     if (userRole === 'ADMIN') {
       this.items = [
         {
-          label: 'Administrar Usuarios',
-          icon: 'pi pi-fw pi-cog',
-          command: () => { this.navigateTo('manage-users'); }
-        },
-        {
           label: 'Administrar Equipos',
           icon: 'pi pi-fw pi-cog',
           command: () => { this.navigateTo('manage-teams'); }
@@ -49,9 +46,13 @@ export class AdminViewComponent {
           label: 'Administrar Carreras',
           icon: 'pi pi-fw pi-cog',
           command: () => { this.navigateTo('manage-careers'); }
+        },
+        {
+          label: 'Administrar Usuarios',
+          icon: 'pi pi-fw pi-cog',
+          command: () => { this.navigateTo('manage-users'); }
         }
       ];
-      this.router.navigate(['/admin/manage-users']);
     } else {
       this.router.navigate(['/login']);}
   }

@@ -10,7 +10,7 @@
         color: #333;
     }
   
-    .game-container {
+    .team-container {
       width: 100%;
       max-width: 1200px;
       margin: 20px;
@@ -107,7 +107,7 @@
       }
     }
   
-    .edit-game {
+    .edit-team {
       width: 60%;
       max-width: 1200px;
       margin-top: 20px;
@@ -172,7 +172,9 @@
     .container {
       padding: 10px;
   
-      .game-container, .edit-game {
+      .team
+-container, .edit-team
+ {
         width: 100%;
         margin: 10px;
         padding: 15px;

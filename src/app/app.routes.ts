@@ -7,11 +7,11 @@ import { RankingComponent } from './ranking/ranking.component';
 import { GamesComponent } from './games/games.component';
 import { PredictComponent } from './predict/predict.component';
 import { AdminViewComponent } from './admin-view/admin-view.component';
-import { ManageUsersComponent } from './admin/manage-users/manage-users.component';
 import { ManageTeamsComponent } from './admin/manage-teams/manage-teams.component';
 import { ManageGamesComponent } from './admin/manage-games/manage-games.component';
 import { TeamsComponent } from './teams/teams.component';
 import { ManageCareersComponent } from './admin/manage-careers/manage-careers.component';
+import { ManageUsersComponent } from './admin/manage-users/manage-users.component';
 
 export const routes: Routes = [
     {
@@ -46,10 +46,10 @@ export const routes: Routes = [
     {
         path: 'admin',
         component: AdminViewComponent, children: [
-        { path: 'manage-users', component: ManageUsersComponent, canActivate: [AuthGuard]},
         { path: 'manage-teams', component: ManageTeamsComponent, canActivate: [AuthGuard]},
         { path: 'manage-games', component: ManageGamesComponent, canActivate: [AuthGuard]},
-        { path: 'manage-careers', component: ManageCareersComponent, canActivate: [AuthGuard]}
+        { path: 'manage-careers', component: ManageCareersComponent, canActivate: [AuthGuard]},
+        { path: 'manage-users', component: ManageUsersComponent, canActivate: [AuthGuard]}
         ],
         canActivate: [AuthGuard],
     },

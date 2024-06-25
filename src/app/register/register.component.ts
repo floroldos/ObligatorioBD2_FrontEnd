@@ -134,6 +134,8 @@ export class RegisterComponent implements OnInit {
     }
   }
 
+  // Registro de usuario
+
   register() {
     if (this.formGroup.valid) {
       this.loading = true;

@@ -2,6 +2,9 @@
     <app-navbar />
 <div class="admin-container">
     <div class="menu">
+      <h2> Bienvenido, administrador :] </h2>
+      <hr>
+      <br>
       <p-panelMenu [model]="items" styleClass="w-full">
         <ng-template pTemplate="item" let-item>
           <a pRipple class="flex align-items-center px-3 py-2 cursor-pointer">
@@ -12,9 +15,7 @@
       </p-panelMenu>
     </div>
     <div class="content">
-      <router-outlet>
-        <h2> Bienvenido, administrador :] </h2>
-      </router-outlet>
+      <router-outlet> </router-outlet>
     </div>
   </div>
   

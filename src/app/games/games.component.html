@@ -11,8 +11,6 @@
       No hay partidos disponibles.
     </div>
     <div *ngIf="games.length > 0">
-    <div class="match-day" *ngFor="let game of games">
-      <h2>{{ game.date }}</h2>
       <div class="match-cards">
         <div class="match-card" *ngFor="let match of games">
           <div class="details">
@@ -41,5 +39,4 @@
       </div>
     </div>
   </div>
-</div>
 </div>

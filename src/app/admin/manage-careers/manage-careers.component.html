@@ -1,14 +1,33 @@
 <div class="container">
     <h2>Administrar Carreras</h2>
-
-    <div class="edit-game">
-        <h2>Agregar Nueva Carrera</h2>
-        <form [formGroup]="adminForm">
-            <div class="form-group">
-                <label for="adminUsername">Nombre de la Carrera</label>
-                <input id="adminUsername" formControlName="adminUsername" type="text">
-            </div>
-            <button type="submit" pButton [disabled]="!adminForm.valid"> Agregar </button>
-        </form>
+  
+    <div class="edit-career">
+      <h2>Agregar Nueva Carrera</h2>
+      <form [formGroup]="formGroup" (ngSubmit)="addCareer()">
+        <div class="form-group">
+          <label for="careerName">Nombre de la Carrera</label>
+          <input id="career" formControlName="career" type="text" />
+        </div>
+        <button type="submit">Agregar</button>
+      </form>
     </div>
-</div>
+  
+    <div class="edit-career">
+      <h2>Eliminar Carrera</h2>
+      <form [formGroup]="deleteFormGroup" (ngSubmit)="deleteCareer()">
+        <div class="form-group">
+          <label for="careerIdDelete">Nombre de la Carrera</label>
+          <span class="p-float-label">
+            <p-dropdown 
+                [options]="careers" 
+                formControlName="careerIdDelete" 
+                optionLabel="label" 
+                placeholder="Carrera"
+                [style]="{'width':'38rem'}" />
+          </span>
+        </div>
+        <button type="submit">Eliminar</button>
+      </form>
+    </div>
+  </div>
+  
