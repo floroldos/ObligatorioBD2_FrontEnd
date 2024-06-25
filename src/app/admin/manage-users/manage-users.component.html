@@ -1,5 +1,16 @@
 <div class="container">
     <h2>Usuarios - Administración</h2>
+
+    <p-dialog header="Registro exitoso" [(visible)]="displayModalAdd" modal="true" [closable]="false" [dismissableMask]="true">
+        <p>El Admin se ha registrado exitosamente.</p>
+        <p-button label="Aceptar" severity="info" (onClick)="onAccept()" [style]="{'float':'right', 'margin-top':'10px'}"></p-button>
+      </p-dialog>
+  
+      <p-dialog header="Eliminación exitosa" [(visible)]="displayModalDelete" modal="true" [closable]="false" [dismissableMask]="true">
+        <p>El usuario se ha eliminado exitosamente.</p>
+        <p-button label="Aceptar" severity="info" (onClick)="onAccept()" [style]="{'float':'right', 'margin-top':'10px'}"></p-button>
+      </p-dialog>
+
     <div class="edit-user">
         <h2>Agregar Nuevo Administrador</h2>
         <form [formGroup]="formGroup" (ngSubmit)="addAdmin()">

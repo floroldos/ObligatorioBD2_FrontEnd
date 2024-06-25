@@ -6,6 +6,8 @@ import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
 import { DropdownModule } from 'primeng/dropdown';
 import { RegisterService } from './../../services/userservice/register.service';
 import { CommonModule } from '@angular/common';
+import { DialogModule } from 'primeng/dialog';
+import { ButtonModule } from 'primeng/button';
 
 @Component({
   selector: 'app-manage-users',
@@ -15,7 +17,9 @@ import { CommonModule } from '@angular/common';
     InputGroupModule,
     InputGroupAddonModule,
     DropdownModule,
-    CommonModule
+    CommonModule,
+    DialogModule,
+    ButtonModule
   ],
   templateUrl: './manage-users.component.html',
   styleUrl: './manage-users.component.scss'
@@ -23,6 +27,8 @@ import { CommonModule } from '@angular/common';
 export class ManageUsersComponent {
   formGroup!: FormGroup;
   deleteFormGroup!: FormGroup;
+  displayModalAdd: boolean = false;
+  displayModalDelete: boolean = false;
 
   constructor(private registerService: RegisterService, private fb: FormBuilder) { }
 
@@ -49,6 +55,7 @@ export class ManageUsersComponent {
     console.log('Creating admin:', admin);
     try {
       await this.registerService.registerAdmin(admin);
+      this.displayModalAdd = true;
       console.log('admin created successfully');
       this.formGroup.reset();
     } catch (error) {
@@ -64,11 +71,17 @@ export class ManageUsersComponent {
     console.log('Deleting user:', user);
     try {
       await this.registerService.deleteUser(user);
+      this.displayModalDelete = true;
       console.log('user deleted successfully');
       this.formGroup.reset();
     } catch (error) {
       console.error('Error deleting user:', error);
     }
+  }
+
+  onAccept() {
+    this.displayModalAdd = false;
+    this.displayModalDelete = false;
   }
 
 }

@@ -1,5 +1,16 @@
 <div class="container">
     <h2>Administrar Carreras</h2>
+
+    <p-dialog header="Registro exitoso" [(visible)]="displayModalAdd" modal="true" [closable]="false" [dismissableMask]="true">
+      <p>La carrera se ha agregado exitosamente.</p>
+      <p-button label="Aceptar" severity="info" (onClick)="onAccept()" [style]="{'float':'right', 'margin-top':'10px'}"></p-button>
+    </p-dialog>
+
+    <p-dialog header="Eliminación exitosa" [(visible)]="displayModalDelete" modal="true" [closable]="false" [dismissableMask]="true">
+      <p>La carrera se ha eliminado exitosamente.</p>
+      <p-button label="Aceptar" severity="info" (onClick)="onAccept()" [style]="{'float':'right', 'margin-top':'10px'}"></p-button>
+    </p-dialog>
+  
   
     <div class="edit-career">
       <h2>Agregar Nueva Carrera</h2>

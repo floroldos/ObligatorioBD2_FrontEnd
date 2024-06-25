@@ -5,6 +5,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { InputGroupModule } from 'primeng/inputgroup';
 import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
 import { DropdownModule } from 'primeng/dropdown';
+import { DialogModule } from 'primeng/dialog';
+import { ButtonModule } from 'primeng/button';
 
 @Component({
   selector: 'app-manage-teams',
@@ -13,7 +15,9 @@ import { DropdownModule } from 'primeng/dropdown';
     ReactiveFormsModule,
     InputGroupModule,
     InputGroupAddonModule,
-    DropdownModule
+    DropdownModule,
+    DialogModule,
+    ButtonModule
   ],
   templateUrl: './manage-teams.component.html',
   styleUrl: './manage-teams.component.scss'
@@ -22,6 +26,8 @@ export class ManageTeamsComponent {
   formGroup!: FormGroup;
   deleteFormGroup!: FormGroup;
   teams: any[] = [];
+  displayModalAdd: boolean = false;
+  displayModalDelete: boolean = false;
 
   constructor(private teamService: TeamService,private fb: FormBuilder) { }
 
@@ -53,9 +59,11 @@ export class ManageTeamsComponent {
       return;
     }
     const team = this.formGroup.value;
+
     console.log('Creating team:', team);
     try {
       await this.teamService.addTeam(team);
+      this.displayModalAdd = true;
       console.log('Team created successfully');
       this.formGroup.reset();
     } catch (error) {
@@ -71,12 +79,18 @@ export class ManageTeamsComponent {
     console.log('Deleting team:', teamIdDelete);
     try {
       await this.teamService.deleteTeam(teamIdDelete);
+      this.displayModalDelete = true;
       console.log('team deleted successfully');
       this.deleteFormGroup.reset();
       this.loadTeams();
     } catch (error) {
       console.error('Error deleting team:', error);
     }
+  }
+
+  onAccept() {
+    this.displayModalAdd = false;
+    this.displayModalDelete = false;
   }
 
 }
