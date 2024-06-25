@@ -56,4 +56,19 @@ export class ManageUsersComponent {
     }
   }
 
+  async deleteUser(): Promise<void> {
+    if (this.deleteFormGroup.invalid) {
+      return;
+    }
+    const user = this.deleteFormGroup.value.deleteId;
+    console.log('Deleting user:', user);
+    try {
+      await this.registerService.deleteUser(user);
+      console.log('user deleted successfully');
+      this.formGroup.reset();
+    } catch (error) {
+      console.error('Error deleting user:', error);
+    }
+  }
+
 }

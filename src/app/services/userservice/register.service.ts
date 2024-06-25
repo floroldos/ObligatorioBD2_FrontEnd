@@ -26,4 +26,14 @@ export class RegisterService {
       throw error;
     }
   }
+
+  async deleteUser(userId: any): Promise<any> {
+    const path = '/admin/user/' + userId;
+    try {
+      return await this.apiService.delete<any>(path);
+    } catch (error) {
+      console.error('Error deleting user:', error);
+      throw error;
+    }
+  }
 }

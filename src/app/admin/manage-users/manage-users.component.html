@@ -38,4 +38,17 @@
             <button type="submit"> Agregar </button>
         </form>
     </div>
+
+    <div class="edit-user">
+        <h2>Eliminar Usuario</h2>
+        <form [formGroup]="deleteFormGroup" (ngSubmit)="deleteUser()">
+            <div class="form-group">
+                <label for="deleteId">Cédula</label>
+                <input id="deleteId" formControlName="deleteId" type="number">
+                <div class="validate" *ngIf="deleteFormGroup.get('deleteId')?.invalid && deleteFormGroup.get('deleteId')?.touched">Cédula es
+                    requerida</div>
+            </div>
+            <button type="submit"> Eliminar </button>
+        </form>
+    </div>
 </div>
