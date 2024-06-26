@@ -6,6 +6,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DialogModule } from 'primeng/dialog';
+import { InputTextModule } from 'primeng/inputtext';
+import { TeamService } from '../../services/teamservice/team.service';
+import { DropdownModule } from 'primeng/dropdown';
 
 @Component({
   selector: 'app-manage-games',
@@ -15,26 +18,45 @@ import { DialogModule } from 'primeng/dialog';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    DialogModule
+    DialogModule,
+    InputTextModule,
+    DropdownModule
   ],
   templateUrl: './manage-games.component.html',
   styleUrl: './manage-games.component.scss'
 })
 export class ManageGamesComponent {
   games: any = [];
+  teams: any[] = [];
+  
   gameForm: FormGroup;
+  formGroup!: FormGroup;
+  addFormGroup!: FormGroup;
   selectedGame: any;
   displayModalSuccess: boolean = false;
+  displayModalAdd: boolean = false;
+  prevValue1 = 0;
+  prevValue2 = 0;
+  isLess = false;
 
-  constructor(private gameService: GameService, private fb: FormBuilder) {
+  constructor(private gameService: GameService, private teamService: TeamService, private fb: FormBuilder) {
     this.gameForm = this.fb.group({
       scoreTeam1: ['', Validators.required],
       scoreTeam2: ['', Validators.required]
+    });
+
+    this.addFormGroup = this.fb.group({
+      date: ['', Validators.required],
+      time: ['', Validators.required],
+      team1: ['', Validators.required],
+      team2: ['', Validators.required],
+      stadium: ['', Validators.required],
     });
   }
 
   ngOnInit(): void {
     this.loadGames();
+    this.loadTeams();
   }
 
   async loadGames() {
@@ -45,9 +67,30 @@ export class ManageGamesComponent {
     }
   }
 
-  prevValue1 = 0;
-  prevValue2 = 0;
-  isLess = false;
+  async loadTeams(): Promise<void> {
+    try {
+      var teams = await this.teamService.getTeams();
+      this.teams = teams.map((team: { name: any; id: any; }) => ({ label: team.name, id: team.id }));
+    } catch (err) {
+      console.error('Error fetching careers:', err);
+    }
+  }
+
+  async addGame(): Promise<void> {
+    if (this.addFormGroup.invalid) {
+      return;
+    }
+    const newGame = this.addFormGroup.value;
+    console.log('Creating game:', newGame);
+    try {
+      await this.gameService.addGame(newGame);
+      this.displayModalAdd = true;
+      console.log('game created successfully');
+      this.addFormGroup.reset();
+    } catch (error) {
+      console.error('Error creating game:', error);
+    }
+  }
 
   onSelectGame(game: any) {
     this.selectedGame = game;

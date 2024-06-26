@@ -29,5 +29,14 @@ export class GameService {
     }
   }
 
+  async addGame(game: any): Promise<any> {
+    const path = '/admin/game';
+    try {
+      return await this.apiService.post<any>(path, game);
+    } catch (error) {
+      throw error;
+    }
+  }
+
 
 }
