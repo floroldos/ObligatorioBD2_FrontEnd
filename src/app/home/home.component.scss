@@ -115,3 +115,18 @@ h2 {
   max-height: 100%;
 }
 
+.phone {
+  animation: rotate 5s cubic-bezier(.86,0,.07,1) infinite;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(-7deg);
+  }
+  50% {
+    transform: rotate(7deg);
+  }
+  100% {
+    transform: rotate(-7deg);
+  }
+}

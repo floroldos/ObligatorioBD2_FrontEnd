@@ -9,7 +9,7 @@ export class RankingService {
   constructor(private apiService : ApiService) {}
 
   async getRanking(): Promise<any> {
-    const path = '/score';
+    const path = '/score/ranking';
     try {
       const scores = await this.apiService.get<any>(path);
       return scores;

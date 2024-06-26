@@ -21,7 +21,7 @@ import { DialogModule } from 'primeng/dialog';
   styleUrl: './manage-games.component.scss'
 })
 export class ManageGamesComponent {
-  games: any[] = [];
+  games: any = [];
   gameForm: FormGroup;
   selectedGame: any;
   displayModalSuccess: boolean = false;

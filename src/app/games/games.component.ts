@@ -31,7 +31,7 @@ import { TeamService } from '../services/teamservice/team.service';
 })
 export class GamesComponent implements OnInit {
   loading: boolean = false;
-  games: any[] = [];
+  games: any;
   teams: any[] = [];
 
   constructor(private router: Router, private gameService: GameService, private teamService: TeamService) { }
@@ -41,16 +41,12 @@ export class GamesComponent implements OnInit {
     this.loadTeams();
   }
 
-  isPlayed(matchDate: string): boolean {
-    const today = new Date();
-    const date = new Date(matchDate);
-    return date < today;
-  }
 
   async loadGames() : Promise<any> {
     try {
       this.games = await this.gameService.getGames();
       console.log('Games:', this.games);
+      console.log(this.games.inProgressGames)
     } catch (err) {
       console.error('Error fetching games:', err);
     }
@@ -65,10 +61,23 @@ export class GamesComponent implements OnInit {
   }
 
   editPrediction(match: any){
-    this.router.navigate(['/predictions', match]);
+    let matchC = structuredClone(match);
+    matchC.myPrediction = JSON.stringify(matchC.myPrediction)
+    this.router.navigate(['/predictions', matchC]);
   }
 
   enterPrediction(match: any) {
     this.router.navigate(['/predictions', match]);
+  }
+
+  isTooLate(time: string) {
+    let partidoDate = new Date();
+    let timeSplit = time.split(':');
+    partidoDate.setHours(parseInt(timeSplit[0]));
+    partidoDate.setMinutes(parseInt(timeSplit[1]));
+
+    let currentTime = new Date();
+
+    return partidoDate.getTime() - currentTime.getTime() < 3600000;
   }
 }

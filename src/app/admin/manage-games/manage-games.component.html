@@ -1,64 +1,109 @@
 <div class="container">
-    <h2> Partidos - Cargar resultados </h2>
+  <h2> Partidos - Cargar resultados </h2>
 
-    <p-dialog header="Carga exitosa" [(visible)]="displayModalSuccess" modal="true" [closable]="false" [dismissableMask]="true">
-      <p>El resultado se ha modificado exitosamente.</p>
-      <p-button label="Aceptar" severity="info" (onClick)="onAccept()" [style]="{'float':'right', 'margin-top':'10px'}"></p-button>
-    </p-dialog>
+  <p-dialog header="Carga exitosa" [(visible)]="displayModalSuccess" modal="true" [closable]="false"
+            [dismissableMask]="true">
+    <p>El resultado se ha modificado exitosamente.</p>
+    <p-button label="Aceptar" severity="info" (onClick)="onAccept()"
+              [style]="{'float':'right', 'margin-top':'10px'}"></p-button>
+  </p-dialog>
 
-    <div class="game-container">
-      <div class="header">
-      </div>
-      <div *ngIf="games.length === 0">
-        No hay partidos disponibles.
-      </div>
-      <div *ngIf="games.length > 0">
-        <div class="match-day" *ngFor="let game of games">
-          <h2>{{ game.date }}</h2>
-          <div class="match-cards">
-            <div class="match-card" (click)="onSelectGame(game)">
-              <div class="details">
-                <span>{{game.time}} - {{ game.stadium }}</span>
+  <div class="header">
+    En progreso
+  </div>
+
+  <div class="game-container">
+    <div *ngIf="games.inProgressGames.length === 0">
+      No hay partidos disponibles.
+    </div>
+    <div *ngIf="games.inProgressGames.length > 0">
+      <div class="match-day" *ngFor="let game of games.inProgressGames">
+        <h2>{{ game.date }}</h2>
+        <div class="match-cards">
+          <div class="match-card" (click)="onSelectGame(game)">
+            <div class="details">
+              <span>{{ game.time }} - {{ game.stadium }}</span>
+            </div>
+            <div class="teams">
+              <div class="team">
+                <img src="../../../assets/flag_placeholder.png" [class]="'flag flag-'+ game.team1">
+                <span>{{ game.team1 }}</span>
               </div>
-              <div class="teams">
-                <div class="team">
-                  <img src="../../../assets/flag_placeholder.png" [class]="'flag flag-'+ game.team1">
-                  <span>{{ game.team1 }}</span>
-                </div>
-                <div class="score">
-                  <span>{{ game.scoreTeam1 }}</span>
-                  <span class="vs">VS</span>
-                  <span>{{ game.scoreTeam2}}</span>
-                </div>
-                <div class="team">
-                  <img src="../../../assets/flag_placeholder.png" [class]="'flag flag-'+ game.team2">
-                  <span>{{ game.team2 }}</span>
-                </div>
+              <div class="score">
+                <span>{{ game.scoreTeam1 }}</span>
+                <span class="vs">VS</span>
+                <span>{{ game.scoreTeam2 }}</span>
+              </div>
+              <div class="team">
+                <img src="../../../assets/flag_placeholder.png" [class]="'flag flag-'+ game.team2">
+                <span>{{ game.team2 }}</span>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
+  </div>
+  <hr>
 
-    <div *ngIf="selectedGame" class="edit-game">
-      <h2>Editar Resultado del Partido</h2>
-      @if (isLess){
-        <div class="error-box">
-          <h3>Ten en cuenta que poner valores mas bajos de los que habian antes, puede afectar a las predicciones de los usuarios</h3>
-          <h4>Solo haz esto si los valores previamante ingresados son incorrectos</h4>
+  <div class="header">
+    Partidos pasados
+  </div>
+
+  <div class="game-container">
+    <div *ngIf="games.pastGames.length === 0">
+      No hay partidos disponibles.
+    </div>
+    <div *ngIf="games.pastGames.length > 0">
+      <div class="match-day" *ngFor="let game of games.pastGames">
+        <h2>{{ game.date }}</h2>
+        <div class="match-cards">
+          <div class="match-card" (click)="onSelectGame(game)">
+            <div class="details">
+              <span>{{ game.time }} - {{ game.stadium }}</span>
+            </div>
+            <div class="teams">
+              <div class="team">
+                <img src="../../../assets/flag_placeholder.png" [class]="'flag flag-'+ game.team1">
+                <span>{{ game.team1 }}</span>
+              </div>
+              <div class="score">
+                <span>{{ game.scoreTeam1 }}</span>
+                <span class="vs">VS</span>
+                <span>{{ game.scoreTeam2 }}</span>
+              </div>
+              <div class="team">
+                <img src="../../../assets/flag_placeholder.png" [class]="'flag flag-'+ game.team2">
+                <span>{{ game.team2 }}</span>
+              </div>
+            </div>
+          </div>
         </div>
-      }
-      <form [formGroup]="gameForm" (ngSubmit)="onSubmit()">
-        <div class="form-group">
-          <img src="../../../assets/flag_placeholder.png" [class]="'flag flag-'+ selectedGame.team1">
-          <input (change)="onChangeValue()" id="scoreTeam1" formControlName="scoreTeam1" type="number" placeholder="{{selectedGame.team2}}">
-        </div>
-        <div class="form-group">
-          <img src="../../../assets/flag_placeholder.png" [class]="'flag flag-'+ selectedGame.team2">
-          <input (change)="onChangeValue()" id="scoreTeam2" formControlName="scoreTeam2" type="number" placeholder="{{selectedGame.team2}}">
-        </div>
-        <button type="submit" pButton label="Actualizar Resultado" [disabled]="!gameForm.valid"></button>
-      </form>
+      </div>
     </div>
   </div>
+
+  <div *ngIf="selectedGame" class="edit-game">
+    <h2>Editar Resultado del Partido</h2>
+    @if (isLess) {
+      <div class="error-box">
+        <h3>Ten en cuenta que poner valores mas bajos de los que habian antes, puede afectar a las predicciones de los
+          usuarios</h3>
+        <h4>Solo haz esto si los valores previamante ingresados son incorrectos</h4>
+      </div>
+    }
+    <form [formGroup]="gameForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <img src="../../../assets/flag_placeholder.png" [class]="'flag flag-'+ selectedGame.team1">
+        <input (change)="onChangeValue()" id="scoreTeam1" formControlName="scoreTeam1" type="number"
+               placeholder="{{selectedGame.team2}}">
+      </div>
+      <div class="form-group">
+        <img src="../../../assets/flag_placeholder.png" [class]="'flag flag-'+ selectedGame.team2">
+        <input (change)="onChangeValue()" id="scoreTeam2" formControlName="scoreTeam2" type="number"
+               placeholder="{{selectedGame.team2}}">
+      </div>
+      <button type="submit" pButton label="Actualizar Resultado" [disabled]="!gameForm.valid"></button>
+    </form>
+  </div>
+</div>

@@ -33,6 +33,8 @@ export class PredictComponent {
   teamA!: string;
   teamB!: string
 
+  predictionBackend: any;
+
   prediction: PredictionDto = {
     matchid: 0,
     team1score: 0,
@@ -49,6 +51,14 @@ export class PredictComponent {
     this.id = parseInt(this.route.snapshot.paramMap.get('gameid') || '0', 10);
     this.teamA = this.route.snapshot.paramMap.get('team1') || '';
     this.teamB = this.route.snapshot.paramMap.get('team2') || '';
+
+    this.predictionBackend = JSON.parse(this.route.snapshot.paramMap.get('myPrediction') || '{}');
+
+    if (this.predictionBackend) {
+      this.prediction.team1score = this.predictionBackend.team1score;
+      this.prediction.team2score = this.predictionBackend.team2score
+    }
+
 
     this.prediction.matchid = this.id;
   }
