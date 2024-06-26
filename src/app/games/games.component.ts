@@ -70,8 +70,8 @@ export class GamesComponent implements OnInit {
     this.router.navigate(['/predictions', match]);
   }
 
-  isTooLate(time: string) {
-    let partidoDate = new Date();
+  isTooLate(date: string, time: string) {
+    let partidoDate = new Date(date);
     let timeSplit = time.split(':');
     partidoDate.setHours(parseInt(timeSplit[0]));
     partidoDate.setMinutes(parseInt(timeSplit[1]));
