@@ -3,6 +3,10 @@
     <app-navbar></app-navbar>
   </div>
   <div class="content">
+    <p-dialog header="Registro exitoso" [(visible)]="displayModalAdd" modal="true" [closable]="false" [dismissableMask]="true">
+      <p>La predicción se ha agregado exitosamente.</p>
+      <p-button label="Aceptar" severity="info" (onClick)="onAccept()" [style]="{'float':'right', 'margin-top':'10px'}"></p-button>
+    </p-dialog>
     <div class="edit-prediction-container">
       <div class="header">
         <h1>Ingresar Predicción</h1>

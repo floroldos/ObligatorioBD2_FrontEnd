@@ -18,5 +18,5 @@ export class PredictionService {
           console.error('Error creating prediction:', error);
           throw error;
         }
-      }
+    }
 }

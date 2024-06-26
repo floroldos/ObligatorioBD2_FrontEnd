@@ -7,8 +7,8 @@ import {NavbarComponent} from '../navbar/navbar.component';
 import {FormsModule} from '@angular/forms';
 import {InputNumberModule} from 'primeng/inputnumber';
 import {InputIconModule} from 'primeng/inputicon';
-import {ButtonModule} from 'primeng/button';
-
+import { DialogModule } from 'primeng/dialog';
+import { ButtonModule } from 'primeng/button';
 
 @Component({
   selector: 'app-predict',
@@ -21,7 +21,8 @@ import {ButtonModule} from 'primeng/button';
     FormsModule,
     InputNumberModule,
     InputIconModule,
-    ButtonModule
+    ButtonModule,
+    DialogModule
   ]
 })
 export class PredictComponent {
@@ -31,14 +32,15 @@ export class PredictComponent {
   private route = inject(ActivatedRoute);
 
   teamA!: string;
-  teamB!: string
+  teamB!: string;
+  displayModalAdd: boolean = false;
 
   predictionBackend: any;
 
   prediction: PredictionDto = {
     matchid: 0,
     team1score: 0,
-    team2score: 0
+    team2score: 0,
   };
 
   constructor(private router: Router, private predictionService: PredictionService) {
@@ -59,7 +61,6 @@ export class PredictComponent {
       this.prediction.team2score = this.predictionBackend.team2score
     }
 
-
     this.prediction.matchid = this.id;
   }
 
@@ -67,6 +68,7 @@ export class PredictComponent {
   async savePrediction(): Promise<void> {
     try {
       const createdPrediction = await this.predictionService.createPrediction(this.prediction);
+      this.displayModalAdd = true;
       console.log('Prediction created successfully:', createdPrediction);
     } catch (error) {
       console.error('Error creating prediction:', error);
@@ -75,6 +77,10 @@ export class PredictComponent {
 
   cancel(): void {
     this.router.navigate(['/games']);
+  }
+
+  onAccept() {
+    this.displayModalAdd = false;
   }
 
 }
