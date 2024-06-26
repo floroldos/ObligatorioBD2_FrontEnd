@@ -6,7 +6,7 @@
       <h1>Partidos en vivo</h1>
     </div>
     <div *ngIf="games.inProgressGames.length === 0" class="no-partido">
-      No hay partidos disponibles.
+      No hay partidos en vivo.
     </div>
     <div *ngIf="games.inProgressGames.length > 0">
       <div class="match-cards">
@@ -42,7 +42,7 @@
       <h1>Partidos futuros</h1>
     </div>
     <div *ngIf="games.futureGames.length === 0" class="no-partido">
-      No hay partidos disponibles.
+      No hay partidos a futuro.
     </div>
     <div *ngIf="games.futureGames.length > 0">
       <div class="match-cards">
@@ -75,7 +75,7 @@
                         (onClick)="editPrediction(match)" [style]="{'background-color': '#2145A1', 'border': '1px solid #2145A1', 'font-size':'12px',
               'height': '30px', 'width':'25vh', 'margin-top':'1.2rem'}"></p-button>
             } @else {
-              <p-button label="Ingresar predicción" size="large" [raised]="true"
+              <p-button label="Ingresar predicción" size="large" [raised]="true" [disabled]="this.userService.GetRole() === 'ADMIN'"
                         (onClick)="enterPrediction(match)" [style]="{'background-color': '#2145A1', 'border': '1px solid #2145A1', 'font-size':'12px',
               'height': '30px', 'width':'25vh', 'margin-top':'1.2rem'}"></p-button>
             }
@@ -90,7 +90,7 @@
       <h1>Partidos pasados</h1>
     </div>
     <div *ngIf="games.pastGames.length === 0" class="no-partido">
-      No hay partidos disponibles.
+      No hay partidos pasados.
     </div>
     <div *ngIf="games.pastGames.length > 0">
       <div class="match-cards">

@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { GameService } from '../services/gameservice/game.service';
 import { TeamService } from '../services/teamservice/team.service';
+import {UserService} from "../services/userservice/user.service";
 
 @Component({
   selector: 'app-games',
@@ -34,7 +35,7 @@ export class GamesComponent implements OnInit {
   games: any;
   teams: any[] = [];
 
-  constructor(private router: Router, private gameService: GameService, private teamService: TeamService) { }
+  constructor(private router: Router, private gameService: GameService, private teamService: TeamService, public userService: UserService) { }
 
   ngOnInit() : void {
     this.loadGames();

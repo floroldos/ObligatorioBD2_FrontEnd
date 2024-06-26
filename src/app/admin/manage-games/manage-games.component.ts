@@ -9,6 +9,7 @@ import { DialogModule } from 'primeng/dialog';
 import { InputTextModule } from 'primeng/inputtext';
 import { TeamService } from '../../services/teamservice/team.service';
 import { DropdownModule } from 'primeng/dropdown';
+import {SkeletonModule} from "primeng/skeleton";
 
 @Component({
   selector: 'app-manage-games',
@@ -20,15 +21,16 @@ import { DropdownModule } from 'primeng/dropdown';
     ReactiveFormsModule,
     DialogModule,
     InputTextModule,
-    DropdownModule
+    DropdownModule,
+    SkeletonModule
   ],
   templateUrl: './manage-games.component.html',
   styleUrl: './manage-games.component.scss'
 })
 export class ManageGamesComponent {
-  games: any = [];
+  games: any = undefined;
   teams: any[] = [];
-  
+
   gameForm: FormGroup;
   formGroup!: FormGroup;
   addFormGroup!: FormGroup;

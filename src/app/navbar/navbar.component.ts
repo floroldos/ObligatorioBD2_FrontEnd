@@ -30,15 +30,14 @@ import {ApiService} from "../services/apiservice/api.service";
   styleUrl: './navbar.component.scss'
 })
 export class NavbarComponent {
-  loading: boolean = false;
   userName: string = '';
   points: number = 0;
 
   constructor(
     private router: Router,
     private cookieService: CookieService,
-    private userService: UserService,
-    private apiService: ApiService
+    public userService: UserService,
+    private apiService: ApiService,
   ) {
   }
 
@@ -47,6 +46,11 @@ export class NavbarComponent {
   }
 
   getUserData() {
+    if (this.userService.GetRole() === "ADMIN"){
+      this.points = 0;
+      return;
+    }
+
     try {
       this.userName = this.userService.GetName();
       this.apiService.get("/score/self").then((data) => {

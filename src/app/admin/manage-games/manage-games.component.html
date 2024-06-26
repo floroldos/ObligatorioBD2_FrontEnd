@@ -8,80 +8,112 @@
               [style]="{'float':'right', 'margin-top':'10px'}"></p-button>
   </p-dialog>
 
-  <div class="header">
-    En progreso
-  </div>
-
-  <div class="game-container">
-    <div *ngIf="games.inProgressGames.length === 0">
-      No hay partidos disponibles.
+  @if(games){
+    <div class="header">
+      En progreso
     </div>
-    <div *ngIf="games.inProgressGames.length > 0">
-      <div class="match-day" *ngFor="let game of games.inProgressGames">
-        <h2>{{ game.date }}</h2>
-        <div class="match-cards">
-          <div class="match-card" (click)="onSelectGame(game)">
-            <div class="details">
-              <span>{{ game.time }} - {{ game.stadium }}</span>
-            </div>
-            <div class="teams">
-              <div class="team">
-                <img src="../../../assets/flag_placeholder.png" [class]="'flag flag-'+ game.team1">
-                <span>{{ game.team1 }}</span>
+
+    <div class="game-container">
+      <div *ngIf="games.inProgressGames.length === 0" class="no-hay">
+        No hay partidos disponibles.
+      </div>
+      <div *ngIf="games.inProgressGames.length > 0">
+        <div class="match-day" *ngFor="let game of games.inProgressGames">
+          <h2>{{ game.date }}</h2>
+          <div class="match-cards">
+            <div class="match-card" (click)="onSelectGame(game)">
+              <div class="details">
+                <span>{{ game.time }} - {{ game.stadium }}</span>
               </div>
-              <div class="score">
-                <span>{{ game.scoreTeam1 }}</span>
-                <span class="vs">VS</span>
-                <span>{{ game.scoreTeam2 }}</span>
-              </div>
-              <div class="team">
-                <img src="../../../assets/flag_placeholder.png" [class]="'flag flag-'+ game.team2">
-                <span>{{ game.team2 }}</span>
+              <div class="teams">
+                <div class="team">
+                  <img src="../../../assets/flag_placeholder.png" [class]="'flag flag-'+ game.team1">
+                  <span>{{ game.team1 }}</span>
+                </div>
+                <div class="score">
+                  <span>{{ game.scoreTeam1 }}</span>
+                  <span class="vs">VS</span>
+                  <span>{{ game.scoreTeam2 }}</span>
+                </div>
+                <div class="team">
+                  <img src="../../../assets/flag_placeholder.png" [class]="'flag flag-'+ game.team2">
+                  <span>{{ game.team2 }}</span>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-  <hr>
+    <hr>
 
-  <div class="header">
-    Partidos pasados
-  </div>
-
-  <div class="game-container">
-    <div *ngIf="games.pastGames.length === 0">
-      No hay partidos disponibles.
+    <div class="header">
+      Partidos pasados
     </div>
-    <div *ngIf="games.pastGames.length > 0">
-      <div class="match-day" *ngFor="let game of games.pastGames">
-        <h2>{{ game.date }}</h2>
-        <div class="match-cards">
-          <div class="match-card" (click)="onSelectGame(game)">
-            <div class="details">
-              <span>{{ game.time }} - {{ game.stadium }}</span>
-            </div>
-            <div class="teams">
-              <div class="team">
-                <img src="../../../assets/flag_placeholder.png" [class]="'flag flag-'+ game.team1">
-                <span>{{ game.team1 }}</span>
+
+    <div class="game-container">
+      <div *ngIf="games.pastGames.length === 0" class="no-hay">
+        No hay partidos disponibles.
+      </div>
+      <div *ngIf="games.pastGames.length > 0">
+        <div class="match-day" *ngFor="let game of games.pastGames">
+          <h2>{{ game.date }}</h2>
+          <div class="match-cards">
+            <div class="match-card" (click)="onSelectGame(game)">
+              <div class="details">
+                <span>{{ game.time }} - {{ game.stadium }}</span>
               </div>
-              <div class="score">
-                <span>{{ game.scoreTeam1 }}</span>
-                <span class="vs">VS</span>
-                <span>{{ game.scoreTeam2 }}</span>
-              </div>
-              <div class="team">
-                <img src="../../../assets/flag_placeholder.png" [class]="'flag flag-'+ game.team2">
-                <span>{{ game.team2 }}</span>
+              <div class="teams">
+                <div class="team">
+                  <img src="../../../assets/flag_placeholder.png" [class]="'flag flag-'+ game.team1">
+                  <span>{{ game.team1 }}</span>
+                </div>
+                <div class="score">
+                  <span>{{ game.scoreTeam1 }}</span>
+                  <span class="vs">VS</span>
+                  <span>{{ game.scoreTeam2 }}</span>
+                </div>
+                <div class="team">
+                  <img src="../../../assets/flag_placeholder.png" [class]="'flag flag-'+ game.team2">
+                  <span>{{ game.team2 }}</span>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
+  } @else {
+    <div class="header">
+      En progreso
+    </div>
+
+    <div class="game-container">
+      <p-skeleton />
+      <br>
+      <p-skeleton />
+      <br>
+      <p-skeleton />
+      <br>
+      <p-skeleton />
+    </div>
+
+    <div class="header">
+      Partidos pasados
+    </div>
+
+    <div class="game-container">
+      <div class="game-container">
+        <p-skeleton />
+        <br>
+        <p-skeleton />
+        <br>
+        <p-skeleton />
+        <br>
+        <p-skeleton />
+      </div>
+    </div>
+  }
 
   <div *ngIf="selectedGame" class="edit-game">
     <h2>Editar Resultado del Partido</h2>

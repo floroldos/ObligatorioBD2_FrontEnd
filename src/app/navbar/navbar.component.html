@@ -13,27 +13,34 @@
     <li class="navbar-item">
       <a class="navbar-link" routerLink="/teams">Equipos</a>
     </li>
+    @if(this.userService.GetRole() === 'ADMIN'){
+      <li class="navbar-item">
+        <a class="navbar-link" (click)="logout()">Logout</a>
+      </li>
+    }
   </ul>
-  <p-avatar label="U" styleClass="mr-2"
-    [style]="{ 'background-color': '#F6B40E', color: '#ffffff', 'margin-left': '5rem' }"
-    (click)="menu.toggle($event)"></p-avatar>
+  @if (this.userService.GetRole() !== 'ADMIN'){
+    <p-avatar label="U" styleClass="mr-2"
+              [style]="{ 'background-color': '#F6B40E', color: '#ffffff', 'margin-left': '5rem' }"
+              (click)="menu.toggle($event)"></p-avatar>
     <span class="font-bold"> {{ userName }}</span>
-  <br>
-  <p-menu #menu popup="true" [style]="{'padding': '1rem', 'margin-right': '2rem'}">
-    <ng-template pTemplate="end">
-      <div>
-        <p-avatar label="U" styleClass="mr-2" [style]="{ 'background-color': '#F6B40E', color: '#ffffff'}" />
-        <span class="inline-flex flex-column">
+    <br>
+    <p-menu #menu popup="true" [style]="{'padding': '1rem', 'margin-right': '2rem'}">
+      <ng-template pTemplate="end">
+        <div>
+          <p-avatar label="U" styleClass="mr-2" [style]="{ 'background-color': '#F6B40E', color: '#ffffff'}" />
+          <span class="inline-flex flex-column">
           <span class="font-bold"> {{ userName }}</span>
           <h4> Tienes {{ points }} pts</h4>
           <hr>
         </span>
-      </div>
-      <h4 [style]="{'margin-right':'2rem', 'cursor': 'pointer'}"> Mi perfil</h4>
-      <h4 [style]="{'margin-right':'2rem', 'cursor': 'pointer'}"> Mis predicciones</h4>
-      <span [style]="{'margin-right':'2rem', 'cursor': 'pointer'}" (click)="logout()"> Log out <i
+        </div>
+        <h4 [style]="{'margin-right':'2rem', 'cursor': 'pointer'}"> Mi perfil</h4>
+        <h4 [style]="{'margin-right':'2rem', 'cursor': 'pointer'}"> Mis predicciones</h4>
+        <span [style]="{'margin-right':'2rem', 'cursor': 'pointer'}" (click)="logout()"> Log out <i
           class="pi pi-sign-out"></i>
       </span>
-    </ng-template>
-  </p-menu>
+      </ng-template>
+    </p-menu>
+  }
 </nav>
