@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import * as jose from 'jose';
 import { CookieService } from 'ngx-cookie-service';
+import {ApiService} from "../apiservice/api.service";
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,7 @@ export class UserService {
         if (this.token == '') {
             this.token = this.cookieService.get('token');
         }
-    
+
         return this.token;
     }
 
@@ -48,10 +49,4 @@ export class UserService {
         let decoded = jose.decodeJwt(this.GetToken());
         return decoded['career'] as string;
     }
-
-    GetScore(): number {
-        let decoded = jose.decodeJwt(this.GetToken());
-        return decoded['score'] as number;
-    }
-
 }

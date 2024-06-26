@@ -31,6 +31,16 @@ h1, h2 {
 .header {
   text-align: left;
   margin-bottom: 20px;
+  h1{
+    font-size: 2.5em;
+    color: white;
+  }
+}
+
+.no-partido{
+  font-size: 1em;
+  text-align: center;
+  color: white;
 }
 
 .match-day {

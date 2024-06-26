@@ -1,20 +1,18 @@
 <div class="container">
-  <app-navbar />
+  <app-navbar/>
   <div class="game-container">
+
     <div class="header">
-      <p-button type="button" label="Próximos partidos"
-        [style]="{'background-color': '#D13C48', 'border': '1px solid #CA3541', 'font-size':'15px', 'height': '40px', 'width':'200px', 'margin':'15px', 'padding':'1rem'}">
-        <i class="pi pi-calendar"></i>
-      </p-button>
+      <h1>Partidos en vivo</h1>
     </div>
-    <div *ngIf="games.length === 0">
+    <div *ngIf="games.inProgressGames.length === 0" class="no-partido">
       No hay partidos disponibles.
     </div>
-    <div *ngIf="games.length > 0">
+    <div *ngIf="games.inProgressGames.length > 0">
       <div class="match-cards">
-        <div class="match-card" *ngFor="let match of games">
+        <div class="match-card" *ngFor="let match of games.inProgressGames">
           <div class="details">
-            <span>{{match.date}} - {{match.time}} - {{ match.stadium }}</span>
+            <span>{{ match.date }} - {{ match.time }} - {{ match.stadium }}</span>
           </div>
           <div class="teams">
             <div class="team">
@@ -31,12 +29,92 @@
               <span>{{ match.team2 }}</span>
             </div>
           </div>
-          <p-button label="Editar predicción" *ngIf="!isPlayed(match.date)" size="large" [raised]="true" (onClick)="editPrediction(match)" [style]="{'background-color': '#2145A1', 'border': '1px solid #2145A1', 'font-size':'12px',
+          <p-button label="Ya es muy tarde!" disabled="true" size="large" [raised]="true"
+                    [style]="{'background-color': '#2145A1', 'border': '1px solid #2145A1', 'font-size':'12px',
               'height': '30px', 'width':'25vh', 'margin-top':'1.2rem'}"></p-button>
+        </div>
+      </div>
+    </div>
 
-          <p-button label="Ingresar predicción" *ngIf="isPlayed(match.date)" size="large" [raised]="true" (onClick)="enterPrediction(match)" [style]="{'background-color': '#2145A1', 'border': '1px solid #2145A1', 'font-size':'12px',
-          'height': '30px', 'width':'25vh', 'margin-top':'1.2rem'}"></p-button>
+    <hr>
+
+    <div class="header">
+      <h1>Partidos futuros</h1>
+    </div>
+    <div *ngIf="games.futureGames.length === 0" class="no-partido">
+      No hay partidos disponibles.
+    </div>
+    <div *ngIf="games.futureGames.length > 0">
+      <div class="match-cards">
+        <div class="match-card" *ngFor="let match of games.futureGames">
+          <div class="details">
+            <span>{{ match.date }} - {{ match.time }} - {{ match.stadium }}</span>
+          </div>
+          <div class="teams">
+            <div class="team">
+              <img src="../../assets/flag_placeholder.png" [class]="'flag flag-'+ match.team1 ">
+              <span>{{ match.team1 }}</span>
+            </div>
+            <div class="score">
+              <span>{{ match.scoreTeam1 }}</span>
+              <span class="vs">VS</span>
+              <span>{{ match.scoreTeam2 }}</span>
+            </div>
+            <div class="team">
+              <img src="../../assets/flag_placeholder.png" [class]="'flag flag-'+ match.team2">
+              <span>{{ match.team2 }}</span>
+            </div>
+          </div>
+          @if (isTooLate(match.time)){
+            <p-button label="Ya es muy tarde!" disabled="true" size="large" [raised]="true"
+                      [style]="{'background-color': '#2145A1', 'border': '1px solid #2145A1', 'font-size':'12px',
+              'height': '30px', 'width':'25vh', 'margin-top':'1.2rem'}"></p-button>
+          } @else {
+            @if (match.myPrediction){
+              <p-button label="Editar predicción" size="large" [raised]="true"
+                        (onClick)="editPrediction(match)" [style]="{'background-color': '#2145A1', 'border': '1px solid #2145A1', 'font-size':'12px',
+              'height': '30px', 'width':'25vh', 'margin-top':'1.2rem'}"></p-button>
+            } @else {
+              <p-button label="Ingresar predicción" size="large" [raised]="true"
+                        (onClick)="enterPrediction(match)" [style]="{'background-color': '#2145A1', 'border': '1px solid #2145A1', 'font-size':'12px',
+              'height': '30px', 'width':'25vh', 'margin-top':'1.2rem'}"></p-button>
+            }
+          }
+        </div>
+      </div>
+    </div>
+
+    <hr>
+
+    <div class="header">
+      <h1>Partidos pasados</h1>
+    </div>
+    <div *ngIf="games.pastGames.length === 0" class="no-partido">
+      No hay partidos disponibles.
+    </div>
+    <div *ngIf="games.pastGames.length > 0">
+      <div class="match-cards">
+        <div class="match-card" *ngFor="let match of games.pastGames">
+          <div class="details">
+            <span>{{ match.date }} - {{ match.time }} - {{ match.stadium }}</span>
+          </div>
+          <div class="teams">
+            <div class="team">
+              <img src="../../assets/flag_placeholder.png" [class]="'flag flag-'+ match.team1 ">
+              <span>{{ match.team1 }}</span>
+            </div>
+            <div class="score">
+              <span>{{ match.scoreTeam1 }}</span>
+              <span class="vs">VS</span>
+              <span>{{ match.scoreTeam2 }}</span>
+            </div>
+            <div class="team">
+              <img src="../../assets/flag_placeholder.png" [class]="'flag flag-'+ match.team2">
+              <span>{{ match.team2 }}</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
+</div>

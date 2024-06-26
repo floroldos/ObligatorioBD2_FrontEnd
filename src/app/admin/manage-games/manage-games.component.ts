@@ -26,9 +26,9 @@ import { DropdownModule } from 'primeng/dropdown';
   styleUrl: './manage-games.component.scss'
 })
 export class ManageGamesComponent {
-
-  games: any[] = [];
+  games: any = [];
   teams: any[] = [];
+  
   gameForm: FormGroup;
   formGroup!: FormGroup;
   addFormGroup!: FormGroup;
