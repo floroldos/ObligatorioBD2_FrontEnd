@@ -65,7 +65,7 @@
               <span>{{ match.team2 }}</span>
             </div>
           </div>
-          @if (isTooLate(match.time)){
+          @if (isTooLate(match.date, match.time)){
             <p-button label="Ya es muy tarde!" disabled="true" size="large" [raised]="true"
                       [style]="{'background-color': '#2145A1', 'border': '1px solid #2145A1', 'font-size':'12px',
               'height': '30px', 'width':'25vh', 'margin-top':'1.2rem'}"></p-button>
