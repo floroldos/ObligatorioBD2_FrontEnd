@@ -17,6 +17,7 @@
   <p-avatar label="U" styleClass="mr-2"
     [style]="{ 'background-color': '#F6B40E', color: '#ffffff', 'margin-left': '5rem' }"
     (click)="menu.toggle($event)"></p-avatar>
+    <span class="font-bold"> {{ userName }}</span>
   <br>
   <p-menu #menu popup="true" [style]="{'padding': '1rem', 'margin-right': '2rem'}">
     <ng-template pTemplate="end">

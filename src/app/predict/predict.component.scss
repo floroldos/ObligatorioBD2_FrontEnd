@@ -20,7 +20,7 @@ body {
   flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: center; /* Centra verticalmente el contenido */
+  justify-content: center; 
   align-items: center;
   padding: 2rem;
   text-align: center;
@@ -40,7 +40,7 @@ body {
 .gamecard .score {
   display: flex;
   align-items: center;
-  justify-content: center; /* Centra horizontalmente los elementos */
+  justify-content: center;
   margin-bottom: 10px;
 }
 
@@ -58,6 +58,12 @@ body {
 .gamecard .team-name span {
   font-size: 20px;
   font-weight: bold;
+}
+
+.title-team{
+  font-weight: 800;
+  font-family: paytone one;
+  font-size: 1rem;
 }
 
 .edit-prediction-container {
@@ -101,7 +107,7 @@ body {
 }
 
 .edit-prediction-container .buttons button:hover {
-  background-color: #45a049;
+  background-color: #2a5150;
 }
 
 @media (max-width: 768px) {

@@ -12,33 +12,29 @@
         <h1>Ingresar Predicción</h1>
       </div>
       <div class="gamecard">
-        <div class="team-name">
           <img src="../../assets/flag_placeholder.png" [class]="'flag flag-'+ teamA ">
-          <span>{{teamA}}</span>
-        </div>
-        <div class="score">
+          <br>
+          <span class="title-team">{{teamA}}</span>
+          <br>
           <p-inputNumber [(ngModel)]="prediction.team1score"
             [style]="{'width': '3rem','background':'#fff', 'color':'#000'}" [showButtons]="true"
-            decrementButtonClass="p-button-secondary" incrementButtonClass="p-button-secondary" buttonLayout="horizontal"
-            spinnerMode="horizontal" inputId="horizontal">
+            decrementButtonClass="p-button-secondary" incrementButtonClass="p-button-secondary" buttonLayout="vertical"
+            spinnerMode="vertical" inputId="vertical">
           </p-inputNumber>
-        </div>
-        <div class="team-name">
+          <br>
           <img src="../../assets/flag_placeholder.png" [class]="'flag flag-'+ teamB ">
-          <span>{{teamB}}</span>
-        </div>
-        <div class="score">
+          <br>
+          <span class="title-team">{{teamB}}</span>
+          <br>
           <p-inputNumber [(ngModel)]="prediction.team2score"
             [style]="{'width': '3rem','background':'#fff', 'color':'#000'}" [showButtons]="true"
-            decrementButtonClass="p-button-secondary" incrementButtonClass="p-button-secondary" buttonLayout="horizontal"
-            spinnerMode="horizontal" inputId="horizontal" />
-        </div>
+            decrementButtonClass="p-button-secondary" incrementButtonClass="p-button-secondary" buttonLayout="vertical"
+            spinnerMode="vertical" inputId="vertical" />
       </div>
       <div class="buttons">
         <button class="p-button p-button-success" (click)="savePrediction()">Guardar</button>
       </div>
       <br>
-        <hr>
       <button class="p-button p-button-danger" (click)="cancel()">Cancelar</button>
     </div>
   </div>
