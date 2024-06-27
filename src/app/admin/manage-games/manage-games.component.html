@@ -138,4 +138,49 @@
       <button type="submit" pButton label="Actualizar Resultado" [disabled]="!gameForm.valid"></button>
     </form>
   </div>
+
+  <div class="edit-game">
+    <h2>Agregar Partido</h2>
+    <form [formGroup]="addFormGroup" (ngSubmit)="addGame()">
+      <div class="form-group">
+        <label for="team1">Nombre de Equipo A</label>
+        <span class="p-float-label">
+          <p-dropdown 
+              [options]="teams" 
+              formControlName="team1" 
+              optionLabel="label" 
+              optionValue="id"
+              placeholder="Nombre del equipo"
+              [style]="{'width':'15.3rem'}" />
+        </span>
+      </div>
+      <div class="form-group">
+        <label for="team2">Nombre de Equipo B</label>
+        <span class="p-float-label">
+          <p-dropdown 
+              [options]="teams" 
+              formControlName="team2" 
+              optionLabel="label" 
+              optionValue="id"
+              placeholder="Nombre del equipo"
+              [style]="{'width':'15.3rem'}" />
+        </span>
+      </div>
+      <div class="form-group">
+        <label for="date">Fecha del Partido</label>
+        <input id="date" formControlName="date" type="date" />
+      </div>
+      <br>
+      <div class="form-group">
+          <label for="time">Hora del Partido</label>
+          <input id="time" formControlName="time" type="time" />
+      </div>
+      <div class="form-group">
+        <label for="stadium">Nombre del Estadio</label>
+        <input id="stadium" formControlName="stadium" type="text" />
+    </div>
+      <button type="submit">Agregar</button>
+    </form>
+  </div>
+  
 </div>
