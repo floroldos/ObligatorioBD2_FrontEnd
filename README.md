@@ -8,7 +8,7 @@ git clone https://github.com/floroldos/ObligatorioBD2_FrontEnd.git
 ### Navega al directorio del proyecto:
 cd ObligatorioBD2_FrontEnd
 
-###I nstala las dependencias:
+### Instala las dependencias:
 npm install
 
 ## Uso
