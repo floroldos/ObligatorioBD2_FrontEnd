@@ -72,4 +72,8 @@ export class NavbarComponent {
   adminView(){
     this.router.navigate(['/admin']);
   }
+
+  seePredictions(){
+    this.router.navigate(['/see-predictions']);
+  }
 }

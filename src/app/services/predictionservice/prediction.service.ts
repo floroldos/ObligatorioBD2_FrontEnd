@@ -19,4 +19,14 @@ export class PredictionService {
           throw error;
         }
     }
+
+    async getPredictions(): Promise<any> {
+        const path = '/prediction/all';
+        try {
+          return this.apiService.get<any>(path);
+        } catch (error) {
+          console.error('Error fetching predictions:', error);
+          throw error;
+        }
+    }
 }

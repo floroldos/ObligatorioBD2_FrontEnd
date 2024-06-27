@@ -1,0 +1,31 @@
+<div class="container">
+    <app-navbar></app-navbar>
+    <div class="game-container">
+      <div class="header">
+        <h1>Predicciones</h1>
+      </div>
+      <div *ngIf="predictions.length === 0">
+        No hay predicciones.
+      </div>
+      <div *ngIf="predictions.length > 0">
+        <div class="match-cards">
+          <div class="match-card" *ngFor="let prediction of predictions">
+            <div class="details">
+              <span>Puntos ganados: {{ prediction.points }}</span>
+            </div>
+            <div class="teams">
+              <div class="team">
+                <span>{{ prediction.matchid }}</span>
+              </div>
+              <div class="score">
+                <span>{{ prediction.team1score }}</span>
+                <span class="vs">VS</span>
+                <span>{{ prediction.team2score }}</span>
+              </div>
+              <div class="team"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>

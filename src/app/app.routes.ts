@@ -12,6 +12,7 @@ import { ManageGamesComponent } from './admin/manage-games/manage-games.componen
 import { TeamsComponent } from './teams/teams.component';
 import { ManageCareersComponent } from './admin/manage-careers/manage-careers.component';
 import { ManageUsersComponent } from './admin/manage-users/manage-users.component';
+import { MypredictionsComponent } from './mypredictions/mypredictions.component';
 
 export const routes: Routes = [
     {
@@ -61,6 +62,11 @@ export const routes: Routes = [
     {
         path: 'predictions',
         component: PredictComponent,
+        canActivate: [AuthGuard]
+    },
+    {
+        path: 'see-predictions',
+        component: MypredictionsComponent,
         canActivate: [AuthGuard]
     }
 ];

@@ -28,7 +28,7 @@
     <p-avatar label="U" styleClass="mr-2"
               [style]="{ 'background-color': '#F6B40E', color: '#ffffff', 'margin-left': '5rem' }"
               (click)="menu.toggle($event)"></p-avatar>
-    <span class="font-bold"> {{ userName }}</span>
+    <a class="font-bold" (click)="menu.toggle($event)"> {{ userName }}</a>
     <br>
     <p-menu #menu popup="true" [style]="{'padding': '1rem', 'margin-right': '2rem'}">
       <ng-template pTemplate="end">
@@ -41,7 +41,7 @@
         </span>
         </div>
         <h4 [style]="{'margin-right':'2rem', 'cursor': 'pointer'}"> Mi perfil</h4>
-        <h4 [style]="{'margin-right':'2rem', 'cursor': 'pointer'}"> Mis predicciones</h4>
+        <h4 [style]="{'margin-right':'2rem', 'cursor': 'pointer'}" (click)="seePredictions()"> Mis predicciones</h4>
         <span [style]="{'margin-right':'2rem', 'cursor': 'pointer'}" (click)="logout()"> Log out <i
           class="pi pi-sign-out"></i>
       </span>
