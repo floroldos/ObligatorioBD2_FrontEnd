@@ -68,4 +68,8 @@ export class NavbarComponent {
     this.router.navigate(['/login']);
     window.location.reload();
   }
+
+  adminView(){
+    this.router.navigate(['/admin']);
+  }
 }

@@ -4,6 +4,11 @@
     <span class="navbar-title" routerLink="/home">Penca UCU</span>
   </div>
   <ul class="navbar-menu">
+    @if(this.userService.GetRole() === 'ADMIN'){
+      <li class="navbar-item">
+        <a class="navbar-link" (click)="adminView()">Administrador</a>
+      </li>
+    }
     <li class="navbar-item">
       <a class="navbar-link" routerLink="/games">Partidos</a>
     </li>
