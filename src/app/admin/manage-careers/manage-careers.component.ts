@@ -69,6 +69,7 @@ export class ManageCareersComponent implements OnInit {
       this.displayModalAdd = true;
       console.log('Career created successfully');
       this.formGroup.reset();
+      this.loadCareers();
     } catch (error) {
       console.error('Error creating career:', error);
     }

@@ -66,6 +66,7 @@ export class ManageTeamsComponent {
       this.displayModalAdd = true;
       console.log('Team created successfully');
       this.formGroup.reset();
+      this.loadTeams();
     } catch (error) {
       console.error('Error creating team:', error);
     }

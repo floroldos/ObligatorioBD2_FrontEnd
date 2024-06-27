@@ -122,6 +122,7 @@ export class ManageGamesComponent {
         scoreTeam1: this.gameForm.value.scoreTeam1,
         scoreTeam2: this.gameForm.value.scoreTeam2
       };
+      console.log('Updating game:', updatedGame);
       await this.gameService.updateGame(updatedGame);
       this.displayModalSuccess = true;
       this.selectedGame = null;
